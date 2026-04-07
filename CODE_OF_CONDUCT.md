@@ -1,4 +1,4 @@
-# Contributor Covenant Code of Conduct
+﻿# Contributor Covenant Code of Conduct
 
 ## Our Pledge
 
@@ -61,7 +61,7 @@ representative at an online or offline event.
 Instances of abusive, harassing, or otherwise unacceptable behavior may be
 reported to the community leaders by opening an issue at:
 
-https://github.com/ThanhNguyxn/awesome-free-apis/issues
+https://github.com/ThanhNguyxn-Org/awesome-free-apis/issues
 
 All complaints will be reviewed and investigated promptly and fairly.
 

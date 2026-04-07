@@ -1,4 +1,4 @@
-# Contributing to Awesome Free APIs
+﻿# Contributing to Awesome Free APIs
 
 Thanks for helping improve this project.
 
@@ -61,7 +61,7 @@ npm run build
 ## Suggested Contribution Workflow
 
 ```bash
-git fork https://github.com/ThanhNguyxn/awesome-free-apis
+git fork https://github.com/ThanhNguyxn-Org/awesome-free-apis
 git clone https://github.com/YOUR-USERNAME/awesome-free-apis.git
 cd awesome-free-apis
 git checkout -b feat/add-api-name
