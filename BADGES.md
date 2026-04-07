@@ -1,4 +1,4 @@
-# GitHub Badges for awesome-free-apis
+﻿# GitHub Badges for awesome-free-apis
 
 Copy and paste these badges to your README.md:
 
@@ -7,13 +7,13 @@ Copy and paste these badges to your README.md:
 ```markdown
 <div align="center">
 
-[![GitHub Stars](https://img.shields.io/github/stars/ThanhNguyxn/awesome-free-apis?style=social)](https://github.com/ThanhNguyxn/awesome-free-apis/stargazers)
-[![GitHub Forks](https://img.shields.io/github/forks/ThanhNguyxn/awesome-free-apis?style=social)](https://github.com/ThanhNguyxn/awesome-free-apis/network/members)
-[![GitHub Issues](https://img.shields.io/github/issues/ThanhNguyxn/awesome-free-apis)](https://github.com/ThanhNguyxn/awesome-free-apis/issues)
-[![GitHub Pull Requests](https://img.shields.io/github/issues-pr/ThanhNguyxn/awesome-free-apis)](https://github.com/ThanhNguyxn/awesome-free-apis/pulls)
+[![GitHub Stars](https://img.shields.io/github/stars/ThanhNguyxn/awesome-free-apis?style=social)](https://github.com/ThanhNguyxn-Org/awesome-free-apis/stargazers)
+[![GitHub Forks](https://img.shields.io/github/forks/ThanhNguyxn/awesome-free-apis?style=social)](https://github.com/ThanhNguyxn-Org/awesome-free-apis/network/members)
+[![GitHub Issues](https://img.shields.io/github/issues/ThanhNguyxn/awesome-free-apis)](https://github.com/ThanhNguyxn-Org/awesome-free-apis/issues)
+[![GitHub Pull Requests](https://img.shields.io/github/issues-pr/ThanhNguyxn/awesome-free-apis)](https://github.com/ThanhNguyxn-Org/awesome-free-apis/pulls)
 [![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg)](http://makeapullrequest.com)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
-[![Maintained](https://img.shields.io/badge/Maintained-Yes-brightgreen)](https://github.com/ThanhNguyxn/awesome-free-apis)
+[![Maintained](https://img.shields.io/badge/Maintained-Yes-brightgreen)](https://github.com/ThanhNguyxn-Org/awesome-free-apis)
 [![Visitors](https://api.visitorbadge.io/api/visitors?path=ThanhNguyxn%2Fawesome-free-apis&countColor=%23263759&style=flat)](https://visitorbadge.io/status?path=ThanhNguyxn%2Fawesome-free-apis)
 
 </div>
@@ -25,21 +25,21 @@ Copy and paste these badges to your README.md:
 
 ### Stars & Forks (Social Style)
 ```markdown
-[![GitHub Stars](https://img.shields.io/github/stars/ThanhNguyxn/awesome-free-apis?style=social)](https://github.com/ThanhNguyxn/awesome-free-apis/stargazers)
-[![GitHub Forks](https://img.shields.io/github/forks/ThanhNguyxn/awesome-free-apis?style=social)](https://github.com/ThanhNguyxn/awesome-free-apis/network/members)
+[![GitHub Stars](https://img.shields.io/github/stars/ThanhNguyxn/awesome-free-apis?style=social)](https://github.com/ThanhNguyxn-Org/awesome-free-apis/stargazers)
+[![GitHub Forks](https://img.shields.io/github/forks/ThanhNguyxn/awesome-free-apis?style=social)](https://github.com/ThanhNguyxn-Org/awesome-free-apis/network/members)
 ```
 
 ### Issues & PRs
 ```markdown
-[![GitHub Issues](https://img.shields.io/github/issues/ThanhNguyxn/awesome-free-apis)](https://github.com/ThanhNguyxn/awesome-free-apis/issues)
-[![GitHub Pull Requests](https://img.shields.io/github/issues-pr/ThanhNguyxn/awesome-free-apis)](https://github.com/ThanhNguyxn/awesome-free-apis/pulls)
+[![GitHub Issues](https://img.shields.io/github/issues/ThanhNguyxn/awesome-free-apis)](https://github.com/ThanhNguyxn-Org/awesome-free-apis/issues)
+[![GitHub Pull Requests](https://img.shields.io/github/issues-pr/ThanhNguyxn/awesome-free-apis)](https://github.com/ThanhNguyxn-Org/awesome-free-apis/pulls)
 [![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg)](http://makeapullrequest.com)
 ```
 
 ### License & Maintenance
 ```markdown
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
-[![Maintained](https://img.shields.io/badge/Maintained-Yes-brightgreen)](https://github.com/ThanhNguyxn/awesome-free-apis)
+[![Maintained](https://img.shields.io/badge/Maintained-Yes-brightgreen)](https://github.com/ThanhNguyxn-Org/awesome-free-apis)
 ```
 
 ### Visitor Counter
@@ -59,13 +59,13 @@ Alternative visitor counters:
 
 ### Repository Size & Language
 ```markdown
-[![Repo Size](https://img.shields.io/github/repo-size/ThanhNguyxn/awesome-free-apis)](https://github.com/ThanhNguyxn/awesome-free-apis)
-[![Last Commit](https://img.shields.io/github/last-commit/ThanhNguyxn/awesome-free-apis)](https://github.com/ThanhNguyxn/awesome-free-apis/commits/main)
+[![Repo Size](https://img.shields.io/github/repo-size/ThanhNguyxn/awesome-free-apis)](https://github.com/ThanhNguyxn-Org/awesome-free-apis)
+[![Last Commit](https://img.shields.io/github/last-commit/ThanhNguyxn/awesome-free-apis)](https://github.com/ThanhNguyxn-Org/awesome-free-apis/commits/main)
 ```
 
 ### Contributors
 ```markdown
-[![Contributors](https://img.shields.io/github/contributors/ThanhNguyxn/awesome-free-apis)](https://github.com/ThanhNguyxn/awesome-free-apis/graphs/contributors)
+[![Contributors](https://img.shields.io/github/contributors/ThanhNguyxn/awesome-free-apis)](https://github.com/ThanhNguyxn-Org/awesome-free-apis/graphs/contributors)
 ```
 
 ---
@@ -82,7 +82,7 @@ Shields.io supports different styles. Replace `?style=` parameter:
 
 Example:
 ```markdown
-[![Stars](https://img.shields.io/github/stars/ThanhNguyxn/awesome-free-apis?style=for-the-badge)](https://github.com/ThanhNguyxn/awesome-free-apis)
+[![Stars](https://img.shields.io/github/stars/ThanhNguyxn/awesome-free-apis?style=for-the-badge)](https://github.com/ThanhNguyxn-Org/awesome-free-apis)
 ```
 
 ---
