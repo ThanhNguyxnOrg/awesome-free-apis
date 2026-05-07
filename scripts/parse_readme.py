@@ -1,0 +1,202 @@
+#!/usr/bin/env python3
+"""
+parse_readme.py — Parse README.md → apis.json for the Awesome Free APIs website.
+
+Auto-extracts:
+  - All categories (name, emoji, id, anchor)
+  - All APIs per category (name, description, auth, https, link)
+  - Global stats (total APIs, total categories, no-auth count, https percentage)
+
+Usage:
+  python scripts/parse_readme.py
+  python scripts/parse_readme.py --readme README.md --output website/data/apis.json
+"""
+
+import re
+import json
+import argparse
+from pathlib import Path
+from datetime import datetime, timezone
+
+
+def parse_category_header(line: str):
+    """Extract category info from a markdown header like: ## <a id="animals"></a>🐶 Animals"""
+    # Match: ## <a id="..."></a>EMOJI Name
+    match = re.match(
+        r'^##\s+(?:<a\s+id="([^"]+)"\s*>\s*</a>\s*)?(\S+)\s+(.+)$',
+        line.strip()
+    )
+    if match:
+        anchor = match.group(1) or ""
+        emoji = match.group(2)
+        name = match.group(3).strip()
+        return {
+            "id": anchor or re.sub(r'[^a-z0-9]+', '-', name.lower()).strip('-'),
+            "emoji": emoji,
+            "name": name,
+        }
+    return None
+
+
+def parse_api_row(line: str):
+    """Extract API info from a markdown table row."""
+    # Split by | and clean up
+    parts = [p.strip() for p in line.split('|')]
+    # Remove empty first/last from leading/trailing |
+    parts = [p for p in parts if p]
+
+    if len(parts) < 5:
+        return None
+
+    name_raw, description, auth_raw, https_raw, link_raw = parts[0], parts[1], parts[2], parts[3], parts[4]
+
+    # Extract name (remove bold **)
+    name = re.sub(r'\*\*(.+?)\*\*', r'\1', name_raw).strip()
+    if not name or name.startswith('---') or name.startswith(':---') or name == 'API Name':
+        return None
+
+    # Extract auth type
+    auth = "No"
+    if "OAuth" in auth_raw or "🔐" in auth_raw:
+        auth = "OAuth"
+    elif "ApiKey" in auth_raw or "🔑" in auth_raw:
+        auth = "apiKey"
+    elif "No" in auth_raw:
+        auth = "No"
+
+    # Extract HTTPS
+    https = "✅" in https_raw or "Yes" in https_raw
+
+    # Extract link URL
+    link_match = re.search(r'\[.*?\]\((.*?)\)', link_raw)
+    link = link_match.group(1) if link_match else ""
+
+    return {
+        "name": name,
+        "description": description,
+        "auth": auth,
+        "https": https,
+        "link": link,
+    }
+
+
+def parse_readme(readme_path: str):
+    """Parse the entire README.md and return structured data."""
+    content = Path(readme_path).read_text(encoding='utf-8')
+    lines = content.split('\n')
+
+    categories = []
+    current_category = None
+
+    # Sections to skip (not API categories)
+    skip_sections = {
+        "general-api-usage-guide", "general api usage guide",
+    }
+
+    for line in lines:
+        stripped = line.strip()
+
+        # Check for category header (## level)
+        if stripped.startswith('## '):
+            cat = parse_category_header(stripped)
+            if cat:
+                # Skip non-API sections
+                cat_id_lower = cat['id'].lower()
+                cat_name_lower = cat['name'].lower()
+                if cat_id_lower in skip_sections or 'table of contents' in cat_name_lower or 'usage guide' in cat_name_lower or 'code examples' in cat_name_lower:
+                    current_category = None
+                    continue
+
+                cat['apis'] = []
+                categories.append(cat)
+                current_category = cat
+            else:
+                current_category = None
+            continue
+
+        # Parse API table rows
+        if current_category and stripped.startswith('|'):
+            api = parse_api_row(stripped)
+            if api:
+                current_category['apis'].append(api)
+
+    # Calculate stats
+    total_apis = sum(len(cat['apis']) for cat in categories)
+    total_categories = len(categories)
+    no_auth_count = sum(
+        1 for cat in categories for api in cat['apis'] if api['auth'] == 'No'
+    )
+    https_count = sum(
+        1 for cat in categories for api in cat['apis'] if api['https']
+    )
+    https_pct = round((https_count / total_apis * 100)) if total_apis > 0 else 0
+
+    # Build output
+    output = {
+        "meta": {
+            "generated_at": datetime.now(timezone.utc).isoformat(),
+            "source": "README.md",
+            "total_apis": total_apis,
+            "total_categories": total_categories,
+            "no_auth_count": no_auth_count,
+            "https_count": https_count,
+            "https_percentage": https_pct,
+        },
+        "categories": []
+    }
+
+    for cat in categories:
+        output["categories"].append({
+            "id": cat['id'],
+            "emoji": cat['emoji'],
+            "name": cat['name'],
+            "api_count": len(cat['apis']),
+            "apis": cat['apis'],
+        })
+
+    return output
+
+
+def main():
+    parser = argparse.ArgumentParser(description='Parse README.md → apis.json')
+    parser.add_argument('--readme', default='README.md', help='Path to README.md')
+    parser.add_argument('--output', default='website/data/apis.json', help='Output JSON path')
+    args = parser.parse_args()
+
+    # Resolve paths
+    readme_path = Path(args.readme)
+    if not readme_path.is_absolute():
+        # Try relative to script's parent's parent (repo root)
+        repo_root = Path(__file__).resolve().parent.parent
+        readme_path = repo_root / args.readme
+
+    output_path = Path(args.output)
+    if not output_path.is_absolute():
+        repo_root = Path(__file__).resolve().parent.parent
+        output_path = repo_root / args.output
+
+    if not readme_path.exists():
+        print(f"ERROR: README not found at {readme_path}")
+        return 1
+
+    print(f"Parsing {readme_path}...")
+    data = parse_readme(str(readme_path))
+
+    # Ensure output directory exists
+    output_path.parent.mkdir(parents=True, exist_ok=True)
+
+    # Write JSON
+    with open(output_path, 'w', encoding='utf-8') as f:
+        json.dump(data, f, ensure_ascii=False, indent=2)
+
+    meta = data['meta']
+    print(f"Done! Generated {output_path}")
+    print(f"  {meta['total_apis']} APIs across {meta['total_categories']} categories")
+    print(f"  {meta['no_auth_count']} require no auth")
+    print(f"  {meta['https_percentage']}% use HTTPS")
+
+    return 0
+
+
+if __name__ == '__main__':
+    exit(main())
