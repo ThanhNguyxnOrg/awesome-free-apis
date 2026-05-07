@@ -72,7 +72,7 @@ function parseApiTable(section) {
         description: description.trim(),
         auth: normalizeAuth(auth.trim()),
         authRaw: auth.trim(),
-        https: https.trim() === '✅',
+        https: https.trim() === '?',
         url: url.trim(),
       });
     }
@@ -87,7 +87,7 @@ function parseExtraContent(section) {
 
   let inDisclaimer = false;
   for (const line of lines) {
-    if (line.startsWith('> **⚠️ Important Disclaimer:**')) {
+    if (line.startsWith('> **?? Important Disclaimer:**')) {
       inDisclaimer = true;
     }
     if (inDisclaimer) {
@@ -99,7 +99,7 @@ function parseExtraContent(section) {
         }
       }
     }
-    if (line.startsWith('**🔍 How to find instances:**') || line.startsWith('**💡 Self-hosting recommended:**')) {
+    if (line.startsWith('**?? How to find instances:**') || line.startsWith('**?? Self-hosting recommended:**')) {
       extras.push(line);
     }
   }
@@ -117,11 +117,11 @@ function normalizeAuth(auth) {
 function getAuthBadge(auth, authRaw) {
   switch (auth) {
     case 'none':
-      return '<span class="auth-badge auth-badge--none">🌐 No Auth</span>';
+      return '<span class="auth-badge auth-badge--none">?? No Auth</span>';
     case 'apikey':
-      return '<span class="auth-badge auth-badge--apikey">🔑 API Key</span>';
+      return '<span class="auth-badge auth-badge--apikey">?? API Key</span>';
     case 'oauth':
-      return '<span class="auth-badge auth-badge--oauth">🔐 OAuth</span>';
+      return '<span class="auth-badge auth-badge--oauth">?? OAuth</span>';
     default:
       return authRaw;
   }
@@ -129,13 +129,13 @@ function getAuthBadge(auth, authRaw) {
 
 function getHttpsBadge(https) {
   return https
-    ? '<span class="https-yes">✅ Yes</span>'
-    : '<span class="https-no">❌ No</span>';
+    ? '<span class="https-yes">? Yes</span>'
+    : '<span class="https-no">? No</span>';
 }
 
 function getEmojiFromTitle(title) {
   const emojiMatch = title.match(/^(\p{Emoji_Presentation}|\p{Extended_Pictographic})/u);
-  return emojiMatch ? emojiMatch[0] : '📦';
+  return emojiMatch ? emojiMatch[0] : '??';
 }
 
 function getCleanTitle(title) {
@@ -210,12 +210,12 @@ sidebar:
     const httpsBadge = getHttpsBadge(api.https);
     const name = escapeMdxTableCell(api.name);
     const desc = escapeMdxTableCell(api.description);
-    mdx += `| **${name}** | ${desc} | ${authBadge} | ${httpsBadge} | [Docs →](${api.url}) |\n`;
+    mdx += `| **${name}** | ${desc} | ${authBadge} | ${httpsBadge} | [Docs ?](${api.url}) |\n`;
   }
 
   mdx += `\n---\n\n`;
   mdx += `<p style="text-align: center; opacity: 0.7; font-size: 0.85rem;">`;
-  mdx += `Data sourced from <a href="https://github.com/ThanhNguyxn/awesome-free-apis">awesome-free-apis</a> README`;
+  mdx += `Data sourced from <a href="https://github.com/ThanhNguyxnOrg/awesome-free-apis">awesome-free-apis</a> README`;
   mdx += `</p>\n`;
 
   return mdx;
@@ -233,7 +233,7 @@ template: splash
 hero:
   tagline: "A curated collection of ${totalApis}+ free APIs across ${categories.length} categories. Open source & community-driven."
   image:
-    html: '<div style="font-size:6rem;line-height:1">🚀</div>'
+    html: '<div style="font-size:6rem;line-height:1">??</div>'
   actions:
     - text: Browse APIs
       link: /awesome-free-apis/apis/animals/
@@ -244,7 +244,7 @@ hero:
       icon: open-book
       variant: minimal
     - text: GitHub
-      link: https://github.com/ThanhNguyxn/awesome-free-apis
+      link: https://github.com/ThanhNguyxnOrg/awesome-free-apis
       icon: github
       variant: minimal
 ---
@@ -289,8 +289,8 @@ hero:
 ---
 
 <div class="generated-note">
-  Built with ❤️ by <a href="https://github.com/ThanhNguyxn">ThanhNguyxn</a> · 
-  Auto-generated from <a href="https://github.com/ThanhNguyxn/awesome-free-apis/blob/main/README.md">README.md</a>
+  Built with ?? by <a href="https://github.com/ThanhNguyxn">ThanhNguyxn</a> � 
+  Auto-generated from <a href="https://github.com/ThanhNguyxnOrg/awesome-free-apis/blob/main/README.md">README.md</a>
 </div>
 `;
 
@@ -299,7 +299,7 @@ hero:
 
 function generateGuidePage(readmeContent) {
   const guideStart = readmeContent.indexOf('## <a id="general-api-usage-guide">');
-  const guideEnd = readmeContent.indexOf('## 📖 Table of Contents');
+  const guideEnd = readmeContent.indexOf('## ?? Table of Contents');
 
   if (guideStart === -1 || guideEnd === -1) {
     console.warn('Could not find guide section in README');
@@ -307,11 +307,11 @@ function generateGuidePage(readmeContent) {
   }
 
   let guide = readmeContent.substring(guideStart, guideEnd).trim();
-  guide = guide.replace(/^## <a id="general-api-usage-guide"><\/a>\s*📘\s*General API Usage Guide\s*\n*/m, '');
+  guide = guide.replace(/^## <a id="general-api-usage-guide"><\/a>\s*??\s*General API Usage Guide\s*\n*/m, '');
   guide = guide.replace(/\r\n/g, '\n');
 
   let mdx = `---
-title: "📘 API Usage Guide"
+title: "?? API Usage Guide"
 description: "Learn the basics of working with APIs - authentication, HTTP methods, status codes, and essential tools."
 ---
 
@@ -322,17 +322,17 @@ description: "Learn the basics of working with APIs - authentication, HTTP metho
 
 function generateExamplesPage() {
   return `---
-title: "📚 Code Examples"
+title: "?? Code Examples"
 description: "Practical code examples showing how to use popular APIs from the collection."
 ---
 
-Check out practical code examples in the [examples/ folder on GitHub](https://github.com/ThanhNguyxn/awesome-free-apis/tree/main/examples).
+Check out practical code examples in the [examples/ folder on GitHub](https://github.com/ThanhNguyxnOrg/awesome-free-apis/tree/main/examples).
 
 ## Available Examples
 
 | Example | Language | API Used |
 | :--- | :--- | :--- |
-| **Pokemon API** | Python, JavaScript | [PokéAPI](https://pokeapi.co/) |
+| **Pokemon API** | Python, JavaScript | [Pok�API](https://pokeapi.co/) |
 | **Cryptocurrency** | Python, JavaScript | [CoinGecko](https://www.coingecko.com/en/api) |
 | **AI Chat** | Python, JavaScript | [OpenAI](https://platform.openai.com/) |
 
@@ -342,7 +342,7 @@ Each example includes both **Python** and **JavaScript** implementations with co
 
 \`\`\`bash
 # Clone the repo
-git clone https://github.com/ThanhNguyxn/awesome-free-apis.git
+git clone https://github.com/ThanhNguyxnOrg/awesome-free-apis.git
 cd awesome-free-apis/examples
 
 # Run a Python example
@@ -354,7 +354,7 @@ node pokemon/pokemon_example.js
 
 ---
 
-> Want to contribute an example? Check out the [Contributing Guide](https://github.com/ThanhNguyxn/awesome-free-apis/blob/main/CONTRIBUTING.md).
+> Want to contribute an example? Check out the [Contributing Guide](https://github.com/ThanhNguyxnOrg/awesome-free-apis/blob/main/CONTRIBUTING.md).
 `;
 }
 
@@ -372,10 +372,10 @@ function cleanOutputDir(dir) {
 }
 
 function main() {
-  console.log('📖 Reading README.md...');
+  console.log('?? Reading README.md...');
   const readmeContent = readFileSync(README_PATH, 'utf-8').replace(/\r\n/g, '\n');
 
-  console.log('🔍 Parsing categories...');
+  console.log('?? Parsing categories...');
   const categories = parseReadme();
   console.log(`   Found ${categories.length} categories`);
 
@@ -384,7 +384,7 @@ function main() {
 
   cleanOutputDir(DOCS_OUTPUT);
 
-  console.log('📝 Generating category MDX files...');
+  console.log('?? Generating category MDX files...');
   for (const cat of categories) {
     const orderIndex = CATEGORY_ORDER.indexOf(cat.id);
     const order = orderIndex >= 0 ? orderIndex + 1 : 99;
@@ -392,28 +392,28 @@ function main() {
     const mdx = generateCategoryMdx(cat, order);
     const outPath = join(DOCS_OUTPUT, `${slug}.mdx`);
     writeFileSync(outPath, mdx);
-    console.log(`   ✅ ${slug}.mdx (${cat.apis.length} APIs)`);
+    console.log(`   ? ${slug}.mdx (${cat.apis.length} APIs)`);
   }
 
-  console.log('🏠 Generating landing page...');
+  console.log('?? Generating landing page...');
   const landingPage = generateLandingPage(categories);
   writeFileSync(INDEX_OUTPUT, landingPage);
-  console.log('   ✅ index.mdx');
+  console.log('   ? index.mdx');
 
-  console.log('📘 Generating guide page...');
+  console.log('?? Generating guide page...');
   const guideMdx = generateGuidePage(readmeContent);
   if (guideMdx) {
     mkdirSync(dirname(GUIDE_OUTPUT), { recursive: true });
     writeFileSync(GUIDE_OUTPUT, guideMdx);
-    console.log('   ✅ guide/getting-started.mdx');
+    console.log('   ? guide/getting-started.mdx');
   }
 
-  console.log('📚 Generating examples page...');
+  console.log('?? Generating examples page...');
   mkdirSync(dirname(EXAMPLES_OUTPUT), { recursive: true });
   writeFileSync(EXAMPLES_OUTPUT, generateExamplesPage());
-  console.log('   ✅ examples/index.mdx');
+  console.log('   ? examples/index.mdx');
 
-  console.log(`\n🎉 Done! Generated ${categories.length} category pages + 3 static pages.`);
+  console.log(`\n?? Done! Generated ${categories.length} category pages + 3 static pages.`);
   console.log(`   Total APIs: ${totalApis}`);
 }
 

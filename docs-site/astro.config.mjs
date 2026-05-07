@@ -2,7 +2,7 @@ import { defineConfig } from 'astro/config';
 import starlight from '@astrojs/starlight';
 
 export default defineConfig({
-  site: 'https://thanhnguyxn.github.io',
+  site: 'https://ThanhNguyxnOrg.github.io',
   base: '/awesome-free-apis',
   integrations: [
     starlight({
@@ -14,15 +14,15 @@ export default defineConfig({
       },
       favicon: '/favicon.png',
       social: [
-        { icon: 'github', label: 'GitHub', href: 'https://github.com/ThanhNguyxn/awesome-free-apis' },
+        { icon: 'github', label: 'GitHub', href: 'https://github.com/ThanhNguyxnOrg/awesome-free-apis' },
       ],
       editLink: {
-        baseUrl: 'https://github.com/ThanhNguyxn/awesome-free-apis/edit/main/docs-site/',
+        baseUrl: 'https://github.com/ThanhNguyxnOrg/awesome-free-apis/edit/main/docs-site/',
       },
       head: [
         {
           tag: 'meta',
-          attrs: { property: 'og:image', content: 'https://thanhnguyxn.github.io/awesome-free-apis/og-image.png' },
+          attrs: { property: 'og:image', content: 'https://ThanhNguyxnOrg.github.io/awesome-free-apis/og-image.png' },
         },
         {
           tag: 'meta',
