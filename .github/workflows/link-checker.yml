@@ -52,24 +52,42 @@ jobs:
           python check_links.py > output.txt 2>&1 || true
           cat output.txt
 
-          # Check if broken links found (count > 0)
-          BROKEN_COUNT=$(grep -oP "Broken: \K[0-9]+" link_check_report.txt || echo "0")
+          # Parse report stats
+          if [ -f link_check_report.txt ]; then
+            BROKEN_COUNT=$(grep -oP "Broken: \K[0-9]+" link_check_report.txt || echo "0")
+            OK_COUNT=$(grep -oP "Working: \K[0-9]+" link_check_report.txt || echo "0")
+            PROTECTED_COUNT=$(grep -oP "Bot protection.*: \K[0-9]+" link_check_report.txt || echo "0")
+            WARN_COUNT=$(grep -oP "Warnings: \K[0-9]+" link_check_report.txt || echo "0")
+            ERR_COUNT=$(grep -oP "Errors: \K[0-9]+" link_check_report.txt || echo "0")
+            TOTAL=$(grep -oP "Healthy: \K[0-9]+" link_check_report.txt || echo "0")
+          else
+            BROKEN_COUNT=0
+            OK_COUNT=0
+            PROTECTED_COUNT=0
+            WARN_COUNT=0
+            ERR_COUNT=0
+            TOTAL=0
+          fi
+
           echo "broken_count=$BROKEN_COUNT" >> $GITHUB_OUTPUT
+          echo "ok_count=$OK_COUNT" >> $GITHUB_OUTPUT
+          echo "protected_count=$PROTECTED_COUNT" >> $GITHUB_OUTPUT
+          echo "warn_count=$WARN_COUNT" >> $GITHUB_OUTPUT
+          echo "err_count=$ERR_COUNT" >> $GITHUB_OUTPUT
+          echo "total_healthy=$TOTAL" >> $GITHUB_OUTPUT
+
           if [ "$BROKEN_COUNT" -gt 0 ]; then
             echo "has_broken=true" >> $GITHUB_OUTPUT
           else
             echo "has_broken=false" >> $GITHUB_OUTPUT
           fi
 
-          # Read broken URLs list for comparison
+          # Read broken URLs list
           if [ -f broken_urls.txt ]; then
-            BROKEN_HASH=$(sort broken_urls.txt | sha256sum | cut -d' ' -f1)
             BROKEN_LIST=$(cat broken_urls.txt)
           else
-            BROKEN_HASH="none"
             BROKEN_LIST=""
           fi
-          echo "broken_hash=$BROKEN_HASH" >> $GITHUB_OUTPUT
 
           # Store broken list as multiline output
           {
@@ -106,136 +124,146 @@ jobs:
               console.log('Error commenting on PR:', error);
             }
 
-      - name: Manage broken links issue
-        if: github.event_name == 'schedule' || github.event_name == 'workflow_dispatch'
+      # Single persistent issue — always update the SAME issue body
+      - name: Update daily report issue
+        if: github.event_name != 'pull_request' && always()
         uses: actions/github-script@v7
         with:
           script: |
             const fs = require('fs');
             const hasBroken = '${{ steps.check.outputs.has_broken }}' === 'true';
             const brokenCount = parseInt('${{ steps.check.outputs.broken_count }}') || 0;
+            const okCount = parseInt('${{ steps.check.outputs.ok_count }}') || 0;
+            const protectedCount = parseInt('${{ steps.check.outputs.protected_count }}') || 0;
+            const warnCount = parseInt('${{ steps.check.outputs.warn_count }}') || 0;
+            const errCount = parseInt('${{ steps.check.outputs.err_count }}') || 0;
+            const totalHealthy = parseInt('${{ steps.check.outputs.total_healthy }}') || 0;
             const currentBrokenList = `${{ steps.check.outputs.broken_list }}`.trim();
 
-            // Find existing open issue with our labels
+            const REPORT_LABEL = 'daily-report';
+            const AUTO_LABEL = 'automated';
+            const ISSUE_TITLE = '📊 Daily Link Health Report';
+
+            const today = new Date().toISOString().split('T')[0];
+            const runUrl = `${context.serverUrl}/${context.repo.owner}/${context.repo.repo}/actions/runs/${context.runId}`;
+
+            // Ensure labels exist
+            for (const label of [
+              { name: REPORT_LABEL, color: '5319e7', description: 'Automated daily link health report' },
+              { name: AUTO_LABEL, color: '0e8a16', description: 'Created by automated workflow' }
+            ]) {
+              try {
+                await github.rest.issues.getLabel({
+                  owner: context.repo.owner,
+                  repo: context.repo.repo,
+                  name: label.name
+                });
+              } catch {
+                await github.rest.issues.createLabel({
+                  owner: context.repo.owner,
+                  repo: context.repo.repo,
+                  ...label
+                });
+              }
+            }
+
+            // Build the status icon
+            const statusIcon = hasBroken ? '🔴' : '🟢';
+            const statusText = hasBroken ? `${brokenCount} broken link${brokenCount > 1 ? 's' : ''} detected` : 'All links healthy';
+
+            // Build broken links table
+            let brokenSection = '';
+            if (hasBroken) {
+              const brokenLines = currentBrokenList.split('\n').filter(l => l.trim());
+              let brokenTable = '| # | URL | Status |\n|---|---|---|\n';
+              brokenLines.forEach((url, i) => {
+                brokenTable += `| ${i + 1} | ${url} | ❌ 404 |\n`;
+              });
+              brokenSection = `### 💀 Broken Links\n\n${brokenTable}\n\n**Action needed:** Review and update/remove these dead links from README.md.\n`;
+            } else {
+              brokenSection = `### ✅ No Broken Links\n\nAll API links are responding correctly. Nothing to fix! 🎉\n`;
+            }
+
+            // Build the issue body
+            const body = `## ${statusIcon} Link Health Status: ${statusText}
+
+**Last checked**: ${today}
+**Workflow run**: [#${context.runNumber}](${runUrl})
+**Trigger**: \`${context.eventName}\`
+
+---
+
+### 📈 Summary
+
+| Category | Count | Description |
+|---|---|---|
+| ✅ Working | ${okCount} | HTTP 200 — responding correctly |
+| 🛡️ Protected | ${protectedCount} | HTTP 403/429 — bot protection (API still works) |
+| ⚠️ Warning | ${warnCount} | Timeout/DNS/SSL issues (may be temporary) |
+| ❌ Error | ${errCount} | Server errors (5xx) |
+| 💀 Broken | ${brokenCount} | HTTP 404/410 — confirmed dead |
+
+**Healthy rate**: ${totalHealthy} APIs healthy (${okCount} + ${protectedCount})
+
+---
+
+${brokenSection}
+---
+
+### 📋 How This Works
+
+- 🔄 This report is **automatically updated daily** at 00:00 UTC
+- 🛡️ APIs with bot protection (403/429) are counted as **healthy**
+- 💀 Only confirmed 404/410 responses are marked as **broken**
+- 📦 Full report available as [workflow artifact](${runUrl})
+
+> *Last updated by [Link Checker workflow](${runUrl}) on ${today}*`;
+
+            // Find existing report issue
             const { data: existingIssues } = await github.rest.issues.listForRepo({
               owner: context.repo.owner,
               repo: context.repo.repo,
-              labels: 'broken-links,automated',
+              labels: `${REPORT_LABEL},${AUTO_LABEL}`,
               state: 'open',
               sort: 'created',
               direction: 'desc',
               per_page: 1
             });
 
-            const existingIssue = existingIssues.length > 0 ? existingIssues[0] : null;
-
-            if (!hasBroken) {
-              // No broken links found
-              if (existingIssue) {
-                // Close the old issue - all links are fixed!
-                await github.rest.issues.update({
-                  owner: context.repo.owner,
-                  repo: context.repo.repo,
-                  issue_number: existingIssue.number,
-                  state: 'closed',
-                  state_reason: 'completed'
-                });
-                await github.rest.issues.createComment({
-                  owner: context.repo.owner,
-                  repo: context.repo.repo,
-                  issue_number: existingIssue.number,
-                  body: `## ✅ All links are healthy!\n\nThe daily link checker on **${new Date().toISOString().split('T')[0]}** found no broken links. Closing this issue.\n\n---\n*Auto-closed by [Link Checker workflow](${context.serverUrl}/${context.repo.owner}/${context.repo.repo}/actions/runs/${context.runId})*`
-                });
-                console.log(`Closed issue #${existingIssue.number} - no more broken links`);
-              } else {
-                console.log('No broken links and no open issue - all good!');
-              }
-              return;
-            }
-
-            // We have broken links - check if same as existing issue
-            if (existingIssue) {
-              // Extract broken URLs from existing issue body
-              const bodyMatch = existingIssue.body.match(/<!-- BROKEN_URLS_START -->([\s\S]*?)<!-- BROKEN_URLS_END -->/);
-              const existingBrokenList = bodyMatch ? bodyMatch[1].trim() : '';
-
-              if (currentBrokenList === existingBrokenList) {
-                // Same broken links - just add a comment noting it's still broken
-                console.log(`Issue #${existingIssue.number} still has same broken links - keeping open`);
-                return;
-              }
-
-              // Different broken links - close old issue
+            if (existingIssues.length > 0) {
+              // Update existing issue body
+              const issue = existingIssues[0];
               await github.rest.issues.update({
                 owner: context.repo.owner,
                 repo: context.repo.repo,
-                issue_number: existingIssue.number,
-                state: 'closed',
-                state_reason: 'not_planned'
+                issue_number: issue.number,
+                body: body
               });
-              await github.rest.issues.createComment({
+              console.log(`Updated issue #${issue.number}: ${issue.html_url}`);
+            } else {
+              // Create the issue for the first time
+              const issue = await github.rest.issues.create({
                 owner: context.repo.owner,
                 repo: context.repo.repo,
-                issue_number: existingIssue.number,
-                body: `## 🔄 Broken links changed\n\nThe broken links list has changed. A new issue has been created with the updated list.\n\n---\n*Auto-closed by [Link Checker workflow](${context.serverUrl}/${context.repo.owner}/${context.repo.repo}/actions/runs/${context.runId})*`
+                title: ISSUE_TITLE,
+                labels: [REPORT_LABEL, AUTO_LABEL],
+                body: body
               });
-              console.log(`Closed issue #${existingIssue.number} - broken links changed`);
+              // Pin the issue (optional — requires admin, may fail silently)
+              try {
+                await github.graphql(`
+                  mutation {
+                    pinIssue(input: { issueId: "${issue.data.node_id}" }) {
+                      issue { id }
+                    }
+                  }
+                `);
+                console.log('Issue pinned!');
+              } catch {
+                console.log('Could not pin issue (needs admin permissions)');
+              }
+              console.log(`Created issue #${issue.data.number}: ${issue.data.html_url}`);
             }
-
-            // Create new issue with current broken links
-            let reportContent = 'Report file not found.';
-            try {
-              reportContent = fs.readFileSync('scripts/link_check_report.txt', 'utf8');
-            } catch (err) {
-              console.log('Error reading report:', err);
-            }
-
-            // Build broken links markdown table
-            const brokenLines = currentBrokenList.split('\n').filter(l => l.trim());
-            let brokenTable = '| # | Broken URL | Status |\n|---|---|---|\n';
-            brokenLines.forEach((url, i) => {
-              brokenTable += `| ${i + 1} | ${url} | ❌ Dead |\n`;
-            });
-
-            const issue = await github.rest.issues.create({
-              owner: context.repo.owner,
-              repo: context.repo.repo,
-              title: `🔴 ${brokenCount} Broken Link${brokenCount > 1 ? 's' : ''} Detected - ${new Date().toISOString().split('T')[0]}`,
-              labels: ['broken-links', 'automated'],
-              body: `## 🔗 Link Checker Report
-
-            **Date**: ${new Date().toISOString().split('T')[0]}
-            **Workflow Run**: [#${context.runNumber}](${context.serverUrl}/${context.repo.owner}/${context.repo.repo}/actions/runs/${context.runId})
-            **Broken Links Found**: ${brokenCount}
-
-            ### Broken Links
-
-            ${brokenTable}
-
-            ### Full Report
-
-            \`\`\`
-            ${reportContent}
-            \`\`\`
-
-            ### Next Steps
-
-            1. Review the broken links listed above
-            2. Update or remove broken API links from README.md
-            3. Re-run the link checker to verify fixes
-
-            > 💡 This issue will be **automatically closed** when all broken links are fixed.
-            > If the broken links list changes, this issue will be closed and a new one created.
-
-            <!-- BROKEN_URLS_START -->
-            ${currentBrokenList}
-            <!-- BROKEN_URLS_END -->
-
-            ---
-            *Auto-created by [Link Checker workflow](${context.serverUrl}/${context.repo.owner}/${context.repo.repo}/blob/main/.github/workflows/link-checker.yml)*`
-            });
-
-            console.log('Created issue:', issue.data.html_url);
 
       - name: Fail if broken links found
         if: steps.check.outputs.has_broken == 'true'
