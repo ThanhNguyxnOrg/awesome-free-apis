@@ -1,4 +1,4 @@
-﻿# 🚀 Awesome Dev APIs
+# 🚀 Awesome Dev APIs
 
 [![Awesome](https://awesome.re/badge.svg)](https://awesome.re)
 
@@ -377,7 +377,7 @@ print(response.json()['fact'])
 | **Chainbase** | Unified blockchain data API across multiple chains. | 🔑 ApiKey | ✅ | [Link](https://docs.chainbase.com/) |
 | **Chainlink** | Developer resources for decentralized oracle data. | No | ✅ | [Link](https://chain.link/developer-resources) |
 | **Chainpoint** | Chainpoint is a global network for anchoring data to the Bitcoin blockchain. | No | ✅ | [Link](https://tierion.com/chainpoint/) |
-| **Covalent** | Unified API for blockchain transaction and token data. | 🔑 ApiKey | ✅ | [Link](https://www.covalenthq.com/docs/api/) |
+| **GoldRush (Covalent)** | Multichain data APIs for blockchain transaction and token data. | 🔑 ApiKey | ✅ | [Link](https://goldrush.dev/) |
 | **dRPC** | Distributed RPC provider for EVM and non-EVM chains. | 🔑 ApiKey | ✅ | [Link](https://drpc.org/docs) |
 | **Etherscan** | Ethereum explorer and smart contract data APIs. | 🔑 ApiKey | ✅ | [Link](https://docs.etherscan.io/) |
 | **FreeRPC** | Free public RPC endpoints for many blockchains. | No | ✅ | [Link](https://www.freerpc.com/) |
@@ -443,7 +443,7 @@ print(response.json()['fact'])
 | **Kraken** | Exchange for Trading Cryptocurrencies. | 🔑 ApiKey | ✅ | [Link](https://docs.kraken.com/rest/) |
 | **KuCoin** | Exchange for Trading Cryptocurrencies. | 🔑 ApiKey | ✅ | [Link](https://docs.kucoin.com/) |
 | **Mempool** | Bitcoin API. | No | ✅ | [Link](https://mempool.space/api) |
-| **MercadoBitcoin** | Brazilian Cryptocurrency Information. | No | ✅ | [Link](https://www.mercadobitcoin.com.br/api-doc/) |
+| **MercadoBitcoin** | Brazilian Cryptocurrency Information. | No | ✅ | [Link](https://api.mercadobitcoin.net/api/v4/docs) |
 | **Messari** | Crypto research and data. | 🔑 ApiKey | ✅ | [Link](https://messari.io/api) |
 | **Mobula** | On-chain crypto data and wallet analytics. | 🔑 ApiKey | ✅ | [Link](https://docs.mobula.io/) |
 | **Moralis** | Web3 wallet, NFT, and DeFi data. | 🔑 ApiKey | ✅ | [Link](https://docs.moralis.io/) |
@@ -670,9 +670,9 @@ print(response.json()['fact'])
 | **Cloudmersive Natural Language Processing** | Natural language processing and text analysis. | 🔑 ApiKey | ✅ | [Link](https://www.cloudmersive.com/nlp-api) |
 | **Code Detection API** | Detect, label, format and enrich the code in your app or in your data pipeline. | 🔐 OAuth | ✅ | [Link](https://codedetectionapi.runtime.dev) |
 | **Dandelion** | Entity extraction and text analytics API. | 🔑 ApiKey | ✅ | [Link](https://dandelion.eu/docs/api/) |
-| **DeepL** | Translation and multilingual text API. | 🔑 ApiKey | ✅ | [Link](https://developers.deepl.com/docs-api) |
+| **DeepL** | Translation and multilingual text API. | 🔑 ApiKey | ✅ | [Link](https://developers.deepl.com/docs) |
 | **Detect Language** | Detects text language. | 🔑 ApiKey | ✅ | [Link](https://detectlanguage.com/) |
-| **Eden AI** | Unified NLP APIs across providers. | 🔑 ApiKey | ✅ | [Link](https://docs.edenai.co/reference/introduction) |
+| **Eden AI** | Unified NLP APIs across providers. | 🔑 ApiKey | ✅ | [Link](https://docs.edenai.co) |
 | **ELI** | Natural Language Processing Tools for Thai Language. | 🔑 ApiKey | ✅ | [Link](https://nlp.insightera.co.th/docs/v1.0) |
 | **Google Cloud Natural** | Natural language understanding technology, including sentiment, entity and sy... | 🔑 ApiKey | ✅ | [Link](https://cloud.google.com/natural-language/docs/) |
 | **Hirak OCR** | Image to text -text recognition- from image more than 100 language, accurate,... | 🔑 ApiKey | ✅ | [Link](https://ocr.hirak.site/) |
@@ -1037,7 +1037,7 @@ print(response.json()['fact'])
 | **FreeForexAPI** | Real-time foreign exchange rates for major currency pairs. | No | ✅ | [Link](https://freeforexapi.com/Home/Api) |
 | **National Bank of Poland** | Official exchange rates from NBP. | No | ✅ | [Link](https://api.nbp.pl/en.html) |
 | **Open Exchange Rates** | Currency conversion and exchange rates. | 🔑 ApiKey | ✅ | [Link](https://docs.openexchangerates.org/) |
-| **VATComply** | VAT rates and FX conversion data. | No | ✅ | [Link](https://www.vatcomply.com/documentation) |
+| **VATComply** | VAT rates and FX conversion data. | No | ✅ | [Link](https://www.vatcomply.com) |
 
 [⬆ Back to Table of Contents](#-table-of-contents)
 
@@ -1108,7 +1108,7 @@ print(response.json()['fact'])
 | **GamerPower** | Free games, loot, and giveaways (**No Auth**). | No | ✅ | [Link](https://www.gamerpower.com/api-read) |
 | **GDBrowser** | Easy way to use the Geometry Dash Servers. | No | ✅ | [Link](https://gdbrowser.com/api) |
 | **Genshin Impact** | Game data. | No | ✅ | [Link](https://genshin.dev) |
-| **Giant Bomb** | Video Games. | 🔑 ApiKey | ✅ | [Link](https://www.giantbomb.com/api/documentation) |
+| **Giant Bomb** | Video Games. | 🔑 ApiKey | ✅ | [Link](https://www.giantbomb.com/api/) |
 | **Guild Wars 2** | Game data. | 🔑 ApiKey | ✅ | [Link](https://wiki.guildwars2.com/wiki/API:Main) |
 | **Halo** | Halo 5 and Halo Wars 2 Information. | 🔑 ApiKey | ✅ | [Link](https://developer.haloapi.com/) |
 | **Hearthstone** | Hearthstone Cards Information. | 🔑 ApiKey | ✅ | [Link](http://hearthstoneapi.com/) |
@@ -1142,7 +1142,7 @@ print(response.json()['fact'])
 | **RAWG** | Video games database (500k+ games). | 🔑 ApiKey | ✅ | [Link](https://rawg.io/apidocs) |
 | **Rick and Morty** | Show data. | No | ✅ | [Link](https://rickandmortyapi.com) |
 | **Riot Games** | League of Legends data. | 🔑 ApiKey | ✅ | [Link](https://developer.riotgames.com/) |
-| **RPS 101** | Rock, Paper, Scissors with 101 objects. | No | ✅ | [Link](https://rps101.pythonanywhere.com/api) |
+
 | **RuneScape** | RuneScape and OSRS RPGs information. | No | ✅ | [Link](https://runescape.wiki/w/Application_programming_interface) |
 | **Scryfall** | Magic: The Gathering card search. | No | ✅ | [Link](https://scryfall.com/docs/api) |
 | **SpaceTradersAPI** | A playable inter-galactic space trading MMOAPI. | 🔐 OAuth | ✅ | [Link](https://spacetraders.io?rel=pub-apis) |
@@ -1169,7 +1169,7 @@ print(response.json()['fact'])
 | **Airtel IP** | IP Geolocation API. Collecting data from multiple sources. | No | ✅ | [Link](https://sys.airtel.lv/ip2country/1.1.1.1/?full=true) |
 | **Apiip** | Get location information by IP address. | 🔑 ApiKey | ✅ | [Link](https://apiip.net/) |
 | **Battuta** | A (country/region/city) in-cascade location API. | 🔑 ApiKey | No | [Link](http://battuta.medunes.net) |
-| **BigDataCloud** | Provides fast and accurate IP geolocation APIs along with security checks and... | 🔑 ApiKey | ✅ | [Link](https://www.bigdatacloud.com/ip-geolocation-apis) |
+| **BigDataCloud** | Provides fast and accurate IP geolocation APIs along with security checks and... | 🔑 ApiKey | ✅ | [Link](https://www.bigdatacloud.com/docs) |
 | **Bing Maps** | Maps, geocoding, and routing APIs. | 🔑 ApiKey | ✅ | [Link](https://www.microsoft.com/maps/) |
 | **bng2latlong** | Convert British OSGB36 easting and northing (British National Grid) to WGS84 ... | No | ✅ | [Link](https://www.getthedata.com/bng2latlong) |
 | **Cep.la** | Brazil RESTful API to find information about streets, zip codes, neighborhood... | No | No | [Link](http://cep.la/) |
@@ -1310,7 +1310,7 @@ print(response.json()['fact'])
 | **MessengerX.io** | A FREE API for developers to build and monetize personalized ML based chat apps. | 🔑 ApiKey | ✅ | [Link](https://messengerx.rtfd.io) |
 | **Mistral AI** | High-performance open-source LLMs (free tier available). | 🔑 ApiKey | ✅ | [Link](https://docs.mistral.ai/) |
 | **NLP Cloud** | NLP. | 🔑 ApiKey | ✅ | [Link](https://nlpcloud.io) |
-| **OpenAI** | Access GPT models (offers free trial credits). | 🔑 ApiKey | ✅ | [Link](https://platform.openai.com/docs/api-reference) |
+| **OpenAI** | Access GPT models (offers free trial credits). | 🔑 ApiKey | ✅ | [Link](https://platform.openai.com/docs) |
 | **OpenVisionAPI** | Open source computer vision API based on open source models. | No | ✅ | [Link](https://openvisionapi.com) |
 | **Perplexity AI** | AI-powered search and answers (limited free tier). | 🔑 ApiKey | ✅ | [Link](https://docs.perplexity.ai/) |
 | **Perspective** | NLP API to return probability that if text is toxic, obscene, insulting or th... | 🔑 ApiKey | ✅ | [Link](https://perspectiveapi.com) |
@@ -1396,7 +1396,7 @@ print(response.json()['fact'])
 | **SoundCloud** | Music streaming. | 🔐 OAuth | ✅ | [Link](https://developers.soundcloud.com/docs/api/guide) |
 | **Spotify** | Music streaming. | 🔐 OAuth | ✅ | [Link](https://beta.developer.spotify.com/documentation/web-api/) |
 | **TasteDive** | Similar artist API (also works for movies and TV shows) | 🔑 ApiKey | ✅ | [Link](https://tastedive.com/read/api) |
-| **TheAudioDB** | Music metadata, charts, and more. | 🔑 ApiKey | ✅ | [Link](https://www.theaudiodb.com/api_guide.php) |
+| **TheAudioDB** | Music metadata, charts, and more. | 🔑 ApiKey | ✅ | [Link](https://www.theaudiodb.com/api) |
 | **Vagalume** | Crowdsourced lyrics and music knowledge. | 🔑 ApiKey | ✅ | [Link](https://api.vagalume.com.br/docs/) |
 
 [⬆ Back to Table of Contents](#-table-of-contents)
@@ -1633,7 +1633,7 @@ print(response.json()['fact'])
 | API Name | Description | Auth | HTTPS | Link |
 | :--- | :--- | :---: | :---: | :---: |
 | **Ayrshare** | Social media APIs to post, get analytics, and manage multiple users social me... | 🔑 ApiKey | ✅ | [Link](https://www.ayrshare.com) |
-| **aztro** | Daily horoscope info for yesterday, today, and tomorrow. | No | ✅ | [Link](https://aztro.sameerkumar.website/) |
+
 | **Blogger** | The Blogger APIs allows client applications to view and update Blogger content. | 🔐 OAuth | ✅ | [Link](https://developers.google.com/blogger/) |
 | **Bluesky** | Decentralized social network API (AT Protocol). | 🔑 ApiKey | ✅ | [Link](https://docs.bsky.app/) |
 | **Cisco Spark** | Team Collaboration Software. | 🔐 OAuth | ✅ | [Link](https://developer.ciscospark.com) |
@@ -1691,7 +1691,7 @@ print(response.json()['fact'])
 | **Cloudbet** | Official Cloudbet API provides real-time sports odds and betting API to place... | 🔑 ApiKey | ✅ | [Link](https://www.cloudbet.com/api/) |
 | **CollegeFootballData.com** | Unofficial detailed American college football statistics, records, and result... | 🔑 ApiKey | ✅ | [Link](https://collegefootballdata.com) |
 | **CricketData** | Live cricket scores and statistics. | 🔑 ApiKey | ✅ | [Link](https://cricketdata.org/) |
-| **Ergast F1** | F1 data from the beginning of the world championships in 1950. | No | ✅ | [Link](http://ergast.com/mrd/) |
+
 | **Fitbit** | Fitbit Information. | 🔐 OAuth | ✅ | [Link](https://dev.fitbit.com/) |
 | **Football** | A simple Open Source Football API to get squads’ stats, best scorers and more. | 🔑 ApiKey | ✅ | [Link](https://rapidapi.com/GiulianoCrescimbeni/api/football98/) |
 | **Football (Soccer) Videos** | Embed codes for goals and highlights from Premier League, Bundesliga, Serie A... | No | ✅ | [Link](https://www.scorebat.com/video-api/) |
@@ -1805,7 +1805,7 @@ print(response.json()['fact'])
 | **OpenSky Network** | Flight tracking. | No | ✅ | [Link](https://openskynetwork.github.io/opensky-api/) |
 | **Railway Transport for France** | SNCF public API. | 🔑 ApiKey | ✅ | [Link](https://www.digital.sncf.com/startup/api) |
 | **REFUGE Restrooms** | Provides safe restroom access for transgender, intersex and gender nonconform... | No | ✅ | [Link](https://www.refugerestrooms.org/api/docs/#!/restrooms) |
-| **Sabre for Developers** | Travel Search - Limited usage. | 🔑 ApiKey | ✅ | [Link](https://developer.sabre.com/guides/travel-agency/quickstart/getting-started-in-travel) |
+| **Sabre for Developers** | Travel Search - Limited usage. | 🔑 ApiKey | ✅ | [Link](https://developer.sabre.com) |
 | **Schiphol Airport** | Schiphol. | 🔑 ApiKey | ✅ | [Link](https://developer.schiphol.nl/) |
 | **Smartcar** | Lock and unlock vehicles and get data like odometer reading and location. Wor... | 🔐 OAuth | ✅ | [Link](https://smartcar.com/docs/) |
 | **Tankerkoenig** | German realtime gas/diesel prices. | 🔑 ApiKey | ✅ | [Link](https://creativecommons.tankerkoenig.de/swagger/) |
@@ -1840,7 +1840,7 @@ print(response.json()['fact'])
 | **Transport for Vancouver, Canada** | TransLink. | 🔐 OAuth | ✅ | [Link](https://developer.translink.ca/) |
 | **Transport for Washington, US** | Washington Metro transport API. | 🔐 OAuth | ✅ | [Link](https://developer.wmata.com/) |
 | **transport.rest** | Community maintained, developer-friendly public transport API. | No | ✅ | [Link](https://transport.rest) |
-| **Tripadvisor** | Rating content for a hotel, restaurant, attraction or destination. | 🔑 ApiKey | ✅ | [Link](https://developer-tripadvisor.com/home/) |
+| **Tripadvisor** | Rating content for a hotel, restaurant, attraction or destination. | 🔑 ApiKey | ✅ | [Link](https://tripadvisor-content-api.readme.io/reference/overview) |
 | **Uber** | Uber ride requests and price estimation. | 🔐 OAuth | ✅ | [Link](https://developer.uber.com/products) |
 | **Velib metropolis, Paris, France** | Velib Open Data API. | No | ✅ | [Link](https://www.velib-metropole.fr/donnees-open-data-gbfs-du-service-velib-metropole) |
 
@@ -2073,7 +2073,7 @@ print(response.json()['fact'])
 | API Name | Description | Auth | HTTPS | Link |
 | :--- | :--- | :---: | :---: | :---: |
 | **Adzuna** | Job board aggregator with salary data. | 🔑 ApiKey | ✅ | [Link](https://developer.adzuna.com/overview) |
-| **APIJobs** | Real-time job market data. | 🔑 ApiKey | ✅ | [Link](https://apijobs.dev/) |
+
 | **Arbeitnow** | Free remote job board API. | No | ✅ | [Link](https://documenter.getpostman.com/view/18545278/UVJbJdKh) |
 | **Arbeitsamt** | API for the "Arbeitsamt", which is a german Job board aggregator. | 🔐 OAuth | ✅ | [Link](https://jobsuche.api.bund.dev/) |
 | **Careerjet** | Job search engine. | 🔑 ApiKey | No | [Link](https://www.careerjet.com/partners/api/) |
