@@ -1,4 +1,4 @@
-﻿# Contributing to Awesome Free APIs
+# Contributing to Awesome Free APIs
 
 Thanks for helping improve this project.
 
@@ -25,14 +25,14 @@ An API should meet all of the following:
 Follow this exact table format in `README.md`:
 
 ```md
-| **API Name** | Short description. | No/🔑 ApiKey/🔐 OAuth | ✅/No | [Link](https://example.com/docs) |
+| **API Name** | Short description. | No/?? ApiKey/?? OAuth | ?/No | [Link](https://example.com/docs) |
 ```
 
 Guidelines:
 
 - Keep descriptions concise and practical
-- Use `No`, `🔑 ApiKey`, or `🔐 OAuth` for auth
-- Use `✅` or `No` for HTTPS
+- Use `No`, `?? ApiKey`, or `?? OAuth` for auth
+- Use `?` or `No` for HTTPS
 - Keep entries alphabetized within each category where possible
 - Avoid duplicate APIs and duplicate links
 
@@ -61,7 +61,7 @@ npm run build
 ## Suggested Contribution Workflow
 
 ```bash
-git fork https://github.com/ThanhNguyxn-Org/awesome-free-apis
+git fork https://github.com/ThanhNguyxnOrg/awesome-free-apis
 git clone https://github.com/YOUR-USERNAME/awesome-free-apis.git
 cd awesome-free-apis
 git checkout -b feat/add-api-name

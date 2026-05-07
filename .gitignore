@@ -1,0 +1,21 @@
+# Dependencies
+node_modules/
+
+# Build output
+docs-site/dist/
+
+# Linter cache
+.ruff_cache/
+
+# Script output (generated at runtime)
+scripts/link_check_report.txt
+scripts/broken_urls.txt
+scripts/output.txt
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# IDE
+.vscode/
+.idea/
