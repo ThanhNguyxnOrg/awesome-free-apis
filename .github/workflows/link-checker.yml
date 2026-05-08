@@ -89,11 +89,37 @@ jobs:
             BROKEN_LIST=""
           fi
 
-          # Store broken list as multiline output
+          # Read error URLs list
+          if [ -f error_urls.txt ]; then
+            ERROR_LIST=$(cat error_urls.txt)
+          else
+            ERROR_LIST=""
+          fi
+
+          # Read warning URLs list
+          if [ -f warning_urls.txt ]; then
+            WARNING_LIST=$(cat warning_urls.txt)
+          else
+            WARNING_LIST=""
+          fi
+
+          # Store lists as multiline outputs
           {
             echo "broken_list<<BROKEN_EOF"
             echo "$BROKEN_LIST"
             echo "BROKEN_EOF"
+          } >> $GITHUB_OUTPUT
+
+          {
+            echo "error_list<<ERROR_EOF"
+            echo "$ERROR_LIST"
+            echo "ERROR_EOF"
+          } >> $GITHUB_OUTPUT
+
+          {
+            echo "warning_list<<WARNING_EOF"
+            echo "$WARNING_LIST"
+            echo "WARNING_EOF"
           } >> $GITHUB_OUTPUT
         continue-on-error: true
 
@@ -105,6 +131,8 @@ jobs:
           path: |
             scripts/link_check_report.txt
             scripts/broken_urls.txt
+            scripts/error_urls.txt
+            scripts/warning_urls.txt
 
       - name: Comment on PR
         if: github.event_name == 'pull_request' && always()
@@ -139,6 +167,8 @@ jobs:
             const errCount = parseInt('${{ steps.check.outputs.err_count }}') || 0;
             const totalHealthy = parseInt('${{ steps.check.outputs.total_healthy }}') || 0;
             const currentBrokenList = `${{ steps.check.outputs.broken_list }}`.trim();
+            const currentErrorList = `${{ steps.check.outputs.error_list }}`.trim();
+            const currentWarningList = `${{ steps.check.outputs.warning_list }}`.trim();
 
             const REPORT_LABEL = 'daily-report';
             const AUTO_LABEL = 'automated';
@@ -175,13 +205,40 @@ jobs:
             let brokenSection = '';
             if (hasBroken) {
               const brokenLines = currentBrokenList.split('\n').filter(l => l.trim());
-              let brokenTable = '| # | URL | Status |\n|---|---|---|\n';
-              brokenLines.forEach((url, i) => {
-                brokenTable += `| ${i + 1} | ${url} | ❌ 404 |\n`;
+              let brokenTable = '| # | URL | Reason |\n|---|---|---|\n';
+              brokenLines.forEach((line, i) => {
+                const parts = line.split(' | ');
+                const url = parts[0] || line;
+                const reason = parts[1] || '404';
+                brokenTable += `| ${i + 1} | ${url} | ${reason} |\n`;
               });
-              brokenSection = `### 💀 Broken Links\n\n${brokenTable}\n\n**Action needed:** Review and update/remove these dead links from README.md.\n`;
+              brokenSection = `### 💀 Broken Links (${brokenCount})\n\n${brokenTable}\n\n**Action needed:** Review and update/remove these dead links from README.md.\n`;
             } else {
               brokenSection = `### ✅ No Broken Links\n\nAll API links are responding correctly. Nothing to fix! 🎉\n`;
+            }
+
+            // Build error section
+            let errorSection = '';
+            if (errCount > 0 && currentErrorList) {
+              const errorLines = currentErrorList.split('\n').filter(l => l.trim());
+              let errorTable = '| # | URL | Status | Note |\n|---|---|---|---|\n';
+              errorLines.forEach((line, i) => {
+                const parts = line.split(' | ');
+                errorTable += `| ${i + 1} | ${parts[0] || ''} | ${parts[1] || ''} | ${parts[2] || ''} |\n`;
+              });
+              errorSection = `\n### ❌ Server Errors (${errCount})\n\n${errorTable}\n`;
+            }
+
+            // Build warning section (collapsible since it can be long)
+            let warningSection = '';
+            if (warnCount > 0 && currentWarningList) {
+              const warningLines = currentWarningList.split('\n').filter(l => l.trim());
+              let warningTable = '| # | URL | Status | Note |\n|---|---|---|---|\n';
+              warningLines.forEach((line, i) => {
+                const parts = line.split(' | ');
+                warningTable += `| ${i + 1} | ${parts[0] || ''} | ${parts[1] || ''} | ${parts[2] || ''} |\n`;
+              });
+              warningSection = `\n<details>\n<summary>⚠️ Warnings (${warnCount}) — click to expand</summary>\n\n${warningTable}\n</details>\n`;
             }
 
             // Build the issue body
@@ -202,13 +259,15 @@ jobs:
               `| 🛡️ Protected | ${protectedCount} | HTTP 403/429 — bot protection (API still works) |`,
               `| ⚠️ Warning | ${warnCount} | Timeout/DNS/SSL issues (may be temporary) |`,
               `| ❌ Error | ${errCount} | Server errors (5xx) |`,
-              `| 💀 Broken | ${brokenCount} | HTTP 404/410 — confirmed dead |`,
+              `| 💀 Broken | ${brokenCount} | HTTP 404/410/DNS dead — confirmed dead |`,
               '',
               `**Healthy rate**: ${okCount + protectedCount} / ${okCount + protectedCount + warnCount + errCount + brokenCount} APIs healthy`,
               '',
               '---',
               '',
               brokenSection,
+              errorSection,
+              warningSection,
               '',
               '---',
               '',
@@ -216,7 +275,9 @@ jobs:
               '',
               '- 🔄 This report is **automatically updated daily** at 00:00 UTC',
               '- 🛡️ APIs with bot protection (403/429) are counted as **healthy**',
-              '- 💀 Only confirmed 404/410 responses are marked as **broken**',
+              '- 💀 Confirmed 404/410 and DNS-dead domains are marked as **broken**',
+              '- ❌ Server errors (5xx) may be temporary outages',
+              '- ⚠️ Warnings include SSL/timeout issues that are often transient',
               `- 📦 Full report available as [workflow artifact](${runUrl})`,
               '',
               `> *Last updated by [Link Checker workflow](${runUrl}) on ${today}*`
