@@ -4,7 +4,7 @@ on:
   push:
     paths:
       - 'README.md'
-      - 'figma-export/**'
+      - 'site/**'
       - 'scripts/parse_readme.py'
     branches: [main]
   workflow_dispatch:
@@ -25,7 +25,7 @@ jobs:
           python-version: '3.12'
 
       - name: Parse README → apis.json
-        run: python scripts/parse_readme.py --output figma-export/src/data/apis.json
+        run: python scripts/parse_readme.py --output site/src/data/apis.json
 
       - name: Setup Node
         uses: actions/setup-node@v4
@@ -38,11 +38,11 @@ jobs:
           version: 10
 
       - name: Install dependencies
-        working-directory: figma-export
+        working-directory: site
         run: pnpm install --frozen-lockfile
 
       - name: Build website
-        working-directory: figma-export
+        working-directory: site
         run: pnpm build
 
       - name: Deploy to GitHub Pages
