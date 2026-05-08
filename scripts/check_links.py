@@ -150,11 +150,11 @@ def check_link(url, timeout=15, max_retries=3):
             if attempt < max_retries - 1:
                 time.sleep(2)
                 continue
-            # After all retries, mark as WARNING not broken
-            # GitHub Actions IPs often get blocked or have DNS issues
+            # After all retries, classify based on error type
             error_str = str(e).lower()
             if 'getaddrinfo' in error_str or 'name or service not known' in error_str or 'nodename nor servname' in error_str:
-                return {'url': url, 'status': None, 'state': 'warning', 'note': 'DNS issue (may be temporary/CI environment)'}
+                # DNS resolution failed after retries = domain is dead
+                return {'url': url, 'status': None, 'state': 'broken', 'note': 'DNS dead - domain does not exist'}
             if 'connection refused' in error_str or 'connection reset' in error_str:
                 return {'url': url, 'status': None, 'state': 'warning', 'note': 'Connection refused (may be IP blocking)'}
             # Other connection errors -> warning (could be IP blocking)
