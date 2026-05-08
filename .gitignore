@@ -1,9 +1,6 @@
 # Dependencies
 node_modules/
 
-# Build output
-docs-site/dist/
-
 # Linter cache
 .ruff_cache/
 
@@ -12,8 +9,8 @@ scripts/link_check_report.txt
 scripts/broken_urls.txt
 scripts/output.txt
 
-# Figma export build artifacts
-figma-export/node_modules/
+# Site build artifacts
+site/node_modules/
 
 # OS files
 .DS_Store
