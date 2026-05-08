@@ -1,11 +1,11 @@
 {
   "meta": {
-    "generated_at": "2026-05-08T01:25:23.088527+00:00",
+    "generated_at": "2026-05-08T02:03:09.592581+00:00",
     "source": "README.md",
-    "total_apis": 1553,
+    "total_apis": 1507,
     "total_categories": 60,
-    "no_auth_count": 639,
-    "https_count": 1485,
+    "no_auth_count": 615,
+    "https_count": 1440,
     "https_percentage": 96
   },
   "categories": [
@@ -1477,7 +1477,7 @@
       "id": "development",
       "emoji": "💻",
       "name": "Development",
-      "api_count": 143,
+      "api_count": 137,
       "apis": [
         {
           "name": "24 Pull Requests",
@@ -1613,20 +1613,6 @@
           "link": "https://blitapp.com/api/"
         },
         {
-          "name": "Bored",
-          "description": "Find random activities to fight boredom.",
-          "auth": "No",
-          "https": true,
-          "link": "https://www.boredapi.com/"
-        },
-        {
-          "name": "Brainshop.ai",
-          "description": "Make A Free A.I Brain.",
-          "auth": "apiKey",
-          "https": true,
-          "link": "https://brainshop.ai/"
-        },
-        {
           "name": "Browshot",
           "description": "Easily make screenshots of web pages in any screen size, as any device.",
           "auth": "apiKey",
@@ -1739,13 +1725,6 @@
           "link": "https://firebase.google.com/docs/reference/rest"
         },
         {
-          "name": "GeekFlare",
-          "description": "Provide numerous capabilities for important testing and monitoring methods fo...",
-          "auth": "apiKey",
-          "https": true,
-          "link": "https://apidocs.geekflare.com/docs/geekflare-api"
-        },
-        {
           "name": "Genderize.io",
           "description": "Predict the gender of a person based on their name.",
           "auth": "No",
@@ -1779,13 +1758,6 @@
           "auth": "OAuth",
           "https": true,
           "link": "https://docs.gitlab.com/ee/api/"
-        },
-        {
-          "name": "Gitter",
-          "description": "Chat for Developers.",
-          "auth": "OAuth",
-          "https": true,
-          "link": "https://developer.gitter.im/docs/welcome"
         },
         {
           "name": "Glitterly",
@@ -2033,13 +2005,6 @@
           "link": "https://logs.to/"
         },
         {
-          "name": "Lua Decompiler",
-          "description": "Online Lua 5.1 Decompiler.",
-          "auth": "No",
-          "https": true,
-          "link": "https://lua-decompiler.ferib.dev/"
-        },
-        {
           "name": "MAC address vendor lookup",
           "description": "Retrieve vendor details and other information regarding a given MAC address o...",
           "auth": "apiKey",
@@ -2255,13 +2220,6 @@
           "auth": "apiKey",
           "https": true,
           "link": "https://docs.railway.app/reference/public-api"
-        },
-        {
-          "name": "Random Stuff",
-          "description": "Can be used to get AI Response, jokes, memes, and much more at lightning-fast...",
-          "auth": "apiKey",
-          "https": true,
-          "link": "https://api-docs.pgamerx.com/"
         },
         {
           "name": "Redash",
@@ -2486,7 +2444,7 @@
       "id": "continuous-integration",
       "emoji": "⚙️",
       "name": "Continuous Integration",
-      "api_count": 13,
+      "api_count": 12,
       "apis": [
         {
           "name": "AppVeyor",
@@ -2529,13 +2487,6 @@
           "auth": "apiKey",
           "https": true,
           "link": "https://circleci.com/docs/api/v2/"
-        },
-        {
-          "name": "Cirrus CI",
-          "description": "CI pipelines and task automation API.",
-          "auth": "apiKey",
-          "https": true,
-          "link": "https://cirrus-ci.org/api/"
         },
         {
           "name": "Codeship",
@@ -2585,7 +2536,7 @@
       "id": "text-analysis-nlp",
       "emoji": "📝",
       "name": "Text Analysis & NLP",
-      "api_count": 21,
+      "api_count": 20,
       "apis": [
         {
           "name": "Cloudmersive Natural Language Processing",
@@ -2698,13 +2649,6 @@
           "auth": "OAuth",
           "https": true,
           "link": "https://semantria.readme.io/docs"
-        },
-        {
-          "name": "Sentiment Analysis",
-          "description": "Multilingual sentiment analysis of texts from different sources.",
-          "auth": "apiKey",
-          "https": true,
-          "link": "https://www.meaningcloud.com/developer/sentiment-analysis"
         },
         {
           "name": "TextRazor",
@@ -3023,7 +2967,7 @@
       "id": "education",
       "emoji": "🎓",
       "name": "Education",
-      "api_count": 11,
+      "api_count": 10,
       "apis": [
         {
           "name": "Calendarific",
@@ -3038,13 +2982,6 @@
           "auth": "apiKey",
           "https": true,
           "link": "https://api.core.ac.uk/docs/v3"
-        },
-        {
-          "name": "Coursera API",
-          "description": "Course catalog and metadata.",
-          "auth": "OAuth",
-          "https": true,
-          "link": "https://build.coursera.org/app-platform/catalog"
         },
         {
           "name": "Crossref",
@@ -3193,7 +3130,7 @@
       "id": "public-data",
       "emoji": "📊",
       "name": "Public Data & Datasets",
-      "api_count": 40,
+      "api_count": 39,
       "apis": [
         {
           "name": "API Setu",
@@ -3399,13 +3336,6 @@
           "link": "https://dev.socrata.com/"
         },
         {
-          "name": "Teleport",
-          "description": "Quality of Life Data.",
-          "auth": "No",
-          "https": true,
-          "link": "https://developers.teleport.org/"
-        },
-        {
           "name": "TimeZoneDB",
           "description": "Time zone data and conversion (**No Auth**).",
           "auth": "No",
@@ -3481,7 +3411,7 @@
       "id": "email-sms",
       "emoji": "📧",
       "name": "Email & SMS",
-      "api_count": 24,
+      "api_count": 23,
       "apis": [
         {
           "name": "Cloudmersive Validate",
@@ -3510,13 +3440,6 @@
           "auth": "apiKey",
           "https": true,
           "link": "https://www.abstractapi.com/email-verification-validation-api"
-        },
-        {
-          "name": "EVA",
-          "description": "Validate email addresses.",
-          "auth": "No",
-          "https": true,
-          "link": "https://eva.pingutil.com/"
         },
         {
           "name": "Guerrilla Mail",
@@ -4018,7 +3941,7 @@
       "id": "personality-quotes",
       "emoji": "💭",
       "name": "Personality & Quotes",
-      "api_count": 11,
+      "api_count": 9,
       "apis": [
         {
           "name": "Affirmations.dev",
@@ -4056,13 +3979,6 @@
           "link": "http://forismatic.com/en/api/"
         },
         {
-          "name": "Inspiration",
-          "description": "Motivational and Inspirational quotes.",
-          "auth": "No",
-          "https": true,
-          "link": "https://inspiration.goprogram.ai/docs/"
-        },
-        {
           "name": "Quotes on Design",
           "description": "Inspirational Quotes.",
           "auth": "No",
@@ -4089,13 +4005,6 @@
           "auth": "apiKey",
           "https": true,
           "link": "https://www.udemy.com/developers/instructor/"
-        },
-        {
-          "name": "Vadivelu HTTP Codes",
-          "description": "On demand HTTP Codes with images.",
-          "auth": "No",
-          "https": true,
-          "link": "https://vadivelu.anoram.com/"
         }
       ]
     },
@@ -4103,7 +4012,7 @@
       "id": "finance",
       "emoji": "💰",
       "name": "Finance",
-      "api_count": 47,
+      "api_count": 46,
       "apis": [
         {
           "name": "Aletheia",
@@ -4293,13 +4202,6 @@
           "auth": "apiKey",
           "https": true,
           "link": "https://docs.moov.io/api/"
-        },
-        {
-          "name": "Nordigen",
-          "description": "Connect to bank accounts using official bank APIs and get raw transaction data.",
-          "auth": "apiKey",
-          "https": true,
-          "link": "https://nordigen.com/en/account_information_documenation/integration/quickstart_guide/"
         },
         {
           "name": "OpenFIGI",
@@ -4609,7 +4511,7 @@
       "id": "food-drink",
       "emoji": "🍔",
       "name": "Food & Drink",
-      "api_count": 23,
+      "api_count": 21,
       "apis": [
         {
           "name": "BaconMockup",
@@ -4661,13 +4563,6 @@
           "link": "https://developer.kroger.com/reference"
         },
         {
-          "name": "LCBO",
-          "description": "Alcohol.",
-          "auth": "apiKey",
-          "https": true,
-          "link": "https://lcboapi.com/"
-        },
-        {
           "name": "Ninjas Recipe",
           "description": "Recipe search with nutrition data.",
           "auth": "apiKey",
@@ -4701,13 +4596,6 @@
           "auth": "apiKey",
           "https": true,
           "link": "https://spoonacular.com/food-api"
-        },
-        {
-          "name": "Systembolaget",
-          "description": "Govornment owned liqour store in Sweden.",
-          "auth": "apiKey",
-          "https": true,
-          "link": "https://api-portal.systembolaget.se"
         },
         {
           "name": "Tasty",
@@ -4778,7 +4666,7 @@
       "id": "games-comics",
       "emoji": "🎮",
       "name": "Games & Comics",
-      "api_count": 81,
+      "api_count": 80,
       "apis": [
         {
           "name": "AmiiboAPI",
@@ -4821,13 +4709,6 @@
           "auth": "apiKey",
           "https": true,
           "link": "https://developer.brawlstars.com"
-        },
-        {
-          "name": "Bugsnax",
-          "description": "Get information about Bugsnax.",
-          "auth": "No",
-          "https": true,
-          "link": "https://www.bugsnaxapi.com/"
         },
         {
           "name": "CheapShark",
@@ -5353,7 +5234,7 @@
       "id": "geocoding",
       "emoji": "🌍",
       "name": "Geocoding",
-      "api_count": 69,
+      "api_count": 68,
       "apis": [
         {
           "name": "Actinia Grass GIS",
@@ -5755,13 +5636,6 @@
           "link": "https://rapidapi.com/victorkarangwa4/api/rwanda"
         },
         {
-          "name": "SpotSense",
-          "description": "Add location based interactions to your mobile app.",
-          "auth": "apiKey",
-          "https": true,
-          "link": "https://spotsense.io/"
-        },
-        {
           "name": "Telize",
           "description": "Telize offers location information from any IP address.",
           "auth": "apiKey",
@@ -5844,7 +5718,7 @@
       "id": "health",
       "emoji": "❤️",
       "name": "Health",
-      "api_count": 35,
+      "api_count": 34,
       "apis": [
         {
           "name": "BMI Calculator",
@@ -6064,13 +5938,6 @@
           "link": "https://pubchem.ncbi.nlm.nih.gov/docs/pug-rest"
         },
         {
-          "name": "Quarantine",
-          "description": "Coronavirus API with free COVID-19 live updates.",
-          "auth": "No",
-          "https": true,
-          "link": "https://quarantine.country/coronavirus/api/"
-        },
-        {
           "name": "RxNav",
           "description": "Drug vocabularies and interaction data.",
           "auth": "No",
@@ -6097,7 +5964,7 @@
       "id": "machine-learning",
       "emoji": "🧠",
       "name": "Machine Learning",
-      "api_count": 44,
+      "api_count": 43,
       "apis": [
         {
           "name": "AI For Thai",
@@ -6245,13 +6112,6 @@
           "auth": "apiKey",
           "https": true,
           "link": "https://rapidapi.com/user/inferdo"
-        },
-        {
-          "name": "IPS Online",
-          "description": "Face and License Plate Anonymization.",
-          "auth": "apiKey",
-          "https": true,
-          "link": "https://docs.identity.ps/docs"
         },
         {
           "name": "Irisnet",
@@ -6413,7 +6273,7 @@
       "id": "mock-data-testing",
       "emoji": "🧪",
       "name": "Mock Data & Testing",
-      "api_count": 24,
+      "api_count": 21,
       "apis": [
         {
           "name": "Bacon Ipsum",
@@ -6479,13 +6339,6 @@
           "link": "https://jsonplaceholder.typicode.com/"
         },
         {
-          "name": "Loripsum",
-          "description": "The \"lorem ipsum\" generator that doesn't suck.",
-          "auth": "No",
-          "https": false,
-          "link": "http://loripsum.net/"
-        },
-        {
           "name": "Mailsac",
           "description": "Disposable Email.",
           "auth": "apiKey",
@@ -6519,20 +6372,6 @@
           "auth": "No",
           "https": true,
           "link": "https://www.postman-echo.com/"
-        },
-        {
-          "name": "QuickMocker",
-          "description": "API mocking tool to generate contextual, fake or random data.",
-          "auth": "No",
-          "https": true,
-          "link": "https://quickmocker.com"
-        },
-        {
-          "name": "Random Data",
-          "description": "Random data generator.",
-          "auth": "No",
-          "https": true,
-          "link": "https://random-data-api.com"
         },
         {
           "name": "Randommer",
@@ -6892,7 +6731,7 @@
       "id": "photography",
       "emoji": "📷",
       "name": "Photography",
-      "api_count": 40,
+      "api_count": 37,
       "apis": [
         {
           "name": "apilayer mediastack",
@@ -6921,13 +6760,6 @@
           "auth": "apiKey",
           "https": true,
           "link": "https://developer.ap.org/"
-        },
-        {
-          "name": "Bruzu",
-          "description": "Image generation with query string.",
-          "auth": "apiKey",
-          "https": true,
-          "link": "https://docs.bruzu.com"
         },
         {
           "name": "CheetahO",
@@ -6984,13 +6816,6 @@
           "auth": "OAuth",
           "https": true,
           "link": "https://developers.google.com/photos"
-        },
-        {
-          "name": "Graphs for Coronavirus",
-          "description": "Each Country separately and Worldwide Graphs for Coronavirus. Daily updates.",
-          "auth": "No",
-          "https": true,
-          "link": "https://corona.dnsforfamily.com/api.txt"
         },
         {
           "name": "Image Upload",
@@ -7054,13 +6879,6 @@
           "auth": "apiKey",
           "https": true,
           "link": "https://rapidapi.com/machaao-inc-machaao-inc-default/api/newsx/"
-        },
-        {
-          "name": "NPR One",
-          "description": "Personalized news listening experience from NPR.",
-          "auth": "OAuth",
-          "https": true,
-          "link": "http://dev.npr.org/api/"
         },
         {
           "name": "ObjectCut",
@@ -7384,7 +7202,7 @@
       "id": "security-validation",
       "emoji": "🔐",
       "name": "Security & Validation",
-      "api_count": 32,
+      "api_count": 29,
       "apis": [
         {
           "name": "BinaryEdge",
@@ -7434,13 +7252,6 @@
           "auth": "apiKey",
           "https": true,
           "link": "https://completecriminalchecks.com/Developers"
-        },
-        {
-          "name": "CRXcavator",
-          "description": "Chrome extension risk scoring.",
-          "auth": "apiKey",
-          "https": true,
-          "link": "https://crxcavator.io/apidocs"
         },
         {
           "name": "EmailRep",
@@ -7497,13 +7308,6 @@
           "auth": "apiKey",
           "https": true,
           "link": "https://api.hackerone.com/"
-        },
-        {
-          "name": "Hashable",
-          "description": "A REST API to access high level cryptographic functions and methods.",
-          "auth": "No",
-          "https": true,
-          "link": "https://hashable.space/pages/api/"
         },
         {
           "name": "HaveIBeenPwned",
@@ -7595,13 +7399,6 @@
           "auth": "No",
           "https": true,
           "link": "https://data.police.uk/docs/"
-        },
-        {
-          "name": "Virushee",
-          "description": "Virushee file/data scanning.",
-          "auth": "No",
-          "https": true,
-          "link": "https://api.virushee.com/"
         },
         {
           "name": "VulDB",
@@ -7920,7 +7717,7 @@
       "id": "url-shorteners",
       "emoji": "🔗",
       "name": "URL Shorteners",
-      "api_count": 23,
+      "api_count": 22,
       "apis": [
         {
           "name": "Bitly",
@@ -7998,13 +7795,6 @@
           "auth": "No",
           "https": true,
           "link": "https://is.gd/apishorteningreference.php"
-        },
-        {
-          "name": "Kutt",
-          "description": "Free Modern URL Shortener.",
-          "auth": "apiKey",
-          "https": true,
-          "link": "https://docs.kutt.it/"
         },
         {
           "name": "Mgnet.me",
@@ -8089,7 +7879,7 @@
       "id": "social",
       "emoji": "💬",
       "name": "Social",
-      "api_count": 44,
+      "api_count": 42,
       "apis": [
         {
           "name": "Ayrshare",
@@ -8120,13 +7910,6 @@
           "link": "https://developer.ciscospark.com"
         },
         {
-          "name": "Dangerous Discord Database",
-          "description": "Database of malicious Discord accounts.",
-          "auth": "apiKey",
-          "https": true,
-          "link": "https://discord.riverside.rocks/docs/index.php"
-        },
-        {
           "name": "Discord",
           "description": "Chat platform.",
           "auth": "OAuth",
@@ -8139,13 +7922,6 @@
           "auth": "OAuth",
           "https": true,
           "link": "https://disqus.com/api/docs/auth/"
-        },
-        {
-          "name": "Doge-Meme",
-          "description": "Top meme posts from r/dogecoin which include 'Meme' flair.",
-          "auth": "No",
-          "https": true,
-          "link": "https://api.doge-meme.lol/docs"
         },
         {
           "name": "Facebook",
@@ -8405,7 +8181,7 @@
       "id": "sports",
       "emoji": "⚽",
       "name": "Sports",
-      "api_count": 33,
+      "api_count": 29,
       "apis": [
         {
           "name": "API-Football",
@@ -8427,13 +8203,6 @@
           "auth": "apiKey",
           "https": true,
           "link": "https://apimedic.com/"
-        },
-        {
-          "name": "Canadian Football League (CFL)",
-          "description": "Official JSON API providing real-time league, team and player statistics abou...",
-          "auth": "apiKey",
-          "https": true,
-          "link": "http://api.cfl.ca/"
         },
         {
           "name": "Cloudbet",
@@ -8574,27 +8343,6 @@
           "auth": "No",
           "https": true,
           "link": "https://api.sofascore.com/"
-        },
-        {
-          "name": "Sport List & Data",
-          "description": "List of and resources related to sports.",
-          "auth": "No",
-          "https": true,
-          "link": "https://developers.decathlon.com/products/sports"
-        },
-        {
-          "name": "Sport Places",
-          "description": "Crowd-source sports places around the world.",
-          "auth": "No",
-          "https": true,
-          "link": "https://developers.decathlon.com/products/sport-places"
-        },
-        {
-          "name": "Sport Vision",
-          "description": "Identify sport, brands and gear in an image. Also does image sports captioning.",
-          "auth": "apiKey",
-          "https": true,
-          "link": "https://developers.decathlon.com/products/sport-vision"
         },
         {
           "name": "Sportmonks Football",
@@ -8877,7 +8625,7 @@
       "id": "transportation",
       "emoji": "🚆",
       "name": "Transportation",
-      "api_count": 73,
+      "api_count": 71,
       "apis": [
         {
           "name": "ADS-B Exchange",
@@ -8906,13 +8654,6 @@
           "auth": "OAuth",
           "https": true,
           "link": "https://developers.amadeus.com/self-service"
-        },
-        {
-          "name": "AviationAPI",
-          "description": "FAA Aeronautical Charts and Publications, Airport Information, and Airport We...",
-          "auth": "No",
-          "https": true,
-          "link": "https://docs.aviationapi.com"
         },
         {
           "name": "AZ511",
@@ -9018,13 +8759,6 @@
           "auth": "No",
           "https": true,
           "link": "http://docs.apis.is/"
-        },
-        {
-          "name": "Impala Hotel Bookings",
-          "description": "Hotel content, rates and room bookings.",
-          "auth": "apiKey",
-          "https": true,
-          "link": "https://docs.impala.travel/docs/booking-api/"
         },
         {
           "name": "Izi",
@@ -9502,7 +9236,7 @@
       "id": "environment-climate",
       "emoji": "🌿",
       "name": "Environment & Climate",
-      "api_count": 21,
+      "api_count": 20,
       "apis": [
         {
           "name": "AQICN",
@@ -9573,13 +9307,6 @@
           "auth": "No",
           "https": true,
           "link": "https://api-docs.luchtmeetnet.nl/"
-        },
-        {
-          "name": "National Grid ESO",
-          "description": "Open data from Great Britain’s Electricity System Operator.",
-          "auth": "No",
-          "https": true,
-          "link": "https://data.nationalgrideso.com/"
         },
         {
           "name": "NOAA Climate Data Online",
@@ -9657,7 +9384,7 @@
       "id": "government-civic",
       "emoji": "🏛️",
       "name": "Government & Civic",
-      "api_count": 84,
+      "api_count": 83,
       "apis": [
         {
           "name": "Bank Negara Malaysia Open Data",
@@ -10213,13 +9940,6 @@
           "link": "https://www.opensecrets.org/open-data/api"
         },
         {
-          "name": "PRC Exam Schedule",
-          "description": "Unofficial Philippine Professional Regulation Commission's examination schedule.",
-          "auth": "No",
-          "https": true,
-          "link": "https://api.whenisthenextboardexam.com/docs/"
-        },
-        {
           "name": "Represent by Open North",
           "description": "Find Canadian Government Representatives.",
           "auth": "No",
@@ -10253,7 +9973,7 @@
       "id": "video",
       "emoji": "📹",
       "name": "Video",
-      "api_count": 26,
+      "api_count": 24,
       "apis": [
         {
           "name": "An API of Ice And Fire",
@@ -10268,20 +9988,6 @@
           "auth": "apiKey",
           "https": true,
           "link": "https://docs.api.video/"
-        },
-        {
-          "name": "Breaking Bad",
-          "description": "Breaking Bad API.",
-          "auth": "No",
-          "https": true,
-          "link": "https://breakingbadapi.com/documentation"
-        },
-        {
-          "name": "Catalogopolis",
-          "description": "Doctor Who API.",
-          "auth": "No",
-          "https": true,
-          "link": "https://api.catalogopolis.xyz/docs/"
         },
         {
           "name": "Cloudflare Stream",
@@ -10443,15 +10149,8 @@
       "id": "math-computation",
       "emoji": "🔢",
       "name": "Math & Computation",
-      "api_count": 3,
+      "api_count": 2,
       "apis": [
-        {
-          "name": "CountAPI",
-          "description": "Free counting API for web pages.",
-          "auth": "No",
-          "https": true,
-          "link": "https://api.countapi.xyz/"
-        },
         {
           "name": "math.js",
           "description": "Mathematical expression evaluation API.",
@@ -10804,7 +10503,7 @@
       "id": "weather",
       "emoji": "🌤️",
       "name": "Weather",
-      "api_count": 33,
+      "api_count": 32,
       "apis": [
         {
           "name": "7Timer!",
@@ -10889,13 +10588,6 @@
           "auth": "No",
           "https": true,
           "link": "https://www.hko.gov.hk/en/abouthko/opendata_intro.htm"
-        },
-        {
-          "name": "MetaWeather",
-          "description": "Weather.",
-          "auth": "No",
-          "https": true,
-          "link": "https://www.metaweather.com/api/"
         },
         {
           "name": "Meteoblue",
@@ -11149,7 +10841,7 @@
       "id": "documents-productivity",
       "emoji": "📄",
       "name": "Documents & Productivity",
-      "api_count": 25,
+      "api_count": 23,
       "apis": [
         {
           "name": "Api2Convert",
@@ -11241,20 +10933,6 @@
           "auth": "OAuth",
           "https": true,
           "link": "https://api.mattermost.com/"
-        },
-        {
-          "name": "Mercury",
-          "description": "Web parser.",
-          "auth": "apiKey",
-          "https": true,
-          "link": "https://mercury.postlight.com/web-parser/"
-        },
-        {
-          "name": "Monday",
-          "description": "Programmatically access and update data inside a monday.com account.",
-          "auth": "apiKey",
-          "https": true,
-          "link": "https://api.developer.monday.com/docs"
         },
         {
           "name": "PandaDoc",
