@@ -895,7 +895,7 @@ print(response.json()['fact'])
 | **Quiz API** | Random trivia questions (**No Auth**). | No | ✅ | [Link](https://quizapi.io/) |
 | **Simkl** | Movies, TV, Anime metadata. | 🔑 ApiKey | ✅ | [Link](https://simkl.com/apidoc/) |
 | **StreamElements** | Twitch/YouTube live streaming data & overlays. | 🔑 ApiKey | ✅ | [Link](https://dev.streamelements.com/) |
-| **Techy** | JSON and Plaintext API for tech-savvy sounding phrases. | No | ✅ | [Link](https://techy-api.vercel.app/) |
+
 | **TheTVDB** | TV database with episodes and artwork. | 🔑 ApiKey | ✅ | [Link](https://thetvdb.github.io/v4-api/) |
 | **TMDb** | The Movie Database. | 🔑 ApiKey | ✅ | [Link](https://developers.themoviedb.org/3) |
 | **Trakt** | TV and Movie tracking. | 🔐 OAuth | ✅ | [Link](https://trakt.docs.apiary.io/) |
@@ -1355,7 +1355,7 @@ print(response.json()['fact'])
 | **ReqRes** | A hosted REST-API ready to respond to your AJAX requests. | No | ✅ | [Link](https://reqres.in/) |
 | **SampleAPIs** | Playground for RESTful and GraphQL endpoints (**No Auth**). | No | ✅ | [Link](https://api.sampleapis.com/) |
 | **This Person Does not Exist** | Generates real-life faces of people who do not exist. | No | ✅ | [Link](https://thispersondoesnotexist.com) |
-| **Toolcarton** | Generate random testimonial data. | No | ✅ | [Link](https://testimonialapi.toolcarton.com/) |
+
 | **What The Commit** | Random commit message generator. | No | No | [Link](http://whatthecommit.com/index.txt) |
 | **Yes No** | Generate yes or no randomly. | No | ✅ | [Link](https://yesno.wtf/api) |
 
@@ -1516,7 +1516,7 @@ print(response.json()['fact'])
 | **FraudLabs Pro** | Screen order information using AI to detect frauds. | 🔑 ApiKey | ✅ | [Link](https://www.fraudlabspro.com/developer/api/screen-order) |
 | **FullHunt** | Attack surface discovery and monitoring. | 🔑 ApiKey | ✅ | [Link](https://api-docs.fullhunt.io/) |
 | **Google reCAPTCHA** | Bot protection and CAPTCHA service. | 🔑 ApiKey | ✅ | [Link](https://developers.google.com/recaptcha) |
-| **GreyNoise** | Query IPs in the GreyNoise dataset and retrieve a subset of the full IP conte... | 🔑 ApiKey | ✅ | [Link](https://docs.greynoise.io/reference/get_v3-community-ip) |
+| **GreyNoise** | Query IPs in the GreyNoise dataset and retrieve a subset of the full IP conte... | 🔑 ApiKey | ✅ | [Link](https://docs.greynoise.io/reference) |
 | **HackerOne** | The industry’s first hacker API that helps increase productivity towards crea... | 🔑 ApiKey | ✅ | [Link](https://api.hackerone.com/) |
 | **Hashable** | A REST API to access high level cryptographic functions and methods. | No | ✅ | [Link](https://hashable.space/pages/api/) |
 | **HaveIBeenPwned** | Check if email or password has been compromised in a data breach. | 🔑 ApiKey | ✅ | [Link](https://haveibeenpwned.com/API/v3) |

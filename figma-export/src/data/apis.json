@@ -1,11 +1,11 @@
 {
   "meta": {
-    "generated_at": "2026-05-07T13:02:06.164104+00:00",
+    "generated_at": "2026-05-08T01:25:23.088527+00:00",
     "source": "README.md",
-    "total_apis": 1555,
+    "total_apis": 1553,
     "total_categories": 60,
-    "no_auth_count": 641,
-    "https_count": 1487,
+    "no_auth_count": 639,
+    "https_count": 1485,
     "https_percentage": 96
   },
   "categories": [
@@ -3742,7 +3742,7 @@
       "id": "entertainment",
       "emoji": "🎮",
       "name": "Entertainment",
-      "api_count": 17,
+      "api_count": 16,
       "apis": [
         {
           "name": "Activities when get bored",
@@ -3813,13 +3813,6 @@
           "auth": "apiKey",
           "https": true,
           "link": "https://dev.streamelements.com/"
-        },
-        {
-          "name": "Techy",
-          "description": "JSON and Plaintext API for tech-savvy sounding phrases.",
-          "auth": "No",
-          "https": true,
-          "link": "https://techy-api.vercel.app/"
         },
         {
           "name": "TheTVDB",
@@ -6420,7 +6413,7 @@
       "id": "mock-data-testing",
       "emoji": "🧪",
       "name": "Mock Data & Testing",
-      "api_count": 25,
+      "api_count": 24,
       "apis": [
         {
           "name": "Bacon Ipsum",
@@ -6575,13 +6568,6 @@
           "auth": "No",
           "https": true,
           "link": "https://thispersondoesnotexist.com"
-        },
-        {
-          "name": "Toolcarton",
-          "description": "Generate random testimonial data.",
-          "auth": "No",
-          "https": true,
-          "link": "https://testimonialapi.toolcarton.com/"
         },
         {
           "name": "What The Commit",
@@ -7503,7 +7489,7 @@
           "description": "Query IPs in the GreyNoise dataset and retrieve a subset of the full IP conte...",
           "auth": "apiKey",
           "https": true,
-          "link": "https://docs.greynoise.io/reference/get_v3-community-ip"
+          "link": "https://docs.greynoise.io/reference"
         },
         {
           "name": "HackerOne",
