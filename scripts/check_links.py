@@ -292,10 +292,27 @@ def main():
     broken_urls = sorted([r['url'] for r in results['broken']])
     with open(broken_list_path, 'w', encoding='utf-8') as f:
         for url in broken_urls:
-            f.write(url + '\n')
+            f.write(f"{url} | {next((r['note'] for r in results['broken'] if r['url'] == url), '')}\n")
+
+    # Save error URLs list
+    error_list_path = os.path.join(script_dir, 'error_urls.txt')
+    error_urls = sorted(results['error'], key=lambda x: x['url'])
+    with open(error_list_path, 'w', encoding='utf-8') as f:
+        for r in error_urls:
+            f.write(f"{r['url']} | HTTP {r['status']} | {r['note']}\n")
+
+    # Save warning URLs list
+    warning_list_path = os.path.join(script_dir, 'warning_urls.txt')
+    warning_urls = sorted(results['warning'], key=lambda x: x['url'])
+    with open(warning_list_path, 'w', encoding='utf-8') as f:
+        for r in warning_urls:
+            status_str = f"HTTP {r['status']}" if r['status'] else "N/A"
+            f.write(f"{r['url']} | {status_str} | {r['note']}\n")
 
     print(f"\nReport saved to: link_check_report.txt")
     print(f"Broken URLs list: broken_urls.txt ({len(broken_urls)} URLs)")
+    print(f"Error URLs list: error_urls.txt ({len(error_urls)} URLs)")
+    print(f"Warning URLs list: warning_urls.txt ({len(warning_urls)} URLs)")
     print("\nNote: 403/429 (Protected) = Bot protection - APIs still work!")
 
     # Exit with error only if truly broken links found
