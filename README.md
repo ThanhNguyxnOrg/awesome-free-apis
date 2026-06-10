@@ -239,218 +239,6 @@ print(response.json()['fact'])
 - [📹 Video](#video)
 - [🌤️ Weather](#weather)
 
-## <a id="general-api-usage-guide"></a>📘 General API Usage Guide
-
-> **👋 New to APIs?** Don't worry! This guide will help you understand the basics and get started quickly.
-
----
-
-### 💡 What is an API?
-
-**API** stands for **Application Programming Interface**. It's a way for different applications to communicate with each other.
-
-```
-┌─────────┐      ┌─────────┐      ┌─────────┐
-│   YOU   │ ───▶│   API   │ ───▶ │ SERVER  │
-│  (App)  │ ◀───│ (Waiter)│ ◀─── │(Kitchen)│
-└─────────┘      └─────────┘      └─────────┘
-   Request         Process          Response
-```
-
-**Think of it like a restaurant:**
-- 🙋 **You** (the app) place an order
-- 🍽️ **Waiter** (the API) takes your request to the kitchen
-- 👨‍🍳 **Kitchen** (the server) prepares your food (data)
-- ✨ The waiter brings it back to you!
-
----
-
-### 📝 Authentication Methods
-
-Different APIs have different ways to verify who you are:
-
-| Method | Icon | Description | Example |
-|--------|------|-------------|---------|
-| **No Auth** | 🌐 | Open for everyone - just call it! | Weather APIs, public data |
-| **API Key** | 🔑 | Secret code you get when registering | `?api_key=abc123` or `Authorization: abc123` |
-| **OAuth** | 🔐 | Secure login (like "Login with Google") | Social media integrations |
-
-**💡 Pro Tip:** Always keep your API keys secret! Never commit them to GitHub.
-
----
-
-### 📡 HTTP Request Methods
-
-Learn the common ways to interact with APIs:
-
-| Method | Icon | Purpose | Real-World Example |
-|--------|------|---------|-------------------|
-| `GET` | 📥 | **Retrieve** data | Get a list of cat pictures |
-| `POST` | 📤 | **Create** new data | Upload a new photo |
-| `PUT` | ✏️ | **Replace** existing data | Update entire user profile |
-| `PATCH` | 🔧 | **Modify** specific fields | Change just your username |
-| `DELETE` | 🗑️ | **Remove** data | Delete a comment |
-
-**Example GET Request:**
-```bash
-curl https://api.example.com/cats
-```
-
-**Example POST Request:**
-```bash
-curl -X POST https://api.example.com/cats \
-  -H "Content-Type: application/json" \
-  -d '{"name":"Fluffy","age":3}'
-```
-
----
-
-### 🚦 HTTP Status Codes
-
-The API responds with a status code to tell you what happened:
-
-#### ✅ Success Codes (2xx)
-| Code | Icon | Meaning |
-|------|------|---------|
-| `200` | ✅ | **OK** - Request succeeded! |
-| `201` | 🎉 | **Created** - New resource created! |
-| `204` | 📭 | **No Content** - Success but no data to return |
-
-#### ⚠️ Client Error Codes (4xx)
-| Code | Icon | Meaning | What to Do |
-|------|------|---------|-----------|
-| `400` | ❌ | **Bad Request** - Invalid syntax | Check your request format |
-| `401` | 🔒 | **Unauthorized** - Authentication required | Add your API key |
-| `403` | 🚫 | **Forbidden** - You don't have permission | Check your access rights |
-| `404` | 🔍 | **Not Found** - Resource doesn't exist | Verify the URL |
-| `429` | 🐌 | **Too Many Requests** - Rate limit hit | Wait and try again |
-
-#### 🔴 Server Error Codes (5xx)
-| Code | Icon | Meaning |
-|------|------|---------|
-| `500` | 💥 | **Internal Server Error** - API is broken |
-| `503` | 🔧 | **Service Unavailable** - API is down |
-
----
-
-### 🛠️ Essential Tools for Testing APIs
-
-| Tool | Best For | Platform | Free? |
-|------|----------|----------|-------|
-| [**Postman**](https://www.postman.com/) | 🎯 Complete API testing & documentation | Desktop/Web | ✅ Yes (free tier) |
-| [**Thunder Client**](https://www.thunderclient.com/) | ⚡ Lightweight testing in VS Code | VS Code Extension | ✅ Yes |
-| [**cURL**](https://curl.se/) | 💻 Command-line requests | Terminal | ✅ Yes (built-in) |
-| [**Insomnia**](https://insomnia.rest/) | 🎨 Beautiful UI for API testing | Desktop | ✅ Yes |
-
----
-
-### 🚀 Quick Start Example
-
-Let's try a real API call! Here's how to get a random cat fact:
-
-**1️⃣ Using cURL (Terminal):**
-```bash
-curl https://catfact.ninja/fact
-```
-
-**2️⃣ Using JavaScript (Browser):**
-```javascript
-fetch('https://catfact.ninja/fact')
-  .then(response => response.json())
-  .then(data => console.log(data.fact));
-```
-
-**3️⃣ Using Python:**
-```python
-import requests
-response = requests.get('https://catfact.ninja/fact')
-print(response.json()['fact'])
-```
-
-**📦 Expected Response:**
-```json
-{
-  "fact": "Cats have 32 muscles in each ear.",
-  "length": 38
-}
-```
-
----
-
-### 📚 Additional Resources
-
-- 📖 [What is REST API?](https://www.redhat.com/en/topics/api/what-is-a-rest-api) - RedHat Guide
-- 🎓 [HTTP Status Codes Cheat Sheet](https://httpstatuses.com/) - Quick reference
-- 🧪 [JSONPlaceholder](https://jsonplaceholder.typicode.com/) - Free fake API for practice
-- 💬 [API Best Practices](https://stackoverflow.blog/2020/03/02/best-practices-for-rest-api-design/) - Stack Overflow Blog
-
----
-
-## 📖 Table of Contents
-
-- [📘 General Usage Guide](#general-api-usage-guide)
-- [🐶 Animals](#animals)
-- [🌸 Anime](#anime)
-- [🛡️ Anti-Malware](#anti-malware)
-- [🔐 Authentication & Identity](#authentication-identity)
-- [📚 Books & Literature](#books)
-- [⛓️ Blockchain & Web3](#blockchain-web3)
-- [🪙 Cryptocurrency](#cryptocurrency)
-- [☁️ Cloud Storage & Files](#cloud-storage-files)
-- [💻 Development](#development)
-- [⚙️ Continuous Integration](#continuous-integration)
-- [📝 Text Analysis & NLP](#text-analysis-nlp)
-- [🏠 IoT & Smart Devices](#iot-smart-devices)
-- [🔓 Open Source Projects](#open-source-projects)
-- [📖 Dictionaries](#dictionaries)
-- [🎓 Education](#education)
-- [📅 Calendar & Holidays](#calendar-holidays)
-- [📊 Public Data & Datasets](#public-data)
-- [📧 Email & SMS](#email-sms)
-- [📱 Phone & Telephony](#phone-telephony)
-- [🎮 Entertainment](#entertainment)
-- [🎪 Events](#events)
-- [🎙️ Podcasts](#podcasts)
-- [💭 Personality & Quotes](#personality-quotes)
-- [💰 Finance](#finance)
-- [💱 Currency Exchange](#currency-exchange)
-- [🍔 Food & Drink](#food-drink)
-- [🎮 Games & Comics](#games-comics)
-- [🌍 Geocoding](#geocoding)
-- [❤️ Health](#health)
-- [🧠 Machine Learning](#machine-learning)
-- [🧪 Mock Data & Testing](#mock-data-testing)
-- [🎵 Music](#music)
-- [📰 News](#news)
-- [📸 Photography](#photography)
-- [🔬 Science](#science)
-- [🔒 Security & Validation](#security-validation)
-- [✅ Data Validation](#data-validation)
-- [🛍️ Shopping](#shopping)
-- [🔧 Utilities & Tools](#utilities-tools)
-- [🔗 URL Shorteners](#url-shorteners)
-- [💬 Social](#social)
-- [⚽ Sports](#sports)
-- [🎨 Design & Colors](#design-colors)
-- [🌎 Geography & Countries](#geography-countries)
-- [🚆 Transportation](#transportation)
-- [📦 Tracking & Logistics](#tracking-logistics)
-- [🌿 Environment & Climate](#environment-climate)
-- [🏛️ Government & Civic](#government-civic)
-- [📹 Video](#video)
-- [🔢 Math & Computation](#math-computation)
-- [⚠️ Unofficial & Community APIs](#unofficial-community)
-- [😂 Memes & Fun](#memes-fun)
-- [💼 Jobs & Career](#jobs-career)
-- [🌤️ Weather](#weather)
-- [💼 Business](#business)
-- [📄 Documents & Productivity](#documents-productivity)
-- [👤 Demographic Analysis](#demographic-analysis)
-- [🏛️ Museums & Art](#museums-art)
-- [📈 Monitoring & Observability](#monitoring-observability)
-
----
-
 ## <a id="animals"></a>🐶 Animals
 
 | API Name | Description | Auth | HTTPS | Link |
@@ -612,9 +400,9 @@ print(response.json()['fact'])
 
 | API Name | Description | Auth | HTTPS | Link |
 | :--- | :--- | :---: | :---: | :---: |
+| **Domainsdb.info** | Registered Domain Names Search. | No | ✅ | [Link](https://domainsdb.info/) |
 | **Charity Search** | Non-profit charity data. | 🔑 ApiKey | No | [Link](http://charityapi.orghunter.com/) |
 | **Clearbit Logo** | Search for company logos and embed them in your projects. | 🔑 ApiKey | ✅ | [Link](https://clearbit.com/docs#logo-api) |
-| **Domainsdb.info** | Registered Domain Names Search. | No | ✅ | [Link](https://domainsdb.info/) |
 | **Freelancer** | Hire freelancers to get work done. | 🔐 OAuth | ✅ | [Link](https://developers.freelancer.com) |
 | **Gmail** | Flexible, RESTful access to the user's inbox. | 🔐 OAuth | ✅ | [Link](https://developers.google.com/gmail/api/) |
 | **Google Analytics** | Collect, configure and analyze your data to reach the right audience. | 🔐 OAuth | ✅ | [Link](https://developers.google.com/analytics/) |
@@ -627,14 +415,14 @@ print(response.json()['fact'])
 
 | API Name | Description | Auth | HTTPS | Link |
 | :--- | :--- | :---: | :---: | :---: |
+| **Czech Namedays Calendar** | Lookup for a name and returns nameday date. | No | No | [Link](https://svatky.adresa.info) |
+| **Namedays Calendar** | Nameday lookups by date and locale. | No | ✅ | [Link](https://nameday.abalin.net/) |
 | **Checkiday - National Holiday API** | Industry-leading Holiday API. Over 5,000 holidays and thousands of descriptio... | 🔑 ApiKey | ✅ | [Link](https://apilayer.com/marketplace/checkiday-api) |
 | **Church Calendar** | Catholic liturgical calendar. | No | No | [Link](http://calapi.inadiutorium.cz/) |
-| **Czech Namedays Calendar** | Lookup for a name and returns nameday date. | No | No | [Link](https://svatky.adresa.info) |
 | **Festivo Public Holidays** | Public holidays and observance data API. | 🔑 ApiKey | ✅ | [Link](https://docs.getfestivo.com/docs/products/public-holidays-api/intro) |
 | **Hebrew Calendar** | Convert between Gregorian and Hebrew, fetch Shabbat and Holiday times, etc. | No | No | [Link](https://www.hebcal.com/home/developer-apis) |
 | **HolidayAPI** | Holidays and observances by country and date. | 🔑 ApiKey | ✅ | [Link](https://holidayapi.com/) |
 | **LectServe** | Protestant liturgical calendar. | No | No | [Link](http://www.lectserve.com) |
-| **Namedays Calendar** | Nameday lookups by date and locale. | No | ✅ | [Link](https://nameday.abalin.net/) |
 | **Non-Working Days** | Non-working day and holiday checks. | No | ✅ | [Link](https://isdayoff.ru/) |
 | **Public Holidays** | Data on national, regional, and religious holidays via API. | 🔑 ApiKey | ✅ | [Link](https://www.abstractapi.com/holidays-api) |
 | **TimeAPI.io** | Current time, timezone, and holiday info for any region. | No | ✅ | [Link](https://timeapi.io/swagger/index.html) |
@@ -800,13 +588,11 @@ print(response.json()['fact'])
 
 ## <a id="demographic-analysis"></a>👤 Demographic Analysis
 
-| API Name | Description | Auth | HTTPS | Link |
-| :--- | :--- | :---: | :---: | :---: |
-| **Agify** | Predict the age of a name (**No Auth**). | No | ✅ | [Link](https://agify.io/) |
-| **Genderize** | Predict the gender of a name (**No Auth**). | No | ✅ | [Link](https://genderize.io/) |
-| **Nationalize** | Predict the nationality of a name (**No Auth**). | No | ✅ | [Link](https://nationalize.io/) |
 | Name | Description | Auth | HTTPS | Link |
 |------|-------------|------|-------|------|
+| **Genderize** | Predict the gender of a name (**No Auth**). | No | ✅ | [Link](https://genderize.io/) |
+| **Nationalize** | Predict the nationality of a name (**No Auth**). | No | ✅ | [Link](https://nationalize.io/) |
+| **Agify** | Predict the age of a name (**No Auth**). | No | ✅ | [Link](https://agify.io/) |
 
 [⬆ Back to Table of Contents](#-table-of-contents)
 
@@ -844,10 +630,15 @@ print(response.json()['fact'])
 
 | API Name | Description | Auth | HTTPS | Link |
 | :--- | :--- | :---: | :---: | :---: |
+| **Agify.io** | Predict the age of a person based on their name. | No | ✅ | [Link](https://agify.io) |
+| **DomainDb Info** | Domain name search to find all domains containing particular words/phrases/etc. | No | ✅ | [Link](https://api.domainsdb.info/) |
+| **Genderize.io** | Predict the gender of a person based on their name. | No | ✅ | [Link](https://genderize.io) |
+| **IP2WHOIS Information Lookup** | WHOIS domain name lookup. | 🔑 ApiKey | ✅ | [Link](https://www.ip2whois.com/) |
+| **ipfind.io** | Geographic location of an IP address or any domain name along with some other... | 🔑 ApiKey | ✅ | [Link](https://ipfind.io) |
+| **Nationalize.io** | Predict the nationality of a person based on their name. | No | ✅ | [Link](https://nationalize.io) |
 | **24 Pull Requests** | Project to promote open source collaboration during December. | No | ✅ | [Link](https://24pullrequests.com/api) |
 | **Abstract API** | Suite of useful APIs (IP geolocation, holidays, exchange rates). | 🔑 ApiKey | ✅ | [Link](https://www.abstractapi.com/) |
 | **Abstract Screenshot** | Take a screenshot of any website. | 🔑 ApiKey | ✅ | [Link](https://www.abstractapi.com/website-screenshot-api) |
-| **Agify.io** | Predict the age of a person based on their name. | No | ✅ | [Link](https://agify.io) |
 | **Airtable** | API for cloud collaboration database (free tier available). | 🔑 ApiKey | ✅ | [Link](https://airtable.com/developers/web/api/introduction) |
 | **Apache Superset** | Dashboarding and query platform APIs. | 🔑 ApiKey | ✅ | [Link](https://superset.apache.org/docs/api/) |
 | **API Grátis** | Multiples services and public APIs. | No | ✅ | [Link](https://apigratis.com.br/) |
@@ -876,13 +667,11 @@ print(response.json()['fact'])
 | **Databricks** | Lakehouse workspace, jobs, and cluster APIs. | 🔑 ApiKey | ✅ | [Link](https://docs.databricks.com/api/workspace/introduction) |
 | **DigitalOcean Status** | Status of all DigitalOcean services. | No | ✅ | [Link](https://status.digitalocean.com/api) |
 | **Docker Hub** | Interact with Docker Hub. | 🔑 ApiKey | ✅ | [Link](https://docs.docker.com/docker-hub/api/latest/) |
-| **DomainDb Info** | Domain name search to find all domains containing particular words/phrases/etc. | No | ✅ | [Link](https://api.domainsdb.info/) |
 | **Doppler** | Secrets management platform for developers. | 🔑 ApiKey | ✅ | [Link](https://docs.doppler.com/reference/api) |
 | **EmailJS** | Send emails directly from JavaScript (**Free tier**). | 🔑 ApiKey | ✅ | [Link](https://www.emailjs.com/docs/) |
 | **ExtendsClass JSON Storage** | A simple JSON store API. | No | ✅ | [Link](https://extendsclass.com/json-storage.html) |
 | **Firebase** | Google's mobile/web app development platform. | 🔑 ApiKey | ✅ | [Link](https://firebase.google.com/docs/reference/rest) |
 | **Fly.io** | Global app deployment platform. | 🔑 ApiKey | ✅ | [Link](https://fly.io/docs/machines/api/) |
-| **Genderize.io** | Predict the gender of a person based on their name. | No | ✅ | [Link](https://genderize.io) |
 | **Ghost** | Get Published content into your Website, App or other embedded media. | 🔑 ApiKey | ✅ | [Link](https://ghost.org/) |
 | **Gitea** | Self-hosted Git service with REST API. | 🔐 OAuth | ✅ | [Link](https://docs.gitea.com/api/1.20/) |
 | **GitHub** | Make use of GitHub data. | 🔐 OAuth | ✅ | [Link](https://docs.github.com/en/free-pro-team@latest/rest) |
@@ -912,8 +701,6 @@ print(response.json()['fact'])
 | **Instatus** | Status page and incident management API. | 🔑 ApiKey | ✅ | [Link](https://instatus.com/help/api) |
 | **ip-fast.com** | IP address, country and city. | No | ✅ | [Link](https://ip-fast.com/docs/) |
 | **IP2Location** | IP geolocation database (**Free tier**). | 🔑 ApiKey | ✅ | [Link](https://www.ip2location.com/web-service/ip2location) |
-| **IP2WHOIS Information Lookup** | WHOIS domain name lookup. | 🔑 ApiKey | ✅ | [Link](https://www.ip2whois.com/) |
-| **ipfind.io** | Geographic location of an IP address or any domain name along with some other... | 🔑 ApiKey | ✅ | [Link](https://ipfind.io) |
 | **IPGeolocation** | IP geolocation and timezone API (**Free tier: 30k/month**). | 🔑 ApiKey | ✅ | [Link](https://ipgeolocation.io/) |
 | **IPinfo** | IP Address Information. | No | ✅ | [Link](https://ipinfo.io/developers) |
 | **Ipstack** | Locate and identify website visitors by IP address. | 🔑 ApiKey | ✅ | [Link](https://ipstack.com/) |
@@ -929,7 +716,6 @@ print(response.json()['fact'])
 | **Microlink** | Extract metadata, take screenshots, and generate PDFs from any URL. | No | ✅ | [Link](https://microlink.io/docs/api/getting-started/overview) |
 | **Mintlify** | For programmatically generating documentation for code. | 🔑 ApiKey | ✅ | [Link](https://docs.mintlify.com) |
 | **MY IP** | Get IP address information. | No | ✅ | [Link](https://www.myip.com/api-docs/) |
-| **Nationalize.io** | Predict the nationality of a person based on their name. | No | ✅ | [Link](https://nationalize.io) |
 | **Neon** | Serverless Postgres database (free tier). | 🔑 ApiKey | ✅ | [Link](https://neon.tech/docs/reference/api-reference) |
 | **Netlify** | Netlify API. | 🔐 OAuth | ✅ | [Link](https://docs.netlify.com/api/get-started/) |
 | **NetworkCalc** | Network calculators, including subnets, DNS, binary, and security tools. | No | ✅ | [Link](https://networkcalc.com/api/docs) |
@@ -1061,8 +847,8 @@ print(response.json()['fact'])
 
 | API Name | Description | Auth | HTTPS | Link |
 | :--- | :--- | :---: | :---: | :---: |
-| **Brevo (Sendinblue)** | Transactional email, SMS, and marketing automation. | 🔑 ApiKey | ✅ | [Link](https://developers.brevo.com/) |
 | **Cloudmersive Validate** | Validate email addresses, phone numbers, VAT numbers and domain names. | 🔑 ApiKey | ✅ | [Link](https://cloudmersive.com/validate-api) |
+| **Brevo (Sendinblue)** | Transactional email, SMS, and marketing automation. | 🔑 ApiKey | ✅ | [Link](https://developers.brevo.com/) |
 | **Disify** | Validate and detect disposable and temporary email addresses. | No | ✅ | [Link](https://www.disify.com/) |
 | **DropMail** | GraphQL API for creating and managing ephemeral e-mail inboxes. | No | ✅ | [Link](https://dropmail.me/api/#live-demo) |
 | **Email Validation** | Validate email addresses for deliverability and spam. | 🔑 ApiKey | ✅ | [Link](https://www.abstractapi.com/email-verification-validation-api) |
@@ -1324,6 +1110,8 @@ print(response.json()['fact'])
 
 | API Name | Description | Auth | HTTPS | Link |
 | :--- | :--- | :---: | :---: | :---: |
+| **GeoDataSource** | Geocoding of city name by using latitude and longitude coordinates. | 🔑 ApiKey | ✅ | [Link](https://www.geodatasource.com/web-service) |
+| **Hirak IP to Country** | Ip to location with country code, currency code & currency name, fast respons... | 🔑 ApiKey | ✅ | [Link](https://iplocation.hirak.site/) |
 | **Actinia Grass GIS** | Actinia is an open source REST API for geographical data that uses GRASS GIS. | 🔑 ApiKey | ✅ | [Link](https://actinia-org.github.io/actinia-core/) |
 | **adresse.data.gouv.fr** | Address database of France, geocoding and reverse. | No | ✅ | [Link](https://adresse.data.gouv.fr) |
 | **Airtel IP** | IP Geolocation API. Collecting data from multiple sources. | No | ✅ | [Link](https://sys.airtel.lv/ip2country/1.1.1.1/?full=true) |
@@ -1341,7 +1129,6 @@ print(response.json()['fact'])
 | **Geocode.xyz** | Provides worldwide forward/reverse geocoding, batch geocoding and geoparsing. | No | ✅ | [Link](https://geocode.xyz/api) |
 | **Geocodify.com** | Worldwide geocoding, geoparsing and autocomplete for addresses. | 🔑 ApiKey | ✅ | [Link](https://geocodify.com/) |
 | **Geocodio** | Geocoding and reverse geocoding for US/Canada. | 🔑 ApiKey | ✅ | [Link](https://www.geocod.io/docs/) |
-| **GeoDataSource** | Geocoding of city name by using latitude and longitude coordinates. | 🔑 ApiKey | ✅ | [Link](https://www.geodatasource.com/web-service) |
 | **GeoDB Cities** | Get global city, region, and country data. | 🔑 ApiKey | ✅ | [Link](http://geodb-cities-api.wirefreethought.com/) |
 | **GeographQL** | A Country, State, and City GraphQL API. | No | ✅ | [Link](https://geographql.netlify.app) |
 | **Geokeo** | Geokeo geocoding service- with 2500 free api requests daily. | No | ✅ | [Link](https://geokeo.com) |
@@ -1349,7 +1136,6 @@ print(response.json()['fact'])
 | **Google Earth Engine** | A cloud-based platform for planetary-scale environmental data analysis. | 🔑 ApiKey | ✅ | [Link](https://developers.google.com/earth-engine/) |
 | **Google Maps** | Create/customize digital maps based on Google Maps data. | 🔑 ApiKey | ✅ | [Link](https://developers.google.com/maps/) |
 | **HelloSalut** | Get hello translation following user language. | No | ✅ | [Link](https://fourtonfish.com/project/hellosalut-api/) |
-| **Hirak IP to Country** | Ip to location with country code, currency code & currency name, fast respons... | 🔑 ApiKey | ✅ | [Link](https://iplocation.hirak.site/) |
 | **IBGE** | Aggregate services of IBGE (Brazilian Institute of Geography and Statistics) | No | ✅ | [Link](https://servicodados.ibge.gov.br/api/docs/) |
 | **IP 2 Country** | Map an IP to a country. | No | ✅ | [Link](https://ip2country.info) |
 | **IP Address Details** | Find geolocation with ip address. | No | ✅ | [Link](https://ipinfo.io/) |
@@ -1398,12 +1184,12 @@ print(response.json()['fact'])
 
 | API Name | Description | Auth | HTTPS | Link |
 | :--- | :--- | :---: | :---: | :---: |
+| **GeoNames** | Worldwide geographical database (free registration). | No | ✅ | [Link](https://www.geonames.org/export/web-services.html) |
 | **Country State City** | Countries, states, and cities database. | 🔑 ApiKey | ✅ | [Link](https://countrystatecity.in/) |
 | **CountryLayer** | Country data including flags and borders. | 🔑 ApiKey | ✅ | [Link](https://countrylayer.com/) |
 | **Flagpedia** | Country flags in SVG and PNG (**No Auth**). | No | ✅ | [Link](https://flagpedia.net/download/api) |
 | **FlagsAPI** | Easy-to-use API to retrieve country flag images using ISO codes. | No | ✅ | [Link](https://flagsapi.com/) |
 | **GeoJS** | IP geolocation and geo data (**No Auth**). | No | ✅ | [Link](https://www.geojs.io/) |
-| **GeoNames** | Worldwide geographical database (free registration). | No | ✅ | [Link](https://www.geonames.org/export/web-services.html) |
 | **IPGeolocation Timezone** | Timezone data by coordinates. | 🔑 ApiKey | ✅ | [Link](https://ipgeolocation.io/timezone-api.html) |
 | **Open Elevation** | Elevation data for any coordinates. | No | ✅ | [Link](https://open-elevation.com/) |
 | **REST Countries** | Comprehensive country data (flags, capitals, currencies) (**No Auth**). | No | ✅ | [Link](https://restcountries.com/) |
@@ -1717,11 +1503,9 @@ print(response.json()['fact'])
 
 ## <a id="museums-art"></a>🏛️ Museums & Art
 
-| API Name | Description | Auth | HTTPS | Link |
-| :--- | :--- | :---: | :---: | :---: |
-| **Metropolitan Museum** | Access 5,000 years of art from The Met collection (**No Auth**). | No | ✅ | [Link](https://metmuseum.github.io/) |
 | Name | Description | Auth | HTTPS | Link |
 |------|-------------|------|-------|------|
+| **Metropolitan Museum** | Access 5,000 years of art from The Met collection (**No Auth**). | No | ✅ | [Link](https://metmuseum.github.io/) |
 
 [⬆ Back to Table of Contents](#-table-of-contents)
 
@@ -2135,6 +1919,7 @@ print(response.json()['fact'])
 
 | API Name | Description | Auth | HTTPS | Link |
 | :--- | :--- | :---: | :---: | :---: |
+| **Semantria** | Text Analytics with sentiment analysis, categorization & named entity extraction. | 🔐 OAuth | ✅ | [Link](https://semantria.readme.io/docs) |
 | **AssemblyAI** | Speech-to-text and audio intelligence API. | 🔑 ApiKey | ✅ | [Link](https://www.assemblyai.com/docs) |
 | **Cloudmersive Natural Language Processing** | Natural language processing and text analysis. | 🔑 ApiKey | ✅ | [Link](https://www.cloudmersive.com/nlp-api) |
 | **Code Detection API** | Detect, label, format and enrich the code in your app or in your data pipeline. | 🔐 OAuth | ✅ | [Link](https://codedetectionapi.runtime.dev) |
@@ -2151,7 +1936,6 @@ print(response.json()['fact'])
 | **LibreTranslate** | Free and open-source translation API (**Self-hosted, No Auth**). | No | ✅ | [Link](https://libretranslate.com/) |
 | **ParallelDots** | Sentiment and NLP analysis APIs. | 🔑 ApiKey | ✅ | [Link](https://komprehend.io/) |
 | **Sapling** | Grammar correction and writing APIs. | 🔑 ApiKey | ✅ | [Link](https://sapling.ai/docs/) |
-| **Semantria** | Text Analytics with sentiment analysis, categorization & named entity extraction. | 🔐 OAuth | ✅ | [Link](https://semantria.readme.io/docs) |
 | **TextRazor** | NLP extraction and classification API. | 🔑 ApiKey | ✅ | [Link](https://www.textrazor.com/docs/rest) |
 | **Tisane** | Text Analytics with focus on detection of abusive content and law enforcement... | 🔐 OAuth | ✅ | [Link](https://tisane.ai/) |
 | **Watson Natural Language Understanding** | Natural language processing for advanced text analysis. | 🔐 OAuth | ✅ | [Link](https://cloud.ibm.com/apidocs/natural-language-understanding/natural-language-understanding) |
@@ -2183,8 +1967,8 @@ print(response.json()['fact'])
 
 | API Name | Description | Auth | HTTPS | Link |
 | :--- | :--- | :---: | :---: | :---: |
-| **ADS-B Exchange** | Flight tracking data. | No | ✅ | [Link](https://www.adsbexchange.com/data/) |
 | **airportsapi** | Get name and website-URL for airports by ICAO code. | No | ✅ | [Link](https://airport-web.appspot.com/api/docs/) |
+| **ADS-B Exchange** | Flight tracking data. | No | ✅ | [Link](https://www.adsbexchange.com/data/) |
 | **AIS Hub** | Real-time data of any marine and inland vessel equipped with AIS tracking system. | 🔑 ApiKey | No | [Link](http://www.aishub.net/api) |
 | **Amadeus for Developers** | Travel Search - Limited usage. | 🔐 OAuth | ✅ | [Link](https://developers.amadeus.com/self-service) |
 | **AZ511** | Access traffic data from the ADOT API. | 🔑 ApiKey | ✅ | [Link](https://www.az511.com/developers/doc) |
