@@ -419,10 +419,10 @@ print(response.json()['fact'])
 | **Namedays Calendar** | Nameday lookups by date and locale. | No | ✅ | [Link](https://nameday.abalin.net/) |
 | **Checkiday - National Holiday API** | Industry-leading Holiday API. Over 5,000 holidays and thousands of descriptio... | 🔑 ApiKey | ✅ | [Link](https://apilayer.com/marketplace/checkiday-api) |
 | **Church Calendar** | Catholic liturgical calendar. | No | No | [Link](http://calapi.inadiutorium.cz/) |
-| **Festivo Public Holidays** | Public holidays and observance data API. | 🔑 ApiKey | ✅ | [Link](https://docs.getfestivo.com/docs/products/public-holidays-api/intro) |
 | **Hebrew Calendar** | Convert between Gregorian and Hebrew, fetch Shabbat and Holiday times, etc. | No | No | [Link](https://www.hebcal.com/home/developer-apis) |
 | **HolidayAPI** | Holidays and observances by country and date. | 🔑 ApiKey | ✅ | [Link](https://holidayapi.com/) |
 | **LectServe** | Protestant liturgical calendar. | No | No | [Link](http://www.lectserve.com) |
+| **Nager.Date** | Public holiday database for over 100 countries. | No | ✅ | [Link](https://date.nager.at/) |
 | **Non-Working Days** | Non-working day and holiday checks. | No | ✅ | [Link](https://isdayoff.ru/) |
 | **Public Holidays** | Data on national, regional, and religious holidays via API. | 🔑 ApiKey | ✅ | [Link](https://www.abstractapi.com/holidays-api) |
 | **TimeAPI.io** | Current time, timezone, and holiday info for any region. | No | ✅ | [Link](https://timeapi.io/swagger/index.html) |
@@ -505,6 +505,7 @@ print(response.json()['fact'])
 | **Coinigy** | Interacting with Coinigy Accounts and Exchange Directly. | 🔑 ApiKey | ✅ | [Link](https://coinigy.docs.apiary.io) |
 | **Coinlayer** | Real-time Crypto Exchange Rates. | 🔑 ApiKey | ✅ | [Link](https://coinlayer.com) |
 | **Coinlore** | Cryptocurrency prices and market data (**No Auth**). | No | ✅ | [Link](https://www.coinlore.com/cryptocurrency-data-api) |
+| **Coinlore** | Crypto prices, market cap, and volume data for over 12,000 coins. | No | ✅ | [Link](https://www.coinlore.com/cryptocurrency-data-api) |
 | **CoinMarketCap** | Cryptocurrency prices, market cap, exchange rates. | 🔑 ApiKey | ✅ | [Link](https://coinmarketcap.com/api/) |
 | **CoinPaprika** | Cryptocurrency market data (**No Auth, generous limits**). | No | ✅ | [Link](https://api.coinpaprika.com/) |
 | **CoinRanking** | Live Cryptocurrency data. | 🔑 ApiKey | ✅ | [Link](https://developers.coinranking.com/api/documentation) |
@@ -527,11 +528,9 @@ print(response.json()['fact'])
 | **Messari** | Crypto research and data. | 🔑 ApiKey | ✅ | [Link](https://messari.io/api) |
 | **Mobula** | On-chain crypto data and wallet analytics. | 🔑 ApiKey | ✅ | [Link](https://docs.mobula.io/) |
 | **Moralis** | Web3 wallet, NFT, and DeFi data. | 🔑 ApiKey | ✅ | [Link](https://docs.moralis.io/) |
-| **Nexchange** | Automated cryptocurrency exchange service. | No | No | [Link](https://nexchange2.docs.apiary.io/) |
 | **NovaDax** | NovaDAX API to access all market data, trading management endpoints. | 🔑 ApiKey | ✅ | [Link](https://doc.novadax.com/en-US/#introduction) |
 | **Poloniex** | Exchange for Trading Cryptocurrencies. | 🔑 ApiKey | ✅ | [Link](https://docs.poloniex.com) |
 | **Solana JSON RPC** | Provides various endpoints to interact with the Solana Blockchain. | No | ✅ | [Link](https://docs.solana.com/developing/clients/jsonrpc-api) |
-| **Technical Analysis** | Cryptocurrency prices and technical analysis. | 🔑 ApiKey | ✅ | [Link](https://technical-analysis-api.com) |
 | **VALR** | Cryptocurrency Exchange based in South Africa. | 🔑 ApiKey | ✅ | [Link](https://docs.valr.com/) |
 | **WorldCoinIndex** | Cryptocurrencies Prices. | 🔑 ApiKey | ✅ | [Link](https://www.worldcoinindex.com/apiservice) |
 | **ZMOK** | Ethereum JSON RPC API and Web3 provider. | No | ✅ | [Link](https://zmok.io) |
@@ -670,12 +669,14 @@ print(response.json()['fact'])
 | **Doppler** | Secrets management platform for developers. | 🔑 ApiKey | ✅ | [Link](https://docs.doppler.com/reference/api) |
 | **EmailJS** | Send emails directly from JavaScript (**Free tier**). | 🔑 ApiKey | ✅ | [Link](https://www.emailjs.com/docs/) |
 | **ExtendsClass JSON Storage** | A simple JSON store API. | No | ✅ | [Link](https://extendsclass.com/json-storage.html) |
+| **Faker API** | Generate fake data for testing (addresses, books, companies, users, etc.). | No | ✅ | [Link](https://fakerapi.it/en) |
 | **Firebase** | Google's mobile/web app development platform. | 🔑 ApiKey | ✅ | [Link](https://firebase.google.com/docs/reference/rest) |
 | **Fly.io** | Global app deployment platform. | 🔑 ApiKey | ✅ | [Link](https://fly.io/docs/machines/api/) |
 | **Ghost** | Get Published content into your Website, App or other embedded media. | 🔑 ApiKey | ✅ | [Link](https://ghost.org/) |
 | **Gitea** | Self-hosted Git service with REST API. | 🔐 OAuth | ✅ | [Link](https://docs.gitea.com/api/1.20/) |
 | **GitHub** | Make use of GitHub data. | 🔐 OAuth | ✅ | [Link](https://docs.github.com/en/free-pro-team@latest/rest) |
 | **GitHub REST API** | Access GitHub data — repos, users, gists, and more (**No Auth for public data**). | No | ✅ | [Link](https://docs.github.com/en/rest) |
+| **GitHub REST API** | Interact with GitHub repositories, users, issues, and pull requests. | 🔑 ApiKey | ✅ | [Link](https://docs.github.com/en/rest) |
 | **Gitlab** | Automate GitLab. | 🔐 OAuth | ✅ | [Link](https://docs.gitlab.com/ee/api/) |
 | **Glitterly** | Image generation API. | 🔑 ApiKey | ✅ | [Link](https://developers.glitterly.app) |
 | **Google Calendar** | Create, view, or update calendar events. | 🔐 OAuth | ✅ | [Link](https://developers.google.com/calendar/api) |
@@ -699,7 +700,7 @@ print(response.json()['fact'])
 | **Image-Charts** | Generate charts, QR codes and graph images. | No | ✅ | [Link](https://documentation.image-charts.com/) |
 | **import.io** | Retrieve structured data from a website or RSS feed. | 🔑 ApiKey | ✅ | [Link](http://api.docs.import.io/) |
 | **Instatus** | Status page and incident management API. | 🔑 ApiKey | ✅ | [Link](https://instatus.com/help/api) |
-| **ip-fast.com** | IP address, country and city. | No | ✅ | [Link](https://ip-fast.com/docs/) |
+| **ip-fast.com** | IP address, country and city. | No | No | [Link](http://ip-fast.com/docs/) |
 | **IP2Location** | IP geolocation database (**Free tier**). | 🔑 ApiKey | ✅ | [Link](https://www.ip2location.com/web-service/ip2location) |
 | **IPGeolocation** | IP geolocation and timezone API (**Free tier: 30k/month**). | 🔑 ApiKey | ✅ | [Link](https://ipgeolocation.io/) |
 | **IPinfo** | IP Address Information. | No | ✅ | [Link](https://ipinfo.io/developers) |
@@ -725,7 +726,6 @@ print(response.json()['fact'])
 | **Open Page Rank** | API for calculating and comparing metrics of different websites using Page Ra... | 🔑 ApiKey | ✅ | [Link](https://www.domcop.com/openpagerank/) |
 | **OpenAPIHub** | The All-in-one API Platform. | 🔑 ApiKey | ✅ | [Link](https://hub.openapihub.com/) |
 | **OpenGraphr** | Really simple API to retrieve Open Graph data from an URL. | 🔑 ApiKey | ✅ | [Link](https://opengraphr.com/docs/1.0/overview) |
-| **oyyi** | API for Fake Data, image/video conversion, optimization, pdf optimization and... | No | ✅ | [Link](https://oyyi.xyz/docs/1.0) |
 | **PageCDN** | Public API for javascript, css and font libraries on PageCDN. | 🔑 ApiKey | ✅ | [Link](https://pagecdn.com/docs/public-api) |
 | **Pdflayer** | HTML to PDF conversion. | 🔑 ApiKey | ✅ | [Link](https://pdflayer.com/) |
 | **PocketBase** | Open source backend (database, auth, files). | 🔑 ApiKey | ✅ | [Link](https://pocketbase.io/docs/api-records/) |
@@ -740,8 +740,8 @@ print(response.json()['fact'])
 | **QuickChart** | Generate charts and QR codes. | No | ✅ | [Link](https://quickchart.io/) |
 | **Railway** | Modern deployment platform API. | 🔑 ApiKey | ✅ | [Link](https://docs.railway.app/reference/public-api) |
 | **Redash** | Query, dashboards, and data source automation API. | 🔑 ApiKey | ✅ | [Link](https://redash.io/help/user-guide/integrations-and-api/api) |
-| **Rejax** | Reverse AJAX service to notify clients. | 🔑 ApiKey | ✅ | [Link](https://rejax.io/) |
 | **Render** | Cloud platform API for apps and databases. | 🔑 ApiKey | ✅ | [Link](https://api-docs.render.com/reference/introduction) |
+| **ReqRes** | A hosted REST-API ready to respond to user registration, login, and data requests. | No | ✅ | [Link](https://reqres.in/) |
 | **RSS feed to JSON** | Returns RSS feed in JSON format using feed URL. | No | ✅ | [Link](https://rss-to-json-serverless-api.vercel.app) |
 | **SavePage.io** | A free, RESTful API used to screenshot any desktop, or mobile website. | 🔑 ApiKey | ✅ | [Link](https://www.savepage.io) |
 | **ScrapeNinja** | Scraping API with Chrome fingerprint and residential proxies. | 🔑 ApiKey | ✅ | [Link](https://scrapeninja.net) |
@@ -858,6 +858,7 @@ print(response.json()['fact'])
 | **Loops** | Transactional and marketing email for SaaS apps. | 🔑 ApiKey | ✅ | [Link](https://loops.so/docs/api-reference) |
 | **mail.gw** | 10 Minute Mail. | No | ✅ | [Link](https://docs.mail.gw) |
 | **mail.tm** | Temporary Email Service. | No | ✅ | [Link](https://docs.mail.tm) |
+| **Mailboxlayer** | Real-time email address verification and validation. | 🔑 ApiKey | ✅ | [Link](https://mailboxlayer.com/) |
 | **MailboxValidator** | Validate email address to improve deliverability. | 🔑 ApiKey | ✅ | [Link](https://www.mailboxvalidator.com/api-email-free) |
 | **MailCheck.ai** | Prevent users to sign up with temporary email addresses. | No | ✅ | [Link](https://www.mailcheck.ai/#documentation) |
 | **Mailchimp** | Email marketing and audience management APIs. | 🔑 ApiKey | ✅ | [Link](https://mailchimp.com/developer/) |
@@ -871,7 +872,6 @@ print(response.json()['fact'])
 | **SendGrid** | Email delivery service (free tier: 100/day). | 🔑 ApiKey | ✅ | [Link](https://docs.sendgrid.com/api-reference) |
 | **Tomba** | Email finder and verifier API. | 🔑 ApiKey | ✅ | [Link](https://tomba.io/api) |
 | **Twilio** | SMS, voice, and messaging (trial credits). | 🔑 ApiKey | ✅ | [Link](https://www.twilio.com/docs/usage/api) |
-| **Verifier** | Verifies that a given email is real. | 🔑 ApiKey | ✅ | [Link](https://verifier.meetchopra.com/docs#/) |
 | **Vonage (Nexmo)** | SMS and voice APIs (trial credits). | 🔑 ApiKey | ✅ | [Link](https://developer.vonage.com/api) |
 
 [⬆ Back to Table of Contents](#-table-of-contents)
@@ -914,10 +914,10 @@ print(response.json()['fact'])
 | **IQAir** | Air quality and weather data. | 🔑 ApiKey | ✅ | [Link](https://www.iqair.com/air-pollution-data-api) |
 | **Luchtmeetnet** | Predicted and actual air quality components for The Netherlands (RIVM) | No | ✅ | [Link](https://api-docs.luchtmeetnet.nl/) |
 | **NOAA Climate Data Online** | Historical climate and weather data. | 🔑 ApiKey | ✅ | [Link](https://www.ncdc.noaa.gov/cdo-web/webservices/v2) |
+| **Open-Meteo Solar Forecast** | Solar radiation and energy forecast for photovoltaic systems. | No | ✅ | [Link](https://open-meteo.com/) |
 | **OpenWeatherMap Air Pollution** | Air quality index and pollutant data. | 🔑 ApiKey | ✅ | [Link](https://openweathermap.org/api/air-pollution) |
 | **PM2.5 Open Data Portal** | Open low-cost PM2.5 sensor data. | No | ✅ | [Link](https://pm25.lass-net.org/#apis) |
 | **PurpleAir** | Real-time air quality sensor data. | 🔑 ApiKey | ✅ | [Link](https://api.purpleair.com/) |
-| **PVWatts** | Energy production photovoltaic (PV) energy systems. | 🔑 ApiKey | ✅ | [Link](https://developer.nrel.gov/docs/solar/pvwatts/v6/) |
 | **Srp Energy** | Hourly usage energy report for Srp customers. | 🔑 ApiKey | ✅ | [Link](https://srpenergy-api-client-python.readthedocs.io/en/latest/api.html) |
 | **UK Carbon Intensity** | The Official Carbon Intensity API for Great Britain developed by National Grid. | No | ✅ | [Link](https://carbon-intensity.github.io/api-definitions/#carbon-intensity-api-v1-0-0) |
 | **WaterQuality (EPA)** | US water quality monitoring data. | No | ✅ | [Link](https://www.waterqualitydata.us/) |
@@ -1079,6 +1079,7 @@ print(response.json()['fact'])
 | **Overwatch API** | Overwatch 2 player stats and heroes (**No Auth**). | No | ✅ | [Link](https://overfast-api.tekrop.fr/) |
 | **Path of Exile** | Path of Exile Game Information. | 🔐 OAuth | ✅ | [Link](https://www.pathofexile.com/developer/docs) |
 | **PlayerDB** | Query Minecraft, Steam and XBox Accounts. | No | ✅ | [Link](https://playerdb.co/) |
+| **PokeAPI** | All the Pokémon data you'll ever need in one place. | No | ✅ | [Link](https://pokeapi.co/) |
 | **Pokéapi** | Pokémon data. | No | ✅ | [Link](https://pokeapi.co) |
 | **PokéAPI v2** | Comprehensive Pokémon data (**No Auth, 300M+ requests/month**). | No | ✅ | [Link](https://pokeapi.co/docs/v2) |
 | **Pokémon TCG** | Pokémon TCG Information. | No | ✅ | [Link](https://pokemontcg.io) |
@@ -1328,7 +1329,7 @@ print(response.json()['fact'])
 | **Adafruit IO** | IoT feed/data API with free tier. | 🔑 ApiKey | ✅ | [Link](https://io.adafruit.com/api/docs/) |
 | **Arduino IoT** | Arduino IoT Cloud API. | 🔑 ApiKey | ✅ | [Link](https://www.arduino.cc/reference/en/iot/) |
 | **Blynk** | IoT device control from cloud. | 🔑 ApiKey | ✅ | [Link](https://docs.blynk.io/) |
-| **Blynk-Cloud** | Control IoT Devices from Blynk IoT Cloud. | 🔑 ApiKey | No | [Link](https://blynkapi.docs.apiary.io/#) |
+| **Blynk-Cloud** | Control IoT Devices from Blynk IoT Cloud. | 🔑 ApiKey | ✅ | [Link](https://docs.blynk.io/) |
 | **Home Assistant** | Self-hosted home automation REST API. | 🔑 ApiKey | ✅ | [Link](https://developers.home-assistant.io/docs/api/rest/) |
 | **IFTTT** | IFTTT Connect API. | No | ✅ | [Link](https://platform.ifttt.com/docs/connect_api) |
 | **Particle Cloud** | IoT device management and data API. | 🔑 ApiKey | ✅ | [Link](https://docs.particle.io/reference/cloud-apis/api/) |
@@ -1528,9 +1529,9 @@ print(response.json()['fact'])
 | **KKBOX** | Get music libraries, playlists, charts, and perform out of KKBOX's platform. | 🔐 OAuth | ✅ | [Link](https://developer.kkbox.com) |
 | **LastFm** | Music database. | 🔑 ApiKey | ✅ | [Link](https://www.last.fm/api) |
 | **ListenBrainz** | Open-source music stats and listening history. | 🔑 ApiKey | ✅ | [Link](https://listenbrainz.readthedocs.io/en/latest/users/api/) |
-| **Lyrics.ovh** | Simple lyrics search API (**No Auth**). | No | ✅ | [Link](https://lyricsovh.docs.apiary.io/) |
 | **Mixcloud** | Music streaming. | 🔐 OAuth | ✅ | [Link](https://www.mixcloud.com/developers/) |
 | **MusicBrainz** | Music database. | No | ✅ | [Link](https://musicbrainz.org/doc/Development/XML_Web_Service/Version_2) |
+| **Musixmatch** | Millions of lyrics in 80+ languages, translate lyrics, and search for tracks. | 🔑 ApiKey | ✅ | [Link](https://developer.musixmatch.com/) |
 | **Musixmatch** | Lyrics. | 🔑 ApiKey | ✅ | [Link](https://developer.musixmatch.com/) |
 | **Openwhyd** | Download curated playlists of streaming tracks (YouTube, SoundCloud, etc...) | No | ✅ | [Link](https://openwhyd.github.io/openwhyd/API) |
 | **Phishin** | A web-based archive of legal live audio recordings of the improvisational roc... | 🔑 ApiKey | ✅ | [Link](https://phish.in/api-docs) |
@@ -1590,13 +1591,13 @@ print(response.json()['fact'])
 | **API-Ninjas Quotes** | Curated quotes API. | 🔑 ApiKey | ✅ | [Link](https://api-ninjas.com/api/quotes) |
 | **DummyJSON Quotes** | Fake quotes dataset API. | No | ✅ | [Link](https://dummyjson.com/docs/quotes) |
 | **FavQs.com** | FavQs allows you to collect, discover and share your favorite quotes. | 🔑 ApiKey | ✅ | [Link](https://favqs.com/api) |
-| **Forismatic** | Inspirational Quotes. | No | No | [Link](http://forismatic.com/en/api/) |
 | **Quotable** | Random quotes with authors, tags, and pagination (**No Auth**). | No | ✅ | [Link](https://github.com/lukePeavey/quotable) |
 | **Quotes on Design** | Inspirational Quotes. | No | ✅ | [Link](https://quotesondesign.com/api/) |
 | **They Said So Quotes** | Quotes Trusted by many fortune brands around the world. | No | ✅ | [Link](https://theysaidso.com/api/) |
 | **Traitify** | Assess, collect and analyze Personality. | No | ✅ | [Link](https://app.traitify.com/developer) |
 | **Type.fit Quotes** | Collection of inspirational quotes (**No Auth**). | No | ✅ | [Link](https://type.fit/api/quotes) |
 | **Udemy(instructor)** | API for instructors on Udemy. | 🔑 ApiKey | ✅ | [Link](https://www.udemy.com/developers/instructor/) |
+| **ZenQuotes** | Inspirational quotes with author name and formatting options. | No | ✅ | [Link](https://zenquotes.io/api/random) |
 
 [⬆ Back to Table of Contents](#-table-of-contents)
 
@@ -1745,6 +1746,7 @@ print(response.json()['fact'])
 | **Minor Planet Center** | Asterank.com Information. | No | No | [Link](http://www.asterank.com/mpc) |
 | **NASA ADS** | NASA Astrophysics Data System. | 🔐 OAuth | ✅ | [Link](https://ui.adsabs.harvard.edu/help/api/api-docs.html) |
 | **NASA API** | Access NASA data, including Astronomy Picture of the Day (APOD). | 🔑 ApiKey | ✅ | [Link](https://api.nasa.gov/) |
+| **NASA APIs** | Access NASA's data including astronomy pictures of the day, Mars rover photos, and more. | 🔑 ApiKey | ✅ | [Link](https://api.nasa.gov/) |
 | **Newton** | Symbolic and arithmetic math calculator API (**No Auth**). | No | ✅ | [Link](https://newton.vercel.app/) |
 | **NOAA Tides & Currents** | US tides, currents, and water level data. | No | ✅ | [Link](https://api.tidesandcurrents.noaa.gov/api/prod/) |
 | **Noctua** | REST API used to access NoctuaSky features. | No | ✅ | [Link](https://api.noctuasky.com/api/v1/swaggerdoc/) |
@@ -1999,7 +2001,7 @@ print(response.json()['fact'])
 | **Open Charge Map** | Global public registry of electric vehicle charging locations. | 🔑 ApiKey | ✅ | [Link](https://openchargemap.org/site/develop/api) |
 | **OpenRouteService** | Directions, geocoding, isochrones. | 🔑 ApiKey | ✅ | [Link](https://openrouteservice.org/) |
 | **OpenSky Network** | Flight tracking. | No | ✅ | [Link](https://openskynetwork.github.io/opensky-api/) |
-| **Railway Transport for France** | SNCF public API. | 🔑 ApiKey | ✅ | [Link](https://www.digital.sncf.com/startup/api) |
+| **Railway Transport for France** | SNCF public API for timetables, stations, and routes. | 🔑 ApiKey | ✅ | [Link](https://ressources.data.sncf.com/explore/) |
 | **REFUGE Restrooms** | Provides safe restroom access for transgender, intersex and gender nonconform... | No | ✅ | [Link](https://www.refugerestrooms.org/api/docs/#!/restrooms) |
 | **Sabre for Developers** | Travel Search - Limited usage. | 🔑 ApiKey | ✅ | [Link](https://developer.sabre.com) |
 | **Schiphol Airport** | Schiphol. | 🔑 ApiKey | ✅ | [Link](https://developer.schiphol.nl/) |
@@ -2162,7 +2164,6 @@ print(response.json()['fact'])
 | **APIXU** | Weather. | 🔑 ApiKey | ✅ | [Link](https://www.apixu.com/doc/request.aspx) |
 | **AviationWeather** | NOAA aviation weather forecasts and observations. | No | ✅ | [Link](https://www.aviationweather.gov/dataserver) |
 | **ColorfulClouds** | Weather. | 🔑 ApiKey | ✅ | [Link](https://open.caiyunapp.com/ColorfulClouds_Weather_API) |
-| **Euskalmet** | Meteorological data of the Basque Country. | 🔑 ApiKey | ✅ | [Link](https://opendata.euskadi.eus/api-euskalmet/-/api-de-euskalmet/) |
 | **Foreca** | Weather. | 🔐 OAuth | ✅ | [Link](https://developer.foreca.com) |
 | **HG Weather** | Provides weather forecast data for cities in Brazil. | 🔑 ApiKey | ✅ | [Link](https://hgbrasil.com/status/weather) |
 | **Hong Kong Obervatory** | Provide weather information, earthquake information, and climate data. | No | ✅ | [Link](https://www.hko.gov.hk/en/abouthko/opendata_intro.htm) |
@@ -2170,12 +2171,14 @@ print(response.json()['fact'])
 | **Meteomatics** | High-resolution weather API with global coverage. | 🔑 ApiKey | ✅ | [Link](https://www.meteomatics.com/en/api/getting-started/) |
 | **Meteorologisk Institutt** | Weather and climate data. | 🔑 ApiKey | ✅ | [Link](https://api.met.no/weatherapi/documentation) |
 | **Micro Weather** | Real time weather forecasts and historic data. | 🔑 ApiKey | ✅ | [Link](https://m3o.com/weather/api) |
+| **National Weather Service** | Weather forecasts, alerts, and observations for the United States. | No | ✅ | [Link](https://www.weather.gov/documentation/services-web-api) |
 | **ODWeather** | Weather and weather webcams. | No | No | [Link](http://api.oceandrivers.com/static/docs.html) |
 | **Oikolab** | 70+ years of global, hourly historical and forecast weather data from NOAA an... | 🔑 ApiKey | ✅ | [Link](https://docs.oikolab.com) |
 | **Open-Meteo** | Open-source weather API (**No API key required**). | No | ✅ | [Link](https://open-meteo.com/) |
 | **openSenseMap** | Data from Personal Weather Stations called senseBoxes. | No | ✅ | [Link](https://api.opensensemap.org/) |
 | **OpenUV** | Real-time UV Index Forecast. | 🔑 ApiKey | ✅ | [Link](https://www.openuv.io) |
 | **OpenWeatherMap** | Weather forecast. | 🔑 ApiKey | ✅ | [Link](https://openweathermap.org/api) |
+| **OpenWeatherMap** | Current weather, forecasts, and historical data. | 🔑 ApiKey | ✅ | [Link](https://openweathermap.org/api) |
 | **QWeather** | Location-based weather data. | 🔑 ApiKey | ✅ | [Link](https://dev.qweather.com/en/) |
 | **RainViewer** | Weather radar. | No | ✅ | [Link](https://www.rainviewer.com/api.html) |
 | **Storm Glass** | Global marine weather from multiple sources. | 🔑 ApiKey | ✅ | [Link](https://stormglass.io/) |

@@ -1,11 +1,11 @@
 {
   "meta": {
-    "generated_at": "2026-06-10T12:46:38.261336+00:00",
+    "generated_at": "2026-06-10T13:00:38.646148+00:00",
     "source": "README.md",
-    "total_apis": 1534,
+    "total_apis": 1537,
     "total_categories": 64,
-    "no_auth_count": 626,
-    "https_count": 1473,
+    "no_auth_count": 630,
+    "https_count": 1478,
     "https_percentage": 96
   },
   "categories": [
@@ -961,13 +961,6 @@
           "link": "http://calapi.inadiutorium.cz/"
         },
         {
-          "name": "Festivo Public Holidays",
-          "description": "Public holidays and observance data API.",
-          "auth": "apiKey",
-          "https": true,
-          "link": "https://docs.getfestivo.com/docs/products/public-holidays-api/intro"
-        },
-        {
           "name": "Hebrew Calendar",
           "description": "Convert between Gregorian and Hebrew, fetch Shabbat and Holiday times, etc.",
           "auth": "No",
@@ -987,6 +980,13 @@
           "auth": "No",
           "https": false,
           "link": "http://www.lectserve.com"
+        },
+        {
+          "name": "Nager.Date",
+          "description": "Public holiday database for over 100 countries.",
+          "auth": "No",
+          "https": true,
+          "link": "https://date.nager.at/"
         },
         {
           "name": "Non-Working Days",
@@ -1297,7 +1297,7 @@
       "id": "cryptocurrency",
       "emoji": "🪙",
       "name": "Cryptocurrency",
-      "api_count": 50,
+      "api_count": 49,
       "apis": [
         {
           "name": "1inch",
@@ -1435,6 +1435,13 @@
         {
           "name": "Coinlore",
           "description": "Cryptocurrency prices and market data (**No Auth**).",
+          "auth": "No",
+          "https": true,
+          "link": "https://www.coinlore.com/cryptocurrency-data-api"
+        },
+        {
+          "name": "Coinlore",
+          "description": "Crypto prices, market cap, and volume data for over 12,000 coins.",
           "auth": "No",
           "https": true,
           "link": "https://www.coinlore.com/cryptocurrency-data-api"
@@ -1594,13 +1601,6 @@
           "link": "https://docs.moralis.io/"
         },
         {
-          "name": "Nexchange",
-          "description": "Automated cryptocurrency exchange service.",
-          "auth": "No",
-          "https": false,
-          "link": "https://nexchange2.docs.apiary.io/"
-        },
-        {
           "name": "NovaDax",
           "description": "NovaDAX API to access all market data, trading management endpoints.",
           "auth": "apiKey",
@@ -1620,13 +1620,6 @@
           "auth": "No",
           "https": true,
           "link": "https://docs.solana.com/developing/clients/jsonrpc-api"
-        },
-        {
-          "name": "Technical Analysis",
-          "description": "Cryptocurrency prices and technical analysis.",
-          "auth": "apiKey",
-          "https": true,
-          "link": "https://technical-analysis-api.com"
         },
         {
           "name": "VALR",
@@ -2114,7 +2107,7 @@
       "id": "development",
       "emoji": "💻",
       "name": "Development",
-      "api_count": 140,
+      "api_count": 141,
       "apis": [
         {
           "name": "Agify.io",
@@ -2397,6 +2390,13 @@
           "link": "https://extendsclass.com/json-storage.html"
         },
         {
+          "name": "Faker API",
+          "description": "Generate fake data for testing (addresses, books, companies, users, etc.).",
+          "auth": "No",
+          "https": true,
+          "link": "https://fakerapi.it/en"
+        },
+        {
           "name": "Firebase",
           "description": "Google's mobile/web app development platform.",
           "auth": "apiKey",
@@ -2435,6 +2435,13 @@
           "name": "GitHub REST API",
           "description": "Access GitHub data — repos, users, gists, and more (**No Auth for public data**).",
           "auth": "No",
+          "https": true,
+          "link": "https://docs.github.com/en/rest"
+        },
+        {
+          "name": "GitHub REST API",
+          "description": "Interact with GitHub repositories, users, issues, and pull requests.",
+          "auth": "apiKey",
           "https": true,
           "link": "https://docs.github.com/en/rest"
         },
@@ -2603,8 +2610,8 @@
           "name": "ip-fast.com",
           "description": "IP address, country and city.",
           "auth": "No",
-          "https": true,
-          "link": "https://ip-fast.com/docs/"
+          "https": false,
+          "link": "http://ip-fast.com/docs/"
         },
         {
           "name": "IP2Location",
@@ -2782,13 +2789,6 @@
           "link": "https://opengraphr.com/docs/1.0/overview"
         },
         {
-          "name": "oyyi",
-          "description": "API for Fake Data, image/video conversion, optimization, pdf optimization and...",
-          "auth": "No",
-          "https": true,
-          "link": "https://oyyi.xyz/docs/1.0"
-        },
-        {
           "name": "PageCDN",
           "description": "Public API for javascript, css and font libraries on PageCDN.",
           "auth": "apiKey",
@@ -2887,18 +2887,18 @@
           "link": "https://redash.io/help/user-guide/integrations-and-api/api"
         },
         {
-          "name": "Rejax",
-          "description": "Reverse AJAX service to notify clients.",
-          "auth": "apiKey",
-          "https": true,
-          "link": "https://rejax.io/"
-        },
-        {
           "name": "Render",
           "description": "Cloud platform API for apps and databases.",
           "auth": "apiKey",
           "https": true,
           "link": "https://api-docs.render.com/reference/introduction"
+        },
+        {
+          "name": "ReqRes",
+          "description": "A hosted REST-API ready to respond to user registration, login, and data requests.",
+          "auth": "No",
+          "https": true,
+          "link": "https://reqres.in/"
         },
         {
           "name": "RSS feed to JSON",
@@ -3549,6 +3549,13 @@
           "link": "https://docs.mail.tm"
         },
         {
+          "name": "Mailboxlayer",
+          "description": "Real-time email address verification and validation.",
+          "auth": "apiKey",
+          "https": true,
+          "link": "https://mailboxlayer.com/"
+        },
+        {
           "name": "MailboxValidator",
           "description": "Validate email address to improve deliverability.",
           "auth": "apiKey",
@@ -3638,13 +3645,6 @@
           "auth": "apiKey",
           "https": true,
           "link": "https://www.twilio.com/docs/usage/api"
-        },
-        {
-          "name": "Verifier",
-          "description": "Verifies that a given email is real.",
-          "auth": "apiKey",
-          "https": true,
-          "link": "https://verifier.meetchopra.com/docs#/"
         },
         {
           "name": "Vonage (Nexmo)",
@@ -3859,6 +3859,13 @@
           "link": "https://www.ncdc.noaa.gov/cdo-web/webservices/v2"
         },
         {
+          "name": "Open-Meteo Solar Forecast",
+          "description": "Solar radiation and energy forecast for photovoltaic systems.",
+          "auth": "No",
+          "https": true,
+          "link": "https://open-meteo.com/"
+        },
+        {
           "name": "OpenWeatherMap Air Pollution",
           "description": "Air quality index and pollutant data.",
           "auth": "apiKey",
@@ -3878,13 +3885,6 @@
           "auth": "apiKey",
           "https": true,
           "link": "https://api.purpleair.com/"
-        },
-        {
-          "name": "PVWatts",
-          "description": "Energy production photovoltaic (PV) energy systems.",
-          "auth": "apiKey",
-          "https": true,
-          "link": "https://developer.nrel.gov/docs/solar/pvwatts/v6/"
         },
         {
           "name": "Srp Energy",
@@ -4469,7 +4469,7 @@
       "id": "games-comics",
       "emoji": "🎮",
       "name": "Games & Comics",
-      "api_count": 78,
+      "api_count": 79,
       "apis": [
         {
           "name": "Animal Crossing: New Horizons",
@@ -4848,6 +4848,13 @@
           "auth": "No",
           "https": true,
           "link": "https://playerdb.co/"
+        },
+        {
+          "name": "PokeAPI",
+          "description": "All the Pokémon data you'll ever need in one place.",
+          "auth": "No",
+          "https": true,
+          "link": "https://pokeapi.co/"
         },
         {
           "name": "Pokéapi",
@@ -6391,8 +6398,8 @@
           "name": "Blynk-Cloud",
           "description": "Control IoT Devices from Blynk IoT Cloud.",
           "auth": "apiKey",
-          "https": false,
-          "link": "https://blynkapi.docs.apiary.io/#"
+          "https": true,
+          "link": "https://docs.blynk.io/"
         },
         {
           "name": "Home Assistant",
@@ -7467,13 +7474,6 @@
           "link": "https://listenbrainz.readthedocs.io/en/latest/users/api/"
         },
         {
-          "name": "Lyrics.ovh",
-          "description": "Simple lyrics search API (**No Auth**).",
-          "auth": "No",
-          "https": true,
-          "link": "https://lyricsovh.docs.apiary.io/"
-        },
-        {
           "name": "Mixcloud",
           "description": "Music streaming.",
           "auth": "OAuth",
@@ -7486,6 +7486,13 @@
           "auth": "No",
           "https": true,
           "link": "https://musicbrainz.org/doc/Development/XML_Web_Service/Version_2"
+        },
+        {
+          "name": "Musixmatch",
+          "description": "Millions of lyrics in 80+ languages, translate lyrics, and search for tracks.",
+          "auth": "apiKey",
+          "https": true,
+          "link": "https://developer.musixmatch.com/"
         },
         {
           "name": "Musixmatch",
@@ -7778,13 +7785,6 @@
           "link": "https://favqs.com/api"
         },
         {
-          "name": "Forismatic",
-          "description": "Inspirational Quotes.",
-          "auth": "No",
-          "https": false,
-          "link": "http://forismatic.com/en/api/"
-        },
-        {
           "name": "Quotable",
           "description": "Random quotes with authors, tags, and pagination (**No Auth**).",
           "auth": "No",
@@ -7825,6 +7825,13 @@
           "auth": "apiKey",
           "https": true,
           "link": "https://www.udemy.com/developers/instructor/"
+        },
+        {
+          "name": "ZenQuotes",
+          "description": "Inspirational quotes with author name and formatting options.",
+          "auth": "No",
+          "https": true,
+          "link": "https://zenquotes.io/api/random"
         }
       ]
     },
@@ -8543,7 +8550,7 @@
       "id": "science",
       "emoji": "🔬",
       "name": "Science & Space",
-      "api_count": 34,
+      "api_count": 35,
       "apis": [
         {
           "name": "arcsecond.io",
@@ -8653,6 +8660,13 @@
         {
           "name": "NASA API",
           "description": "Access NASA data, including Astronomy Picture of the Day (APOD).",
+          "auth": "apiKey",
+          "https": true,
+          "link": "https://api.nasa.gov/"
+        },
+        {
+          "name": "NASA APIs",
+          "description": "Access NASA's data including astronomy pictures of the day, Mars rover photos, and more.",
           "auth": "apiKey",
           "https": true,
           "link": "https://api.nasa.gov/"
@@ -10150,10 +10164,10 @@
         },
         {
           "name": "Railway Transport for France",
-          "description": "SNCF public API.",
+          "description": "SNCF public API for timetables, stations, and routes.",
           "auth": "apiKey",
           "https": true,
-          "link": "https://www.digital.sncf.com/startup/api"
+          "link": "https://ressources.data.sncf.com/explore/"
         },
         {
           "name": "REFUGE Restrooms",
@@ -10985,7 +10999,7 @@
       "id": "weather",
       "emoji": "🌤️",
       "name": "Weather",
-      "api_count": 34,
+      "api_count": 35,
       "apis": [
         {
           "name": "7Timer!",
@@ -11044,13 +11058,6 @@
           "link": "https://open.caiyunapp.com/ColorfulClouds_Weather_API"
         },
         {
-          "name": "Euskalmet",
-          "description": "Meteorological data of the Basque Country.",
-          "auth": "apiKey",
-          "https": true,
-          "link": "https://opendata.euskadi.eus/api-euskalmet/-/api-de-euskalmet/"
-        },
-        {
           "name": "Foreca",
           "description": "Weather.",
           "auth": "OAuth",
@@ -11100,6 +11107,13 @@
           "link": "https://m3o.com/weather/api"
         },
         {
+          "name": "National Weather Service",
+          "description": "Weather forecasts, alerts, and observations for the United States.",
+          "auth": "No",
+          "https": true,
+          "link": "https://www.weather.gov/documentation/services-web-api"
+        },
+        {
           "name": "ODWeather",
           "description": "Weather and weather webcams.",
           "auth": "No",
@@ -11137,6 +11151,13 @@
         {
           "name": "OpenWeatherMap",
           "description": "Weather forecast.",
+          "auth": "apiKey",
+          "https": true,
+          "link": "https://openweathermap.org/api"
+        },
+        {
+          "name": "OpenWeatherMap",
+          "description": "Current weather, forecasts, and historical data.",
           "auth": "apiKey",
           "https": true,
           "link": "https://openweathermap.org/api"
