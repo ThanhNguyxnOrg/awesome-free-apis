@@ -7,14 +7,14 @@ Welcome! To maintain code quality and prevent redundant work, please strictly ad
 ## 📌 Core Rules
 
 ### 1. The Source of Truth is `README.md`
-*   All API listings are stored inside [README.md](file:///d:/Code/awesome-free-apis/README.md).
+*   All API listings are stored inside [README.md](./README.md).
 *   If you need to add, delete, or update an API entry, **ONLY modify `README.md`**.
-*   **Do NOT** manually update the JSON database [site/src/data/apis.json](file:///d:/Code/awesome-free-apis/site/src/data/apis.json). It is parsed automatically during the build process.
+*   **Do NOT** manually update the JSON database [site/src/data/apis.json](./site/src/data/apis.json). It is parsed automatically during the build process.
 
 ### 2. Website Generation is Automated
 *   **Do NOT** run `npm run build` / `pnpm build` locally and commit the resulting `docs/` folder. 
 *   The `docs/` directory is ignored by Git.
-*   The deployment to GitHub Pages is handled entirely by the GitHub Actions workflow [.github/workflows/deploy-website.yml](file:///d:/Code/awesome-free-apis/.github/workflows/deploy-website.yml). It automatically runs [scripts/parse_readme.py](file:///d:/Code/awesome-free-apis/scripts/parse_readme.py) to convert the README to JSON, builds the Vite frontend, and publishes it to the `gh-pages` branch.
+*   The deployment to GitHub Pages is handled entirely by the GitHub Actions workflow [.github/workflows/deploy-website.yml](./.github/workflows/deploy-website.yml). It automatically runs [scripts/parse_readme.py](./scripts/parse_readme.py) to convert the README to JSON, builds the Vite frontend, and publishes it to the `gh-pages` branch.
 
 ### 3. Link Verification Pipeline (Stage 1 & 2)
 *   Do **NOT** rely solely on basic `curl` or simple python requests to verify if links are dead. Cloudflare and WAFs often return `403` or `429` for raw scripts.
