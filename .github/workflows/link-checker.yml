@@ -264,7 +264,7 @@ jobs:
               brokenLines.forEach((line, i) => {
                 const parts = line.split(' | ');
                 const url = parts[0] || line;
-                const reason = parts[1] || '404';
+                const reason = parts.slice(1).join(' | ') || '404';
                 brokenTable += `| ${i + 1} | ${url} | ${reason} |\n`;
               });
               brokenSection = `### 💀 Broken Links (${brokenCount})\n\n${brokenTable}\n\n**Action needed:** Review and update/remove these dead links from README.md.\n`;
@@ -279,7 +279,8 @@ jobs:
               let errorTable = '| # | URL | Status | Note |\n|---|---|---|---|\n';
               errorLines.forEach((line, i) => {
                 const parts = line.split(' | ');
-                errorTable += `| ${i + 1} | ${parts[0] || ''} | ${parts[1] || ''} | ${parts[2] || ''} |\n`;
+                const note = parts.slice(2).join(' | ');
+                errorTable += `| ${i + 1} | ${parts[0] || ''} | ${parts[1] || ''} | ${note || ''} |\n`;
               });
               errorSection = `\n### ❌ Server Errors (${errCount})\n\n${errorTable}\n`;
             }
@@ -291,7 +292,8 @@ jobs:
               let warningTable = '| # | URL | Status | Note |\n|---|---|---|---|\n';
               warningLines.forEach((line, i) => {
                 const parts = line.split(' | ');
-                warningTable += `| ${i + 1} | ${parts[0] || ''} | ${parts[1] || ''} | ${parts[2] || ''} |\n`;
+                const note = parts.slice(2).join(' | ');
+                warningTable += `| ${i + 1} | ${parts[0] || ''} | ${parts[1] || ''} | ${note || ''} |\n`;
               });
               warningSection = `\n<details>\n<summary>⚠️ Warnings (${warnCount}) — click to expand</summary>\n\n${warningTable}\n</details>\n`;
             }
@@ -301,9 +303,10 @@ jobs:
             if (unknownCount > 0 && currentUnknownList) {
               const unknownLines = currentUnknownList.split('\n').filter(l => l.trim());
               let unknownTable = '| # | URL | Status | Note |\n|---|---|---|---|\n';
-              unknownLines.forEach((line, i) => {
+              warningLines.forEach((line, i) => {
                 const parts = line.split(' | ');
-                unknownTable += `| ${i + 1} | ${parts[0] || ''} | ${parts[1] || ''} | ${parts[2] || ''} |\n`;
+                const note = parts.slice(2).join(' | ');
+                unknownTable += `| ${i + 1} | ${parts[0] || ''} | ${parts[1] || ''} | ${note || ''} |\n`;
               });
               unknownSection = `\n<details>\n<summary>❓ Unknown (${unknownCount}) — click to expand</summary>\n\n${unknownTable}\n</details>\n`;
             }
@@ -315,7 +318,8 @@ jobs:
               let protectedTable = '| # | URL | Status | Note |\n|---|---|---|---|\n';
               protectedLines.forEach((line, i) => {
                 const parts = line.split(' | ');
-                protectedTable += `| ${i + 1} | ${parts[0] || ''} | ${parts[1] || ''} | ${parts[2] || ''} |\n`;
+                const note = parts.slice(2).join(' | ');
+                protectedTable += `| ${i + 1} | ${parts[0] || ''} | ${parts[1] || ''} | ${note || ''} |\n`;
               });
               protectedSection = `\n<details>\n<summary>🛡️ Protected (${protectedCount}) — click to expand</summary>\n\n${protectedTable}\n</details>\n`;
             }

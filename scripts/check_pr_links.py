@@ -103,7 +103,7 @@ def verify_with_playwright(browser, url):
         last_response = [None]
         
         def handle_response(r):
-            if r.frame == page.main_frame:
+            if r.frame == page.main_frame and r.request.resource_type == "document":
                 last_response[0] = r
                 
         page.on("response", handle_response)
