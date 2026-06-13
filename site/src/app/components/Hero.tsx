@@ -1,12 +1,12 @@
 import { useEffect, useRef, useState } from "react";
-import { Search, Sparkles, Zap } from "lucide-react";
+import { Search, Play } from "lucide-react";
 import { stats } from "./data";
 
 const statItems = [
-  { value: stats.total, suffix: "+", label: "Free APIs", grad: "linear-gradient(135deg, #3b82f6, #06b6d4)" },
-  { value: stats.categories, suffix: "", label: "Categories", grad: "linear-gradient(135deg, #8b5cf6, #ec4899)" },
-  { value: stats.noAuth, suffix: "", label: "No Auth Required", grad: "linear-gradient(135deg, #10b981, #06b6d4)" },
-  { value: stats.httpsPercent, suffix: "%", label: "HTTPS Enabled", grad: "linear-gradient(135deg, #f59e0b, #ef4444)" },
+  { value: stats.total, suffix: "+", label: "Free APIs" },
+  { value: stats.categories, suffix: "", label: "Categories" },
+  { value: stats.noAuth, suffix: "", label: "No Auth Required" },
+  { value: stats.httpsPercent, suffix: "%", label: "HTTPS Enabled" },
 ];
 
 function useCountUp(target: number, active: boolean, duration = 1400) {
@@ -39,53 +39,147 @@ function StatCard({
   const v = useCountUp(item.value, active);
   return (
     <div
-      className="relative overflow-hidden rounded-2xl p-6"
+      className="relative overflow-hidden rounded-xl p-5"
       style={{
-        background:
-          "linear-gradient(135deg, rgba(255,255,255,0.06), rgba(255,255,255,0.02))",
-        border: "1px solid rgba(255,255,255,0.08)",
-        backdropFilter: "blur(16px)",
-        WebkitBackdropFilter: "blur(16px)",
+        background: "rgba(255,255,255,0.015)",
+        border: "1px solid rgba(255,255,255,0.05)",
         animation: `fadeInUp 0.6s ${index * 0.1}s both`,
       }}
     >
       <div
-        aria-hidden
-        className="pointer-events-none absolute inset-0 opacity-40"
+        className="absolute top-0 left-0 right-0 h-[1.5px]"
         style={{
-          background: item.grad,
-          mixBlendMode: "overlay",
-          filter: "blur(40px)",
+          background: "linear-gradient(90deg, #06b6d4, transparent)",
         }}
       />
       <div
-        className="relative"
         style={{
-          fontSize: 44,
-          lineHeight: 1.05,
+          fontSize: 32,
           fontWeight: 700,
           letterSpacing: "-0.025em",
-          background: item.grad,
-          WebkitBackgroundClip: "text",
-          backgroundClip: "text",
-          WebkitTextFillColor: "transparent",
+          color: "#ffffff",
         }}
       >
         {v.toLocaleString()}
         {item.suffix}
       </div>
       <div
-        className="relative"
         style={{
           color: "#8b949e",
-          fontSize: 11.5,
+          fontSize: 11,
           marginTop: 6,
           textTransform: "uppercase",
-          letterSpacing: "0.12em",
+          letterSpacing: "0.08em",
           fontFamily: "JetBrains Mono, monospace",
         }}
       >
         {item.label}
+      </div>
+    </div>
+  );
+}
+
+function ApiPlayground() {
+  const [activeTab, setActiveTab] = useState<"request" | "response">("request");
+  const [loading, setLoading] = useState(false);
+
+  const triggerRun = () => {
+    setLoading(true);
+    setTimeout(() => {
+      setLoading(false);
+      setActiveTab("response");
+    }, 600);
+  };
+
+  const catFactResponse = `{
+  "status": 200,
+  "data": {
+    "fact": "Cats can jump up to six times their height.",
+    "length": 43,
+    "breed_reference": "https://api.freeapis.org/v1/breeds/9"
+  },
+  "rate_limit": {
+    "remaining": 99,
+    "reset_seconds": 36
+  }
+}`;
+
+  return (
+    <div
+      className="relative w-full rounded-xl border text-left font-mono overflow-hidden"
+      style={{
+        background: "#080b11",
+        borderColor: "rgba(255,255,255,0.06)",
+        boxShadow: "0 20px 40px rgba(0,0,0,0.6)",
+      }}
+    >
+      {/* Header bar */}
+      <div
+        className="flex items-center justify-between px-4 py-3 border-b"
+        style={{
+          borderColor: "rgba(255,255,255,0.06)",
+          background: "rgba(255,255,255,0.015)",
+        }}
+      >
+        <div className="flex items-center gap-1.5">
+          <span className="w-2.5 h-2.5 rounded-full bg-red-500/60" />
+          <span className="w-2.5 h-2.5 rounded-full bg-yellow-500/60" />
+          <span className="w-2.5 h-2.5 rounded-full bg-green-500/60" />
+          <span className="text-[11px] text-gray-500 ml-2">awesome_api.js</span>
+        </div>
+        <div className="flex gap-1 bg-white/[0.04] p-0.5 rounded-md">
+          <button
+            onClick={() => setActiveTab("request")}
+            className={`px-2 py-0.5 text-[11px] rounded transition-colors ${
+              activeTab === "request"
+                ? "bg-white/[0.08] text-white font-medium"
+                : "text-gray-500 hover:text-gray-300"
+            }`}
+          >
+            Request
+          </button>
+          <button
+            onClick={() => setActiveTab("response")}
+            className={`px-2 py-0.5 text-[11px] rounded transition-colors ${
+              activeTab === "response"
+                ? "bg-white/[0.08] text-white font-medium"
+                : "text-gray-500 hover:text-gray-300"
+            }`}
+          >
+            Response
+          </button>
+        </div>
+      </div>
+
+      {/* Editor Area */}
+      <div className="p-5 text-[13px] leading-relaxed overflow-x-auto min-h-[170px] flex flex-col justify-between">
+        {activeTab === "request" ? (
+          <div>
+            <span className="text-pink-500">const</span> url = <span className="text-cyan-400">"https://api.freeapis.org/v1/cats"</span>;<br />
+            <span className="text-pink-500">const</span> res = <span className="text-pink-500">await</span> <span className="text-blue-400">fetch</span>(url);<br />
+            <span className="text-pink-500">const</span> data = <span className="text-pink-500">await</span> res.<span className="text-blue-400">json</span>();<br />
+            <span className="text-blue-400">console</span>.<span className="text-blue-400">log</span>(data);
+          </div>
+        ) : (
+          <pre className="text-gray-300 text-[11px] leading-normal whitespace-pre font-mono">
+            {catFactResponse}
+          </pre>
+        )}
+
+        <div className="mt-5 flex items-center justify-between border-t pt-4 border-white/[0.04]">
+          <div className="flex items-center gap-1.5 text-xs text-gray-500">
+            <span className="w-1.5 h-1.5 rounded-full bg-cyan-400" />
+            GET · No Auth · HTTPS
+          </div>
+          <button
+            onClick={triggerRun}
+            disabled={loading}
+            className="flex items-center gap-1 px-3 py-1.5 text-xs font-semibold rounded bg-cyan-500 text-black hover:bg-cyan-400 active:scale-[0.97] transition-all disabled:opacity-60"
+          >
+            <Play size={10} fill="black" />
+            {loading ? "Calling..." : "Run Test"}
+          </button>
+        </div>
       </div>
     </div>
   );
@@ -110,263 +204,151 @@ export function Hero({ onSearchClick }: { onSearchClick: () => void }) {
       ref={ref}
       className="relative overflow-hidden"
       style={{
-        background:
-          "linear-gradient(180deg, #06080f 0%, #0a0e1f 50%, #06080f 100%)",
+        background: "#06080f",
+        borderBottom: "1px solid rgba(255,255,255,0.04)",
       }}
     >
-      {/* Dot grid overlay */}
+      {/* Subtle grid pattern overlay */}
       <div
         aria-hidden
         className="pointer-events-none absolute inset-0"
         style={{
           backgroundImage:
-            "radial-gradient(rgba(255,255,255,0.06) 1px, transparent 1px)",
+            "radial-gradient(rgba(255,255,255,0.03) 1px, transparent 1px)",
           backgroundSize: "24px 24px",
           maskImage:
-            "radial-gradient(ellipse at center, black 30%, transparent 75%)",
+            "radial-gradient(ellipse at top, black 40%, transparent 80%)",
           WebkitMaskImage:
-            "radial-gradient(ellipse at center, black 30%, transparent 75%)",
+            "radial-gradient(ellipse at top, black 40%, transparent 80%)",
         }}
       />
 
-      {/* Floating glow orbs */}
+      {/* Spot glow */}
       <div
         aria-hidden
-        className="pointer-events-none absolute -top-32 left-1/4 h-[460px] w-[460px] rounded-full"
+        className="pointer-events-none absolute top-[-10%] left-1/2 -translate-x-1/2 h-[400px] w-[600px] rounded-full"
         style={{
-          background: "radial-gradient(circle, rgba(59,130,246,0.45), transparent 65%)",
-          filter: "blur(80px)",
-          animation: "orbFloat 14s ease-in-out infinite",
-        }}
-      />
-      <div
-        aria-hidden
-        className="pointer-events-none absolute top-20 right-1/4 h-[420px] w-[420px] rounded-full"
-        style={{
-          background: "radial-gradient(circle, rgba(139,92,246,0.4), transparent 65%)",
-          filter: "blur(90px)",
-          animation: "orbFloat 18s ease-in-out infinite reverse",
-        }}
-      />
-      <div
-        aria-hidden
-        className="pointer-events-none absolute bottom-0 left-1/2 h-[380px] w-[640px] -translate-x-1/2 rounded-full"
-        style={{
-          background: "radial-gradient(ellipse, rgba(6,182,212,0.25), transparent 70%)",
-          filter: "blur(70px)",
+          background: "radial-gradient(circle, rgba(6,182,212,0.1), transparent 70%)",
+          filter: "blur(60px)",
         }}
       />
 
-      {/* Mesh gradient sweep */}
-      <div
-        aria-hidden
-        className="pointer-events-none absolute inset-0 opacity-60"
-        style={{
-          background:
-            "conic-gradient(from 180deg at 50% 50%, rgba(59,130,246,0.0) 0deg, rgba(139,92,246,0.08) 90deg, rgba(6,182,212,0.06) 180deg, rgba(59,130,246,0.08) 270deg, rgba(59,130,246,0.0) 360deg)",
-        }}
-      />
-
-      <div className="relative mx-auto max-w-7xl px-6 pb-24 pt-28 text-center">
-        {/* Badge */}
-        <div
-          className="mb-7 inline-flex items-center gap-2 rounded-full px-3.5 py-1.5"
-          style={{
-            background: "rgba(59,130,246,0.08)",
-            border: "1px solid rgba(59,130,246,0.25)",
-            color: "#93c5fd",
-            fontFamily: "JetBrains Mono, monospace",
-            fontSize: 12,
-            backdropFilter: "blur(8px)",
-            animation: "fadeInUp 0.5s 0s both",
-          }}
-        >
-          <span
-            style={{
-              display: "inline-block",
-              width: 6,
-              height: 6,
-              borderRadius: 999,
-              background: "#10b981",
-              boxShadow: "0 0 10px #10b981",
-              animation: "pulse 2s ease-in-out infinite",
-            }}
-          />
-          Auto-synced from README.md · GitHub Actions
-        </div>
-
-        {/* Floating accent icons */}
-        <div className="relative mx-auto" style={{ maxWidth: 900 }}>
-          <div
-            aria-hidden
-            className="pointer-events-none absolute -left-4 top-4 hidden md:block"
-            style={{ animation: "float 6s ease-in-out infinite" }}
-          >
+      <div className="relative mx-auto max-w-7xl px-6 pb-20 pt-24">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+          {/* Left Column: Copy & Search */}
+          <div className="lg:col-span-7 text-left">
+            {/* Active Badge */}
             <div
-              className="flex h-12 w-12 items-center justify-center rounded-2xl overflow-hidden"
+              className="mb-6 inline-flex items-center gap-2 rounded px-2.5 py-1 text-[11px]"
               style={{
-                boxShadow: "0 12px 40px rgba(59,130,246,0.5)",
-                transform: "rotate(-12deg)",
+                background: "rgba(6,182,212,0.06)",
+                border: "1px solid rgba(6,182,212,0.18)",
+                color: "#22d3ee",
+                fontFamily: "JetBrains Mono, monospace",
               }}
             >
-              <svg viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg" className="h-full w-full">
-                <defs>
-                  <linearGradient id="heroLogo" x1="0" y1="0" x2="64" y2="64" gradientUnits="userSpaceOnUse">
-                    <stop offset="0%" stopColor="#06b6d4"/>
-                    <stop offset="50%" stopColor="#3b82f6"/>
-                    <stop offset="100%" stopColor="#a855f7"/>
-                  </linearGradient>
-                </defs>
-                <rect width="64" height="64" rx="14" fill="#0d1117"/>
-                <polygon points="32,10 51,21 51,43 32,54 13,43 13,21" stroke="url(#heroLogo)" strokeWidth="3" strokeLinejoin="round" strokeLinecap="round"/>
-                <path d="M32,10 V32 L13,43 M32,32 L51,43" stroke="url(#heroLogo)" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"/>
-                <circle cx="32" cy="10" r="4" fill="#0d1117" stroke="url(#heroLogo)" strokeWidth="2"/>
-                <circle cx="13" cy="43" r="4" fill="#0d1117" stroke="url(#heroLogo)" strokeWidth="2"/>
-                <circle cx="51" cy="43" r="4" fill="#0d1117" stroke="url(#heroLogo)" strokeWidth="2"/>
-                <circle cx="32" cy="32" r="5" fill="url(#heroLogo)"/>
-              </svg>
-            </div>
-          </div>
-          <div
-            aria-hidden
-            className="pointer-events-none absolute -right-4 top-12 hidden md:block"
-            style={{ animation: "float 7s ease-in-out infinite 1s" }}
-          >
-            <div
-              className="flex h-12 w-12 items-center justify-center rounded-2xl"
-              style={{
-                background: "linear-gradient(135deg, #8b5cf6, #ec4899)",
-                boxShadow: "0 12px 40px rgba(139,92,246,0.5)",
-                transform: "rotate(10deg)",
-              }}
-            >
-              <Sparkles size={22} color="#fff" />
-            </div>
-          </div>
-
-          <h1
-            style={{
-              fontSize: "clamp(48px, 8vw, 84px)",
-              lineHeight: 1.0,
-              letterSpacing: "-0.035em",
-              fontWeight: 700,
-              animation: "fadeInUp 0.7s 0.1s both",
-            }}
-            className="mb-6"
-          >
-            <span
-              style={{
-                background:
-                  "linear-gradient(180deg, #ffffff 0%, #cbd5e1 100%)",
-                WebkitBackgroundClip: "text",
-                backgroundClip: "text",
-                WebkitTextFillColor: "transparent",
-              }}
-            >
-              Awesome
-            </span>{" "}
-            <span
-              style={{
-                background:
-                  "linear-gradient(135deg, #3b82f6 0%, #8b5cf6 50%, #06b6d4 100%)",
-                WebkitBackgroundClip: "text",
-                backgroundClip: "text",
-                WebkitTextFillColor: "transparent",
-              }}
-            >
-              Free APIs
-            </span>
-          </h1>
-        </div>
-
-        <p
-          style={{
-            color: "#94a3b8",
-            fontSize: 19,
-            lineHeight: 1.55,
-            maxWidth: 640,
-            animation: "fadeInUp 0.7s 0.2s both",
-          }}
-          className="mx-auto mb-12"
-        >
-          A curated collection of{" "}
-          <span style={{ color: "#e6edf3", fontWeight: 500 }}>{stats.total}+ free public APIs</span>{" "}
-          for developers. Search, browse by category, and start building in seconds.
-        </p>
-
-        {/* Big Search Bar with permanent glow */}
-        <div
-          className="mx-auto mb-16"
-          style={{ maxWidth: 680, animation: "fadeInUp 0.7s 0.3s both" }}
-        >
-          <div
-            className="relative rounded-2xl p-[1.5px]"
-            style={{
-              background:
-                "linear-gradient(135deg, rgba(59,130,246,0.6), rgba(139,92,246,0.5), rgba(6,182,212,0.5))",
-              boxShadow: "0 0 60px rgba(59,130,246,0.18)",
-            }}
-          >
-            <button
-              onClick={onSearchClick}
-              className="group flex w-full items-center gap-4 rounded-2xl px-6"
-              style={{
-                background: "rgba(13, 17, 23, 0.85)",
-                backdropFilter: "blur(16px)",
-                height: 68,
-                color: "#94a3b8",
-              }}
-            >
-              <div
-                className="flex h-9 w-9 items-center justify-center rounded-xl"
+              <span
                 style={{
-                  background:
-                    "linear-gradient(135deg, rgba(59,130,246,0.2), rgba(139,92,246,0.15))",
-                  border: "1px solid rgba(59,130,246,0.3)",
-                  color: "#93c5fd",
+                  display: "inline-block",
+                  width: 5,
+                  height: 5,
+                  borderRadius: 999,
+                  background: "#10b981",
+                  boxShadow: "0 0 8px #10b981",
+                }}
+              />
+              Auto-synced from README.md
+            </div>
+
+            <h1
+              style={{
+                fontSize: "clamp(40px, 5.5vw, 68px)",
+                lineHeight: 1.05,
+                letterSpacing: "-0.035em",
+                fontWeight: 700,
+              }}
+              className="mb-6 text-white"
+            >
+              Curated Index of <br />
+              <span
+                style={{
+                  background: "linear-gradient(135deg, #06b6d4 0%, #6366f1 100%)",
+                  WebkitBackgroundClip: "text",
+                  backgroundClip: "text",
+                  WebkitTextFillColor: "transparent",
                 }}
               >
-                <Search size={17} />
-              </div>
-              <span style={{ fontSize: 16, flex: 1, textAlign: "left" }}>
-                Search {stats.total}+ free APIs...
+                Free Public APIs
               </span>
-              <div
-                className="flex items-center gap-1"
+            </h1>
+
+            <p
+              style={{
+                color: "#94a3b8",
+                fontSize: 17,
+                lineHeight: 1.6,
+                maxWidth: 585,
+              }}
+              className="mb-8 font-sans"
+            >
+              A clean, structured catalog of <span className="text-white font-medium">{stats.total}+ free APIs</span>. Completely free, HTTPS-enabled, and auto-synchronized for instant development integration.
+            </p>
+
+            {/* Interactive Search Bar Trigger */}
+            <div className="max-w-[480px]">
+              <button
+                onClick={onSearchClick}
+                className="group flex w-full items-center gap-3.5 rounded-xl px-4 transition-all duration-200"
                 style={{
-                  fontFamily: "JetBrains Mono, monospace",
-                  fontSize: 11.5,
+                  background: "rgba(13, 17, 23, 0.65)",
+                  border: "1px solid rgba(255,255,255,0.08)",
+                  boxShadow: "0 8px 24px rgba(0,0,0,0.3)",
+                  height: 54,
+                  color: "#8b949e",
+                }}
+                onMouseEnter={(e) => {
+                  e.currentTarget.style.borderColor = "rgba(6,182,212,0.35)";
+                  e.currentTarget.style.boxShadow = "0 8px 24px rgba(6,182,212,0.06)";
+                }}
+                onMouseLeave={(e) => {
+                  e.currentTarget.style.borderColor = "rgba(255,255,255,0.08)";
+                  e.currentTarget.style.boxShadow = "0 8px 24px rgba(0,0,0,0.3)";
                 }}
               >
-                <kbd
-                  className="rounded-md px-2 py-1"
+                <div
+                  className="flex h-7 w-7 items-center justify-center rounded-lg"
                   style={{
-                    background: "rgba(255,255,255,0.06)",
-                    border: "1px solid rgba(255,255,255,0.1)",
-                    color: "#cbd5e1",
+                    background: "rgba(6,182,212,0.1)",
+                    border: "1px solid rgba(6,182,212,0.2)",
+                    color: "#22d3ee",
                   }}
                 >
-                  ⌘
-                </kbd>
-                <kbd
-                  className="rounded-md px-2 py-1"
-                  style={{
-                    background: "rgba(255,255,255,0.06)",
-                    border: "1px solid rgba(255,255,255,0.1)",
-                    color: "#cbd5e1",
-                  }}
+                  <Search size={14} />
+                </div>
+                <span className="text-[13.5px] flex-1 text-left">
+                  Search {stats.total}+ free APIs...
+                </span>
+                <div
+                  className="flex items-center gap-1 text-[10.5px]"
+                  style={{ fontFamily: "JetBrains Mono, monospace" }}
                 >
-                  K
-                </kbd>
-              </div>
-            </button>
+                  <kbd className="rounded bg-white/[0.05] border border-white/[0.08] px-1.5 py-0.5 text-gray-400">⌘</kbd>
+                  <kbd className="rounded bg-white/[0.05] border border-white/[0.08] px-1.5 py-0.5 text-gray-400">K</kbd>
+                </div>
+              </button>
+            </div>
+          </div>
+
+          {/* Right Column: Code Playground */}
+          <div className="lg:col-span-5">
+            <ApiPlayground />
           </div>
         </div>
 
-        {/* Stats */}
+        {/* Stats Grid */}
         <div
-          className="mx-auto grid max-w-4xl grid-cols-2 gap-4 md:grid-cols-4"
-          style={{ animation: "fadeInUp 0.8s 0.4s both" }}
+          className="mt-16 grid grid-cols-2 gap-4 md:grid-cols-4 border-t pt-10"
+          style={{ borderColor: "rgba(255,255,255,0.05)" }}
         >
           {statItems.map((s, i) => (
             <StatCard key={s.label} item={s} active={visible} index={i} />

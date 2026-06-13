@@ -73,18 +73,10 @@ export default function App() {
         .api-card { transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1); }
         .api-card:hover {
           transform: translateY(-2px);
-          border-color: rgba(59, 130, 246, 0.35) !important;
-          box-shadow: 0 8px 32px rgba(59, 130, 246, 0.12) !important;
+          border-color: rgba(6, 182, 212, 0.3) !important;
+          box-shadow: 0 8px 32px rgba(6, 182, 212, 0.08) !important;
         }
-        .category-tile { transition: transform 0.18s ease, background 0.2s ease, box-shadow 0.2s ease; }
-        .category-tile:hover {
-          transform: translateY(-3px) scale(1.02);
-          background: linear-gradient(135deg, rgba(6,182,212,0.7), rgba(139,92,246,0.55)) !important;
-          box-shadow: 0 12px 40px rgba(6,182,212,0.22), 0 0 0 1px rgba(6,182,212,0.25);
-        }
-        .category-tile:hover .tile-glow { opacity: 1; }
-        .category-tile:hover .tile-inner { background: linear-gradient(135deg, rgba(6,182,212,0.08), rgba(139,92,246,0.05)), #0d1117 !important; }
-        ::selection { background: rgba(59,130,246,0.35); color: #fff; }
+        ::selection { background: rgba(6, 182, 212, 0.25); color: #fff; }
         ::-webkit-scrollbar { width: 10px; height: 10px; }
         ::-webkit-scrollbar-track { background: transparent; }
         ::-webkit-scrollbar-thumb {
@@ -95,15 +87,6 @@ export default function App() {
         @keyframes pulse {
           0%, 100% { opacity: 1; transform: scale(1); }
           50% { opacity: 0.6; transform: scale(0.85); }
-        }
-        @keyframes float {
-          0%, 100% { transform: translateY(0px) rotate(-12deg); }
-          50% { transform: translateY(-12px) rotate(-8deg); }
-        }
-        @keyframes orbFloat {
-          0%, 100% { transform: translate(0, 0) scale(1); }
-          33% { transform: translate(30px, -20px) scale(1.05); }
-          66% { transform: translate(-20px, 25px) scale(0.95); }
         }
       `}</style>
 
