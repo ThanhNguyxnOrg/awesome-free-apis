@@ -15,5 +15,5 @@
 | **TimeAPI.io** | Current time, timezone, and holiday info for any region. | No | ✅ | [Link](https://timeapi.io/swagger/index.html) |
 | **UK Bank Holidays** | Official UK bank holiday dataset API. | No | ✅ | [Link](https://www.gov.uk/bank-holidays.json) |
 
-[⬆ Back to Table of Contents](#-table-of-contents)
+[⬆ Back to Table of Contents](../README.md#table-of-contents)
 

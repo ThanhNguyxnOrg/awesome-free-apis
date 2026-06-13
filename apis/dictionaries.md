@@ -18,5 +18,5 @@
 | **Words** | Definitions and synonyms for more than 150,000 words. | 🔑 ApiKey | ✅ | [Link](https://www.wordsapi.com/docs/) |
 | **WordsAPI** | Word definitions, synonyms, antonyms. | 🔑 ApiKey | ✅ | [Link](https://www.wordsapi.com/) |
 
-[⬆ Back to Table of Contents](#-table-of-contents)
+[⬆ Back to Table of Contents](../README.md#table-of-contents)
 

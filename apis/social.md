@@ -48,5 +48,5 @@
 | **YouTube** | Video sharing platform. | 🔐 OAuth | ✅ | [Link](https://developers.google.com/youtube/v3) |
 | **Zalo** | Messaging and social platform. | 🔐 OAuth | ✅ | [Link](https://developers.zalo.me/) |
 
-[⬆ Back to Table of Contents](#-table-of-contents)
+[⬆ Back to Table of Contents](../README.md#table-of-contents)
 

@@ -36,5 +36,5 @@
 | **WGER** | Open source workout manager API. | No | ✅ | [Link](https://wger.de/en/software/api) |
 | **WHO GHO** | World Health Organization health data (**No Auth**). | No | ✅ | [Link](https://www.who.int/data/gho/info/gho-odata-api) |
 
-[⬆ Back to Table of Contents](#-table-of-contents)
+[⬆ Back to Table of Contents](../README.md#table-of-contents)
 

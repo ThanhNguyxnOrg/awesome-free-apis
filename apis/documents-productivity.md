@@ -26,5 +26,5 @@
 | **WakaTime** | Automated time tracking leaderboards for programmers. | No | ✅ | [Link](https://wakatime.com/developers) |
 | **Zube** | Full stack project management. | 🔐 OAuth | ✅ | [Link](https://zube.io/docs/api) |
 
-[⬆ Back to Table of Contents](#-table-of-contents)
+[⬆ Back to Table of Contents](../README.md#table-of-contents)
 

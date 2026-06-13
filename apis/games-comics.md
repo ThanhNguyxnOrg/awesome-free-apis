@@ -84,5 +84,5 @@
 | **xkcd** | Retrieve xkcd comics as JSON. | No | ✅ | [Link](https://xkcd.com/json.html) |
 | **Yu-Gi-Oh!** | Yu-Gi-Oh! card data. | No | ✅ | [Link](https://ygoprodeck.com/api-guide/) |
 
-[⬆ Back to Table of Contents](#-table-of-contents)
+[⬆ Back to Table of Contents](../README.md#table-of-contents)
 

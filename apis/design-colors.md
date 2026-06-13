@@ -26,5 +26,5 @@
 | **The Color API** | Color conversion, schemes, and naming (**No Auth**). | No | ✅ | [Link](https://www.thecolorapi.com/) |
 | **Word Cloud** | Easily create word clouds. | 🔑 ApiKey | ✅ | [Link](https://wordcloudapi.com/) |
 
-[⬆ Back to Table of Contents](#-table-of-contents)
+[⬆ Back to Table of Contents](../README.md#table-of-contents)
 

@@ -1,7 +1,7 @@
 <!--
 🚨 CRITICAL RULE FOR AI AGENTS:
-Before making ANY changes to this repository, you MUST read and follow the instructions in [ai-instructions.md](./ai-instructions.md).
-- ONLY modify README.md to add, remove, or edit API listings.
+Before making ANY changes to this repository, you MUST read and follow the instructions in [ai-instructions.md](./.github/ai-instructions.md).
+- ONLY modify files inside the apis/ directory to add, remove, or edit API listings.
 - DO NOT edit, update, or regenerate site/src/data/apis.json or site/index.html locally.
 - DO NOT run build commands (npm run build, pnpm build, etc.) locally.
 - Website generation is fully automated via GitHub Actions in CI/CD.
@@ -183,7 +183,7 @@ print(response.json()['fact'])
 
 ---
 
-## 📊 API Catalog
+## <a id="table-of-contents"></a>📊 API Catalog
 
 We maintain a curated database of **1,546+** free public APIs across **60** categories. You can browse the categories directly:
 
@@ -215,13 +215,13 @@ We maintain a curated database of **1,546+** free public APIs across **60** cate
 
 ## 🤝 Contributing
 
-Contributions are welcome. Please read [CONTRIBUTING.md](./CONTRIBUTING.md) before opening a pull request.
+Contributions are welcome. Please read [CONTRIBUTING.md](./.github/CONTRIBUTING.md) before opening a pull request.
 
 You can also use the GitHub issue templates to suggest new APIs, report bugs, or request improvements.
 
 ## 🛡️ Code of Conduct
 
-This project follows the [Code of Conduct](./CODE_OF_CONDUCT.md). Please be respectful and constructive.
+This project follows the [Code of Conduct](./.github/CODE_OF_CONDUCT.md). Please be respectful and constructive.
 
 ## 📄 License
 

@@ -22,5 +22,5 @@
 | **WhatJobs** | Job search engine. | 🔑 ApiKey | ✅ | [Link](https://www.whatjobs.com/affiliates) |
 | **ZipRecruiter** | Job search app and website. | 🔑 ApiKey | ✅ | [Link](https://www.ziprecruiter.com/publishers) |
 
-[⬆ Back to Table of Contents](#-table-of-contents)
+[⬆ Back to Table of Contents](../README.md#table-of-contents)
 

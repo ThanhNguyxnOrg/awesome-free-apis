@@ -2,7 +2,7 @@
 
 > [!IMPORTANT]
 > **CRITICAL RULE FOR AI AGENTS:** 
-> - **ONLY modify `README.md`** to add, remove, or edit API listings.
+> - **ONLY modify files inside the `apis/` directory** to add, remove, or edit API listings.
 > - **DO NOT** edit, update, or regenerate `site/src/data/apis.json` or `site/index.html` locally.
 > - **DO NOT** run build commands (`npm run build`, `pnpm build`, etc.) locally.
 > - **Website generation is the job of the GitHub Actions YML workflow (`deploy-website.yml`) in CI.** As an AI agent, you must read this rule and **skip** any local JSON updates or build tasks completely.
@@ -11,15 +11,15 @@
 
 ## 📌 Core Rules
 
-### 1. The Source of Truth is `README.md`
-*   All API listings are Curated and stored inside [README.md](./README.md).
-*   If you need to add, delete, or update an API entry, **ONLY modify `README.md`**.
-*   **Do NOT** manually or programmatically update the JSON database [site/src/data/apis.json](./site/src/data/apis.json) or run parsing scripts during your turn. It is parsed automatically in CI.
+### 1. The Source of Truth is the `apis/` directory
+*   All API listings are stored as category-specific markdown files inside the [apis/](../apis/) directory.
+*   If you need to add, delete, or update an API entry, **ONLY modify the corresponding markdown file in the `apis/` directory**.
+*   **Do NOT** manually or programmatically update the JSON database [site/src/data/apis.json](../site/src/data/apis.json) or run parsing scripts during your turn unless testing locally. It is parsed automatically in CI.
 
 ### 2. Website Generation is Automated
 *   **Do NOT** run `npm run build` / `pnpm build` locally and commit the resulting `docs/` folder. 
 *   The `docs/` directory is ignored by Git.
-*   The deployment to GitHub Pages is handled entirely by the GitHub Actions workflow [.github/workflows/deploy-website.yml](./.github/workflows/deploy-website.yml). It automatically runs [scripts/parse_readme.py](./scripts/parse_readme.py) to convert the README to JSON, builds the Vite frontend, and publishes it to the `gh-pages` branch.
+*   The deployment to GitHub Pages is handled entirely by the GitHub Actions workflow [.github/workflows/deploy-website.yml](./deploy-website.yml). It automatically runs [scripts/parse_readme.py](../scripts/parse_readme.py) to convert the `apis/` directory markdown files to JSON, builds the Vite frontend, and publishes it to the `gh-pages` branch.
 
 ### 3. Link Verification Pipeline (Stage 1 & 2)
 *   Do **NOT** rely solely on basic `curl` or simple python requests to verify if links are dead. Cloudflare and WAFs often return `403` or `429` for raw scripts.

@@ -81,5 +81,5 @@
 | **UK Parliament** | UK parliamentary data and members. | No | ✅ | [Link](https://members-api.parliament.uk/index.html) |
 | **USASpending** | US federal spending data API. | No | ✅ | [Link](https://api.usaspending.gov/) |
 
-[⬆ Back to Table of Contents](#-table-of-contents)
+[⬆ Back to Table of Contents](../README.md#table-of-contents)
 

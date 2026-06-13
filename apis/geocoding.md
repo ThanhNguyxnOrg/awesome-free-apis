@@ -70,5 +70,5 @@
 | **Zippopotam.us** | Postal/zip code lookup for 60+ countries (**No Auth**). | No | ✅ | [Link](https://api.zippopotam.us/) |
 | **Ziptastic** | Get the country, state, and city of any US zip-code. | No | ✅ | [Link](https://ziptasticapi.com/) |
 
-[⬆ Back to Table of Contents](#-table-of-contents)
+[⬆ Back to Table of Contents](../README.md#table-of-contents)
 

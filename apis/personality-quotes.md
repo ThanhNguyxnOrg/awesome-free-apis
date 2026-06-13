@@ -14,5 +14,5 @@
 | **Type.fit Quotes** | Collection of inspirational quotes (**No Auth**). | No | ✅ | [Link](https://type.fit/api/quotes) |
 | **Udemy(instructor)** | API for instructors on Udemy. | 🔑 ApiKey | ✅ | [Link](https://www.udemy.com/developers/instructor/) |
 
-[⬆ Back to Table of Contents](#-table-of-contents)
+[⬆ Back to Table of Contents](../README.md#table-of-contents)
 

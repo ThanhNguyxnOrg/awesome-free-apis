@@ -24,5 +24,5 @@
 | **Watson Natural Language Understanding** | Natural language processing for advanced text analysis. | 🔐 OAuth | ✅ | [Link](https://cloud.ibm.com/apidocs/natural-language-understanding/natural-language-understanding) |
 | **Wit.ai** | Intent/entity extraction for text/voice. | 🔑 ApiKey | ✅ | [Link](https://wit.ai/docs/http/20240304/) |
 
-[⬆ Back to Table of Contents](#-table-of-contents)
+[⬆ Back to Table of Contents](../README.md#table-of-contents)
 

@@ -47,5 +47,5 @@
 | **YNAB** | Budgeting & Planning. | 🔐 OAuth | ✅ | [Link](https://api.youneedabudget.com/) |
 | **Zoho Books** | Online accounting software, built for your business. | 🔐 OAuth | ✅ | [Link](https://www.zoho.com/books/api/v3/) |
 
-[⬆ Back to Table of Contents](#-table-of-contents)
+[⬆ Back to Table of Contents](../README.md#table-of-contents)
 

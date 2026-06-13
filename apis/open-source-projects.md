@@ -15,5 +15,5 @@
 | **RubyGems** | Ruby package repository API. | No | ✅ | [Link](https://guides.rubygems.org/rubygems-org-api) |
 | **Shields.io** | Quality metadata badges for open source projects (**No Auth**). | No | ✅ | [Link](https://shields.io/) |
 
-[⬆ Back to Table of Contents](#-table-of-contents)
+[⬆ Back to Table of Contents](../README.md#table-of-contents)
 

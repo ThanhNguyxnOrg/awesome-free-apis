@@ -41,5 +41,5 @@
 | **USPTO** | US patent data and applications (**No Auth**). | No | ✅ | [Link](https://developer.uspto.gov/api-catalog) |
 | **World Bank** | Global development data. | No | ✅ | [Link](https://datahelpdesk.worldbank.org/knowledgebase/articles/889392-about-the-indicators-api-documentation) |
 
-[⬆ Back to Table of Contents](#-table-of-contents)
+[⬆ Back to Table of Contents](../README.md#table-of-contents)
 

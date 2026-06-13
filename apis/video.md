@@ -26,5 +26,5 @@
 | **uNoGS** | Unofficial Netflix Online Global Search, Search all netflix regions in one place. | 🔑 ApiKey | ✅ | [Link](https://rapidapi.com/unogs/api/unogsng) |
 | **Vimeo** | Video hosting and sharing platform. | 🔐 OAuth | ✅ | [Link](https://developer.vimeo.com/) |
 
-[⬆ Back to Table of Contents](#-table-of-contents)
+[⬆ Back to Table of Contents](../README.md#table-of-contents)
 

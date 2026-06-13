@@ -19,5 +19,5 @@
 | **Useless Facts** | Random useless facts (**No Auth**). | No | ✅ | [Link](https://uselessfacts.jsph.pl/) |
 | **Zen Quotes** | Random inspirational quotes (**No Auth**). | No | ✅ | [Link](https://zenquotes.io/) |
 
-[⬆ Back to Table of Contents](#-table-of-contents)
+[⬆ Back to Table of Contents](../README.md#table-of-contents)
 

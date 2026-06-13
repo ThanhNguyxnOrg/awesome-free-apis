@@ -14,5 +14,5 @@
 | **Verifalia** | Email verification API. | 🔑 ApiKey | ✅ | [Link](https://verifalia.com/developers) |
 | **ZeroBounce** | Email validation and scoring. | 🔑 ApiKey | ✅ | [Link](https://www.zerobounce.net/docs/email-validation-api-quickstart/v2-get-api-usage/) |
 
-[⬆ Back to Table of Contents](#-table-of-contents)
+[⬆ Back to Table of Contents](../README.md#table-of-contents)
 

@@ -24,5 +24,5 @@
 | **Zestful** | Parse recipe ingredients. | 🔑 ApiKey | ✅ | [Link](https://zestfuldata.com/) |
 | **Zomato** | Restaurant search and reviews. | 🔑 ApiKey | ✅ | [Link](https://developers.zomato.com/api) |
 
-[⬆ Back to Table of Contents](#-table-of-contents)
+[⬆ Back to Table of Contents](../README.md#table-of-contents)
 

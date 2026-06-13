@@ -8,5 +8,5 @@
 | **US Border Wait Times** | Real-time border crossing wait times for US, Canada, and Mexico borders. | No | ✅ | [Link](https://bwt.cbp.gov/) |
 | **Wikivoyage** | Travel guide metadata and destination content from Wikimedia. | No | ✅ | [Link](https://en.wikivoyage.org/w/api.php) |
 
-[⬆ Back to Table of Contents](#-table-of-contents)
+[⬆ Back to Table of Contents](../README.md#table-of-contents)
 

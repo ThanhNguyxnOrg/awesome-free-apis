@@ -12,5 +12,5 @@
 | **ThingsBoard** | Open-source IoT platform REST API. | 🔑 ApiKey | ✅ | [Link](https://thingsboard.io/docs/reference/rest-api/) |
 | **Tuya Cloud** | Smart device management APIs. | 🔑 ApiKey | ✅ | [Link](https://developer.tuya.com/en/docs/cloud/) |
 
-[⬆ Back to Table of Contents](#-table-of-contents)
+[⬆ Back to Table of Contents](../README.md#table-of-contents)
 

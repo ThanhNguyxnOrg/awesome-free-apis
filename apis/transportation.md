@@ -74,5 +74,5 @@
 | **Uber** | Uber ride requests and price estimation. | 🔐 OAuth | ✅ | [Link](https://developer.uber.com/products) |
 | **Velib metropolis, Paris, France** | Velib Open Data API. | No | ✅ | [Link](https://www.velib-metropole.fr/donnees-open-data-gbfs-du-service-velib-metropole) |
 
-[⬆ Back to Table of Contents](#-table-of-contents)
+[⬆ Back to Table of Contents](../README.md#table-of-contents)
 

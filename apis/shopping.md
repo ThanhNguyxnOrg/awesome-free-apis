@@ -19,5 +19,5 @@
 | **Tokopedia** | Tokopedia's Official API for integration of various services from Tokopedia. | 🔐 OAuth | ✅ | [Link](https://developer.tokopedia.com/openapi/guide/#/) |
 | **WooCommerce** | E-commerce. | 🔑 ApiKey | ✅ | [Link](https://woocommerce.github.io/woocommerce-rest-api-docs/) |
 
-[⬆ Back to Table of Contents](#-table-of-contents)
+[⬆ Back to Table of Contents](../README.md#table-of-contents)
 

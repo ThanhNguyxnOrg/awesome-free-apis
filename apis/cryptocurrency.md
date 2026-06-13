@@ -51,5 +51,5 @@
 | **WorldCoinIndex** | Cryptocurrencies Prices. | 🔑 ApiKey | ✅ | [Link](https://www.worldcoinindex.com/apiservice) |
 | **ZMOK** | Ethereum JSON RPC API and Web3 provider. | No | ✅ | [Link](https://zmok.io) |
 
-[⬆ Back to Table of Contents](#-table-of-contents)
+[⬆ Back to Table of Contents](../README.md#table-of-contents)
 

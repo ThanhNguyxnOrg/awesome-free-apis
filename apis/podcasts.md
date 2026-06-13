@@ -12,5 +12,5 @@
 | **Podcast Index** | Open podcast data and search. | 🔑 ApiKey | ✅ | [Link](https://podcastindex-org.github.io/docs-api/) |
 | **Taddy** | GraphQL podcast search and metadata API. | 🔑 ApiKey | ✅ | [Link](https://taddy.org/developers) |
 
-[⬆ Back to Table of Contents](#-table-of-contents)
+[⬆ Back to Table of Contents](../README.md#table-of-contents)
 
