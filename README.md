@@ -527,7 +527,6 @@ print(response.json()['fact'])
 | **GeckoTerminal** | Real-time on-chain market data for DEXs. | No | ✅ | [Link](https://www.geckoterminal.com/dex-api) |
 | **dYdX** | Decentralized cryptocurrency exchange. | 🔑 ApiKey | ✅ | [Link](https://docs.dydx.exchange/) |
 | **EXMO** | Cryptocurrencies exchange based in UK. | 🔑 ApiKey | ✅ | [Link](https://documenter.getpostman.com/view/10287440/SzYXWKPi) |
-| **Gateio** | Exchange for Trading Cryptocurrencies. | 🔑 ApiKey | ✅ | [Link](https://gate.io/docs/developers/apiv4/en/) |
 | **Gemini** | Exchange for Trading Cryptocurrencies. | No | ✅ | [Link](https://docs.gemini.com/rest-api/) |
 | **Hirak Exchange Rates** | Exchange rates between 162 currency & 300 crypto currency update each 5 min, ... | 🔑 ApiKey | ✅ | [Link](https://rates.hirak.site/) |
 | **Huobi** | Seychelles based cryptocurrency exchange. | 🔑 ApiKey | ✅ | [Link](https://huobiapi.github.io/docs/spot/v1/en/) |
@@ -700,7 +699,7 @@ print(response.json()['fact'])
 | **Google Sheets** | Read and write to Google Sheets. | 🔐 OAuth | ✅ | [Link](https://developers.google.com/sheets/api/reference/rest) |
 | **Google Slides** | API to read, write, and format Google Slides presentations. | 🔐 OAuth | ✅ | [Link](https://developers.google.com/slides/api/reference/rest) |
 | **Gorest** | Online REST API for Testing and Prototyping. | 🔐 OAuth | ✅ | [Link](https://gorest.co.in/) |
-| **Hackerearth** | For compiling and running code in several languages. | 🔑 ApiKey | ✅ | [Link](https://developer.hackerearth.com/) |
+| **Carbon Intensity** | Real-time carbon intensity forecasting for Great Britain. | No | ✅ | [Link](https://carbonintensity.org.uk/) |
 | **Hasura** | GraphQL and REST API Engine with built in Authorization. | 🔑 ApiKey | ✅ | [Link](https://hasura.io/opensource/) |
 | **Heroku** | PaaS. | 🔐 OAuth | ✅ | [Link](https://devcenter.heroku.com/articles/platform-api-reference/) |
 | **host-t.com** | Basic DNS query via HTTP GET request. | No | ✅ | [Link](https://host-t.com) |
@@ -992,7 +991,7 @@ print(response.json()['fact'])
 | **Polygon** | Stock market data. | 🔑 ApiKey | ✅ | [Link](https://polygon.io/) |
 | **Portfolio Optimizer** | Portfolio analysis and optimization. | No | ✅ | [Link](https://portfoliooptimizer.io/) |
 | **Razorpay IFSC** | Indian Financial Systems Code (Bank Branch Codes) | No | ✅ | [Link](https://razorpay.com/docs/) |
-| **SEC EDGAR Data** | API to access annual reports of public US companies. | No | ✅ | [Link](https://www.sec.gov/search-filings/edgar-application-programming-interfaces) |
+| **Finsheet** | Free stock, ETF, and cryptocurrency data for sheets and developers. | 🔑 ApiKey | ✅ | [Link](https://finsheet.io/) |
 | **SmartAPI** | Gain access to set of <SmartAPI> and create end-to-end broking services. | 🔑 ApiKey | ✅ | [Link](https://smartapi.angelbroking.com/) |
 | **Square** | Payments, checkout, and commerce APIs. | 🔐 OAuth | ✅ | [Link](https://developer.squareup.com/reference/square) |
 | **StockData** | Real-Time, Intraday & Historical Market Data, News and Sentiment API. | 🔑 ApiKey | ✅ | [Link](https://www.StockData.org) |
@@ -1266,7 +1265,7 @@ print(response.json()['fact'])
 | **Open Government, Greece** | Greece Government Open Data. | 🔐 OAuth | ✅ | [Link](https://data.gov.gr/) |
 | **Open Government, Brazil** | Brazilian Government Open Data. | No | ✅ | [Link](https://dados.gov.br/) |
 | **Open Government, Ireland** | Ireland Government Open Data. | No | ✅ | [Link](https://data.gov.ie/pages/developers) |
-| **Open Government, Italy** | Italy Government Open Data and developers portal. | No | ✅ | [Link](https://developers.italia.it/en/) |
+| **Open Government, Estonia** | Estonian Government Open Data. | No | ✅ | [Link](https://data.gov.ee/) |
 | **Open Government, Korea** | Korea Government Open Data. | 🔑 ApiKey | ✅ | [Link](https://www.data.go.kr/) |
 | **Open Government, Lithuania** | Lithuania Government Open Data. | No | ✅ | [Link](https://data.gov.lt/public/api/1) |
 | **Open Government, Luxembourg** | Luxembourgish Government Open Data. | 🔑 ApiKey | ✅ | [Link](https://data.public.lu) |
@@ -1559,7 +1558,7 @@ print(response.json()['fact'])
 | **Shazam (RapidAPI)** | Music recognition and track details. | 🔑 ApiKey | ✅ | [Link](https://rapidapi.com/apidojo/api/shazam) |
 | **Songkick** | Music Events. | 🔑 ApiKey | ✅ | [Link](https://www.songkick.com/developer/) |
 | **Songlink / Odesli** | Get all the services on which a song is available. | 🔑 ApiKey | ✅ | [Link](https://www.notion.so/API-d0ebe08a5e304a55928405eb682f6741) |
-| **Listen Notes** | Premier search API for podcasts. | 🔑 ApiKey | ✅ | [Link](https://www.listennotes.com/api/) |
+| **Lyrics.ovh** | Simple API to retrieve song lyrics. | No | ✅ | [Link](https://lyrics.ovh/) |
 | **SoundCloud** | Music streaming. | 🔐 OAuth | ✅ | [Link](https://developers.soundcloud.com/docs/api/guide) |
 | **Spotify** | Music streaming. | 🔐 OAuth | ✅ | [Link](https://beta.developer.spotify.com/documentation/web-api/) |
 | **TasteDive** | Similar artist API (also works for movies and TV shows) | 🔑 ApiKey | ✅ | [Link](https://tastedive.com/read/api) |
@@ -1709,7 +1708,7 @@ print(response.json()['fact'])
 | **BotsArchive** | JSON formatted details about Telegram Bots available in database. | No | ✅ | [Link](https://botsarchive.com/docs.html) |
 | **Callook.info** | United States ham radio callsigns. | No | ✅ | [Link](https://callook.info) |
 | **CARTO** | Location Information Prediction. | 🔑 ApiKey | ✅ | [Link](https://carto.com/) |
-| **CollegeScoreCard.ed.gov** | Data on higher education institutions in the United States. | No | ✅ | [Link](https://collegescorecard.ed.gov/data/api-documentation/) |
+| **US Bureau of Labor Statistics** | US labor economics databases and statistical APIs. | 🔑 ApiKey | ✅ | [Link](https://www.bls.gov/developers/) |
 | **Data.gov** | US Government open data. | No | ✅ | [Link](https://api.data.gov/) |
 | **Enigma Public** | Broadest collection of public data. | 🔑 ApiKey | ✅ | [Link](https://developers.enigma.com/docs) |
 | **EPO** | European patent search system api. | 🔐 OAuth | ✅ | [Link](https://developers.epo.org/) |
@@ -1798,7 +1797,7 @@ print(response.json()['fact'])
 | **CertSpotter** | Certificate transparency monitoring. | No | ✅ | [Link](https://sslmate.com/certspotter/api/) |
 | **Cloudflare Turnstile** | Privacy-first CAPTCHA alternative. | 🔑 ApiKey | ✅ | [Link](https://developers.cloudflare.com/turnstile/) |
 | **Complete Criminal Checks** | Provides data of offenders from all U.S. States and Pureto Rico. | 🔑 ApiKey | ✅ | [Link](https://completecriminalchecks.com/Developers) |
-| **EmailRep** | Email address threat and risk prediction. | No | ✅ | [Link](https://emailrep.io) |
+| **BreachDirectory** | Check if email, username, or phone number has been exposed in data breaches. | 🔑 ApiKey | ✅ | [Link](https://breachdirectory.org/) |
 | **FilterLists** | Lists of filters for adblockers and firewalls. | No | ✅ | [Link](https://filterlists.com) |
 | **FingerprintJS Pro** | Fraud detection API offering highly accurate browser fingerprinting. | 🔑 ApiKey | ✅ | [Link](https://dev.fingerprintjs.com/docs) |
 | **FraudLabs Pro** | Screen order information using AI to detect frauds. | 🔑 ApiKey | ✅ | [Link](https://www.fraudlabspro.com/developer/api/screen-order) |
