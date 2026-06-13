@@ -1,13 +1,13 @@
 {
   "meta": {
-    "generated_at": "2026-06-13T16:33:30.862Z",
+    "generated_at": "2026-06-13T16:47:24.410Z",
     "source": "README.md",
-    "total_apis": 1544,
+    "total_apis": 1545,
     "total_categories": 60,
     "no_auth_count": 639,
-    "api_key_count": 759,
+    "api_key_count": 760,
     "oauth_count": 146,
-    "https_count": 1489,
+    "https_count": 1490,
     "https_percentage": 96
   },
   "categories": [
@@ -9206,7 +9206,7 @@
       "id": "social",
       "emoji": "💬",
       "name": "Social",
-      "api_count": 45,
+      "api_count": 46,
       "apis": [
         {
           "name": "Ayrshare",
@@ -9508,6 +9508,13 @@
           "auth": "OAuth",
           "https": true,
           "link": "https://developers.facebook.com/docs/whatsapp"
+        },
+        {
+          "name": "Xquik",
+          "description": "X/Twitter data, monitors, webhooks, and MCP.",
+          "auth": "apiKey",
+          "https": true,
+          "link": "https://docs.xquik.com/api-reference/overview"
         },
         {
           "name": "YouTube",

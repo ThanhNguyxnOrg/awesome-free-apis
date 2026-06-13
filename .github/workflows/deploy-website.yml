@@ -28,6 +28,14 @@ jobs:
       - name: Parse APIs → apis.json
         run: python scripts/parse_readme.py --readme apis --output site/src/data/apis.json
 
+      - name: Commit and Push Count Updates
+        run: |
+          git config --global user.name "github-actions[bot]"
+          git config --global user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add README.md site/index.html site/src/data/apis.json
+          git diff --quiet && git diff --staged --quiet || (git commit -m "chore(stats): auto-update API counts [skip ci]" && git push origin main)
+
+
       - name: Setup Node
         uses: actions/setup-node@v4
         with:
