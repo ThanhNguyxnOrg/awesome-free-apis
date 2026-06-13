@@ -17,9 +17,9 @@ def get_added_urls():
     # 1. Fetch main branch from origin to ensure origin/main exists in depth-1 clones
     subprocess.run(["git", "fetch", "origin", "main", "--depth=1"], capture_output=True)
     
-    # 2. Run git diff
+    # 2. Run git diff against the apis/ directory
     res = subprocess.run(
-        ["git", "diff", "origin/main...HEAD", "-U0", "--", "README.md"],
+        ["git", "diff", "origin/main...HEAD", "-U0", "--", "apis/"],
         capture_output=True,
         text=True
     )
@@ -27,7 +27,7 @@ def get_added_urls():
     # Fallback to compare against 'main' if origin/main is not fetched or fails
     if res.returncode != 0:
         res = subprocess.run(
-            ["git", "diff", "main...HEAD", "-U0", "--", "README.md"],
+            ["git", "diff", "main...HEAD", "-U0", "--", "apis/"],
             capture_output=True,
             text=True
         )
@@ -55,35 +55,48 @@ def get_added_urls():
 
 def get_existing_urls_at_base():
     """
-    Get all unique URLs currently existing in the README.md on the main branch (base of PR).
+    Get all unique URLs currently existing in the apis/ directory on the main branch (base of PR).
     """
     # Fetch origin/main branch to ensure base exists
     subprocess.run(["git", "fetch", "origin", "main", "--depth=1"], capture_output=True)
     
+    # List files in apis/ directory on base branch
     res = subprocess.run(
-        ["git", "show", "origin/main:README.md"],
+        ["git", "ls-tree", "-r", "--name-only", "origin/main", "apis/"],
         capture_output=True,
         text=True
     )
-    if res.returncode != 0:
-        # Fallback to local main
+    
+    base_branch = "origin/main"
+    # Fallback to local main
+    if res.returncode != 0 or not res.stdout.strip():
         res = subprocess.run(
-            ["git", "show", "main:README.md"],
+            ["git", "ls-tree", "-r", "--name-only", "main", "apis/"],
             capture_output=True,
             text=True
         )
-    
-    if res.returncode != 0:
-        print("WARNING: Could not fetch base README.md for duplicate check. Skipping duplicate validation.")
+        base_branch = "main"
+        
+    if res.returncode != 0 or not res.stdout.strip():
+        print("WARNING: Could not fetch base apis/ directory for duplicate check. Skipping duplicate validation.")
         return set()
-
-    url_pattern = re.compile(r'https?://[^\s)\]|]+')
+        
     existing_urls = set()
-    for line in res.stdout.splitlines():
-        if '|' in line:  # Parse links within markdown tables
-            matches = url_pattern.findall(line)
-            for m in matches:
-                existing_urls.add(m.strip().lower())
+    url_pattern = re.compile(r'https?://[^\s)\]|]+')
+    
+    files = res.stdout.splitlines()
+    for file in files:
+        show_res = subprocess.run(
+            ["git", "show", f"{base_branch}:{file}"],
+            capture_output=True,
+            text=True
+        )
+        if show_res.returncode == 0:
+            for line in show_res.stdout.splitlines():
+                if '|' in line:
+                    matches = url_pattern.findall(line)
+                    for m in matches:
+                        existing_urls.add(m.strip().lower())
     return existing_urls
 
 

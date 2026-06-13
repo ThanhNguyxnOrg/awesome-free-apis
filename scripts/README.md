@@ -7,7 +7,7 @@ This directory contains utility scripts for maintaining the awesome-free-apis re
 ### `check_links.py`
 **Link checker with improved accuracy**
 
-Checks all API links in README.md and categorizes them:
+Checks all API links in the apis/ directory and categorizes them:
 - ✅ **Working** - HTTP 200-204, APIs are functional
 - 🛡️ **Protected** - HTTP 403/429 (bot protection, API still works)
 - ⚠️ **Warnings** - Timeouts, SSL issues (temporary, not dead)

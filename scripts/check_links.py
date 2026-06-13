@@ -182,40 +182,75 @@ def check_link(url, timeout=15, max_retries=3):
     # Should never reach here, but just in case
     return {'url': url, 'status': None, 'state': 'error', 'note': 'Max retries exceeded'}
 
+def parse_apis_from_dir(dir_path='../apis'):
+    """Parse all APIs from the apis/ directory"""
+    script_dir = os.path.dirname(os.path.abspath(__file__))
+    resolved_path = os.path.join(os.path.dirname(script_dir), 'apis')
+    if not os.path.exists(dir_path):
+        dir_path = resolved_path
+        
+    apis = []
+    
+    if os.path.exists(dir_path) and os.path.isdir(dir_path):
+        files = sorted([f for f in os.listdir(dir_path) if f.endswith('.md')])
+        for file in files:
+            file_path = os.path.join(dir_path, file)
+            with open(file_path, 'r', encoding='utf-8') as f:
+                content = f.read()
+                
+            # Extract category name and emoji
+            cat_match = re.search(r'^##\s+(?:<a\s+id="[^"]+"\s*>\s*</a>\s*)?(\S+)\s+(.+)$', content, re.MULTILINE)
+            category = cat_match.group(2).strip() if cat_match else file.replace('.md', '').capitalize()
+            
+            lines = content.split('\n')
+            for line in lines:
+                stripped = line.strip()
+                if stripped.startswith('|'):
+                    parts = [p.strip() for p in stripped.split('|')]
+                    if parts[0] == '': parts.pop(0)
+                    if parts and parts[-1] == '': parts.pop()
+                    
+                    if len(parts) >= 5:
+                        name_raw = parts[0]
+                        name = re.sub(r'\*\*(.+?)\*\*', r'\1', name_raw).strip()
+                        if not name or name.startswith('---') or name.startswith(':---') or name == 'API Name':
+                            continue
+                        
+                        link_raw = parts[4]
+                        link_match = re.search(r'\[Link\]\((https?://[^\)]+)\)', link_raw)
+                        if link_match:
+                            url = link_match.group(1).strip()
+                            apis.append({
+                                'name': name,
+                                'category': category,
+                                'url': url
+                            })
+    return apis
+
 
 def main():
     print("Link Checker (based on public-apis approach)")
     print("=" * 80)
 
-    # Extract and deduplicate links
-    links = extract_links_from_readme()
-    unique_links = sorted(list(set(links)))
+    # Extract all APIs
+    apis = parse_apis_from_dir()
+    
+    # Extract unique URLs to optimize checking
+    unique_urls = sorted(list(set(api['url'] for api in apis)))
 
-    print(f"Found {len(links)} total links ({len(unique_links)} unique)")
+    print(f"Found {len(apis)} total APIs ({len(unique_urls)} unique URLs)")
     print(f"Checking links...\n")
 
-    # Categories
-    results = {
-        'working': [],
-        'protected': [],
-        'warning': [],
-        'error': [],
-        'broken': [],
-        'unknown': []
-    }
-
-    # Check links with threading
+    # Check unique links with threading
+    url_results = {}
     with ThreadPoolExecutor(max_workers=15) as executor:
-        future_to_url = {executor.submit(check_link, url): url for url in unique_links}
+        future_to_url = {executor.submit(check_link, url): url for url in unique_urls}
 
         completed = 0
         for future in as_completed(future_to_url):
             result = future.result()
             completed += 1
-
-            # Categorize result
-            state = result['state']
-            results[state].append(result)
+            url_results[result['url']] = result
 
             # Display with icons
             icons = {
@@ -226,13 +261,34 @@ def main():
                 'broken': '[DEAD]',
                 'unknown': '[?]'
             }
-
+            state = result['state']
             icon = icons.get(state, '?')
             status_str = f"HTTP {result['status']}" if result['status'] else "N/A"
-            print(f"[{completed}/{len(unique_links)}] {icon:12} {status_str:12} {result['note']}")
+            print(f"[{completed}/{len(unique_urls)}] {icon:12} {status_str:12} {result['note']}")
             print(f"    {result['url']}")
 
-
+    # Map check results back to all APIs
+    results = {
+        'working': [],
+        'protected': [],
+        'warning': [],
+        'error': [],
+        'broken': [],
+        'unknown': []
+    }
+    
+    for api in apis:
+        url_res = url_results.get(api['url'])
+        if url_res:
+            state = url_res['state']
+            results[state].append({
+                'name': api['name'],
+                'category': api['category'],
+                'url': api['url'],
+                'status': url_res['status'],
+                'state': state,
+                'note': url_res['note']
+            })
 
     # Summary
     print("\n" + "=" * 80)
@@ -247,18 +303,20 @@ def main():
     print(f"[ERR] Errors: {len(results['error'])}")
     print(f"[DEAD] Broken: {len(results['broken'])}")
     print(f"[?] Unknown: {len(results['unknown'])}")
-    if len(unique_links) > 0:
-        print(f"\nHealthy: {total_ok}/{len(unique_links)} ({total_ok/len(unique_links)*100:.1f}%)")
+    
+    if len(apis) > 0:
+        print(f"\nHealthy: {total_ok}/{len(apis)} ({total_ok/len(apis)*100:.1f}%)")
     else:
         print(f"\nHealthy: {total_ok}/0 (0.0%)")
 
-    # Show only truly broken links
+    # Show only truly broken APIs
     if results['broken']:
         print("\n" + "=" * 80)
-        print("TRULY BROKEN LINKS (Manual Review Needed)")
+        print("TRULY BROKEN APIS (Manual Review Needed)")
         print("=" * 80)
-        for r in sorted(results['broken'], key=lambda x: x['url']):
-            print(f"\n[DEAD] {r['url']}")
+        for r in sorted(results['broken'], key=lambda x: x['name']):
+            print(f"\n[DEAD] {r['name']} ({r['category']})")
+            print(f"       URL: {r['url']}")
             print(f"       {r['note']}")
 
     # Save report
@@ -267,10 +325,10 @@ def main():
     now = datetime.now(timezone.utc).strftime('%Y-%m-%d %H:%M UTC')
 
     with open(report_path, 'w', encoding='utf-8') as f:
-        f.write("LINK CHECK REPORT\n")
+        f.write("LINK CHECK REPORT (API-mapped)\n")
         f.write("=" * 80 + "\n\n")
         f.write(f"Date: {now}\n")
-        f.write(f"Total: {len(unique_links)}\n")
+        f.write(f"Total: {len(apis)}\n")
         f.write(f"Working: {len(results['working'])}\n")
         f.write(f"Protected: {len(results['protected'])}\n")
         f.write(f"Warnings: {len(results['warning'])}\n")
@@ -279,71 +337,66 @@ def main():
         f.write(f"Unknown: {len(results['unknown'])}\n\n")
 
         if results['broken']:
-            f.write("BROKEN LINKS:\n")
+            f.write("BROKEN APIS:\n")
             f.write("-" * 80 + "\n")
-            for r in sorted(results['broken'], key=lambda x: x['url']):
-                f.write(f"\n{r['url']}\n  -> {r['note']}\n")
+            for r in sorted(results['broken'], key=lambda x: x['name']):
+                f.write(f"\n{r['name']} ({r['category']})\n  -> URL: {r['url']}\n  -> Note: {r['note']}\n")
 
         if results['error']:
-            f.write("\nERROR LINKS:\n")
+            f.write("\nERROR APIS:\n")
             f.write("-" * 80 + "\n")
-            for r in sorted(results['error'], key=lambda x: x['url']):
-                f.write(f"\n{r['url']}\n  -> {r['note']}\n")
+            for r in sorted(results['error'], key=lambda x: x['name']):
+                f.write(f"\n{r['name']} ({r['category']})\n  -> URL: {r['url']}\n  -> Note: {r['note']}\n")
 
         if results['unknown']:
-            f.write("\nUNKNOWN LINKS:\n")
+            f.write("\nUNKNOWN APIS:\n")
             f.write("-" * 80 + "\n")
-            for r in sorted(results['unknown'], key=lambda x: x['url']):
-                f.write(f"\n{r['url']}\n  -> {r['note']}\n")
+            for r in sorted(results['unknown'], key=lambda x: x['name']):
+                f.write(f"\n{r['name']} ({r['category']})\n  -> URL: {r['url']}\n  -> Note: {r['note']}\n")
 
         if results['warning']:
-            f.write("\nWARNING LINKS:\n")
+            f.write("\nWARNING APIS:\n")
             f.write("-" * 80 + "\n")
-            for r in sorted(results['warning'], key=lambda x: x['url']):
-                f.write(f"\n{r['url']}\n  -> {r['note']}\n")
+            for r in sorted(results['warning'], key=lambda x: x['name']):
+                f.write(f"\n{r['name']} ({r['category']})\n  -> URL: {r['url']}\n  -> Note: {r['note']}\n")
 
-    # Save broken URLs list (one per line, sorted) for CI comparison
+    # Save broken URLs list formatted as: URL | Name (Category) - Reason
     broken_list_path = os.path.join(script_dir, 'broken_urls.txt')
-    broken_urls = sorted([r['url'] for r in results['broken']])
     with open(broken_list_path, 'w', encoding='utf-8') as f:
-        for url in broken_urls:
-            f.write(f"{url} | {next((r['note'] for r in results['broken'] if r['url'] == url), '')}\n")
+        for r in sorted(results['broken'], key=lambda x: x['url']):
+            f.write(f"{r['url']} | {r['name']} ({r['category']}) - {r['note']}\n")
 
-    # Save error URLs list
+    # Save error URLs list formatted as: URL | Name (Category) - Reason
     error_list_path = os.path.join(script_dir, 'error_urls.txt')
-    error_urls = sorted(results['error'], key=lambda x: x['url'])
     with open(error_list_path, 'w', encoding='utf-8') as f:
-        for r in error_urls:
-            f.write(f"{r['url']} | HTTP {r['status']} | {r['note']}\n")
+        for r in sorted(results['error'], key=lambda x: x['url']):
+            f.write(f"{r['url']} | HTTP {r['status']} | {r['name']} ({r['category']}) - {r['note']}\n")
 
     # Save warning URLs list
     warning_list_path = os.path.join(script_dir, 'warning_urls.txt')
-    warning_urls = sorted(results['warning'], key=lambda x: x['url'])
     with open(warning_list_path, 'w', encoding='utf-8') as f:
-        for r in warning_urls:
+        for r in sorted(results['warning'], key=lambda x: x['url']):
             status_str = f"HTTP {r['status']}" if r['status'] else "N/A"
-            f.write(f"{r['url']} | {status_str} | {r['note']}\n")
+            f.write(f"{r['url']} | {status_str} | {r['name']} ({r['category']}) - {r['note']}\n")
 
     # Save unknown URLs list
     unknown_list_path = os.path.join(script_dir, 'unknown_urls.txt')
-    unknown_urls = sorted(results['unknown'], key=lambda x: x['url'])
     with open(unknown_list_path, 'w', encoding='utf-8') as f:
-        for r in unknown_urls:
+        for r in sorted(results['unknown'], key=lambda x: x['url']):
             status_str = f"HTTP {r['status']}" if r['status'] else "N/A"
-            f.write(f"{r['url']} | {status_str} | {r['note']}\n")
+            f.write(f"{r['url']} | {status_str} | {r['name']} ({r['category']}) - {r['note']}\n")
 
     # Save protected URLs list
     protected_list_path = os.path.join(script_dir, 'protected_urls.txt')
-    protected_urls = sorted(results['protected'], key=lambda x: x['url'])
     with open(protected_list_path, 'w', encoding='utf-8') as f:
-        for r in protected_urls:
+        for r in sorted(results['protected'], key=lambda x: x['url']):
             status_str = f"HTTP {r['status']}" if r['status'] else "N/A"
-            f.write(f"{r['url']} | {status_str} | {r['note']}\n")
+            f.write(f"{r['url']} | {status_str} | {r['name']} ({r['category']}) - {r['note']}\n")
 
     # Save queue for Playwright verification
     verify_queue_path = os.path.join(script_dir, 'verify_queue.json')
     verify_queue = []
-    # Add all non-working URLs to the queue to be double-checked by Playwright
+    # Add all non-working APIs to the queue to be double-checked by Playwright
     for state in ['broken', 'error', 'warning', 'protected']:
         verify_queue.extend(results[state])
     
@@ -356,13 +409,9 @@ def main():
         json.dump(results, f, indent=2)
 
     print(f"\nReport saved to: link_check_report.txt")
-    print(f"Broken URLs list: broken_urls.txt ({len(broken_urls)} URLs)")
-    print(f"Error URLs list: error_urls.txt ({len(error_urls)} URLs)")
-    print(f"Warning URLs list: warning_urls.txt ({len(warning_urls)} URLs)")
-    print(f"Verify Queue list: verify_queue.json ({len(verify_queue)} URLs for Stage 2)")
+    print(f"Verify Queue list: verify_queue.json ({len(verify_queue)} APIs for Stage 2)")
     print("\nNote: 403/429 (Protected) = Bot protection - APIs still work!")
 
-    # Always exit with 0 so the Playwright step can run
     return 0
 
 

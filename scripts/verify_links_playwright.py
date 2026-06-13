@@ -113,7 +113,7 @@ def verify_with_playwright(browser, url):
         clean_err = str(e).replace('\n', ' ; ')
         return False, None, f"Playwright Exception: {clean_err}"
 
-def save_reports(results, unique_links_count):
+def save_reports(results, total_apis_count):
     script_dir = os.path.dirname(os.path.abspath(__file__))
     
     # 1. Save main report
@@ -124,7 +124,7 @@ def save_reports(results, unique_links_count):
         f.write("LINK CHECK REPORT (Hybrid Verified)\n")
         f.write("=" * 80 + "\n\n")
         f.write(f"Date: {now}\n")
-        f.write(f"Total: {unique_links_count}\n")
+        f.write(f"Total: {total_apis_count}\n")
         f.write(f"Working: {len(results['working'])}\n")
         f.write(f"Protected: {len(results['protected'])}\n")
         f.write(f"Warnings: {len(results['warning'])}\n")
@@ -133,66 +133,61 @@ def save_reports(results, unique_links_count):
         f.write(f"Unknown: {len(results['unknown'])}\n\n")
 
         if results['broken']:
-            f.write("BROKEN LINKS:\n")
+            f.write("BROKEN APIS:\n")
             f.write("-" * 80 + "\n")
-            for r in sorted(results['broken'], key=lambda x: x['url']):
-                f.write(f"\n{r['url']}\n  -> {r['note']}\n")
+            for r in sorted(results['broken'], key=lambda x: x['name']):
+                f.write(f"\n{r['name']} ({r['category']})\n  -> URL: {r['url']}\n  -> Note: {r['note']}\n")
 
         if results['error']:
-            f.write("\nERROR LINKS:\n")
+            f.write("\nERROR APIS:\n")
             f.write("-" * 80 + "\n")
-            for r in sorted(results['error'], key=lambda x: x['url']):
-                f.write(f"\n{r['url']}\n  -> {r['note']}\n")
+            for r in sorted(results['error'], key=lambda x: x['name']):
+                f.write(f"\n{r['name']} ({r['category']})\n  -> URL: {r['url']}\n  -> Note: {r['note']}\n")
 
         if results['unknown']:
-            f.write("\nUNKNOWN LINKS:\n")
+            f.write("\nUNKNOWN APIS:\n")
             f.write("-" * 80 + "\n")
-            for r in sorted(results['unknown'], key=lambda x: x['url']):
-                f.write(f"\n{r['url']}\n  -> {r['note']}\n")
+            for r in sorted(results['unknown'], key=lambda x: x['name']):
+                f.write(f"\n{r['name']} ({r['category']})\n  -> URL: {r['url']}\n  -> Note: {r['note']}\n")
 
         if results['warning']:
-            f.write("\nWARNING LINKS:\n")
+            f.write("\nWARNING APIS:\n")
             f.write("-" * 80 + "\n")
-            for r in sorted(results['warning'], key=lambda x: x['url']):
-                f.write(f"\n{r['url']}\n  -> {r['note']}\n")
+            for r in sorted(results['warning'], key=lambda x: x['name']):
+                f.write(f"\n{r['name']} ({r['category']})\n  -> URL: {r['url']}\n  -> Note: {r['note']}\n")
                 
-    # 2. Save broken URLs list
+    # 2. Save broken URLs list (URL | Name (Category) - Reason)
     broken_list_path = os.path.join(script_dir, 'broken_urls.txt')
-    broken_urls = sorted([r['url'] for r in results['broken']])
     with open(broken_list_path, 'w', encoding='utf-8') as f:
-        for url in broken_urls:
-            f.write(f"{url} | {next((r['note'] for r in results['broken'] if r['url'] == url), '')}\n")
+        for r in sorted(results['broken'], key=lambda x: x['url']):
+            f.write(f"{r['url']} | {r['name']} ({r['category']}) - {r['note']}\n")
 
     # 3. Save error URLs list
     error_list_path = os.path.join(script_dir, 'error_urls.txt')
-    error_urls = sorted(results['error'], key=lambda x: x['url'])
     with open(error_list_path, 'w', encoding='utf-8') as f:
-        for r in error_urls:
-            f.write(f"{r['url']} | HTTP {r['status']} | {r['note']}\n")
+        for r in sorted(results['error'], key=lambda x: x['url']):
+            f.write(f"{r['url']} | HTTP {r['status']} | {r['name']} ({r['category']}) - {r['note']}\n")
 
     # 4. Save warning URLs list
     warning_list_path = os.path.join(script_dir, 'warning_urls.txt')
-    warning_urls = sorted(results['warning'], key=lambda x: x['url'])
     with open(warning_list_path, 'w', encoding='utf-8') as f:
-        for r in warning_urls:
+        for r in sorted(results['warning'], key=lambda x: x['url']):
             status_str = f"HTTP {r['status']}" if r['status'] else "N/A"
-            f.write(f"{r['url']} | {status_str} | {r['note']}\n")
+            f.write(f"{r['url']} | {status_str} | {r['name']} ({r['category']}) - {r['note']}\n")
 
     # 5. Save unknown URLs list
     unknown_list_path = os.path.join(script_dir, 'unknown_urls.txt')
-    unknown_urls = sorted(results['unknown'], key=lambda x: x['url'])
     with open(unknown_list_path, 'w', encoding='utf-8') as f:
-        for r in unknown_urls:
+        for r in sorted(results['unknown'], key=lambda x: x['url']):
             status_str = f"HTTP {r['status']}" if r['status'] else "N/A"
-            f.write(f"{r['url']} | {status_str} | {r['note']}\n")
+            f.write(f"{r['url']} | {status_str} | {r['name']} ({r['category']}) - {r['note']}\n")
 
     # 6. Save protected URLs list
     protected_list_path = os.path.join(script_dir, 'protected_urls.txt')
-    protected_urls = sorted(results['protected'], key=lambda x: x['url'])
     with open(protected_list_path, 'w', encoding='utf-8') as f:
-        for r in protected_urls:
+        for r in sorted(results['protected'], key=lambda x: x['url']):
             status_str = f"HTTP {r['status']}" if r['status'] else "N/A"
-            f.write(f"{r['url']} | {status_str} | {r['note']}\n")
+            f.write(f"{r['url']} | {status_str} | {r['name']} ({r['category']}) - {r['note']}\n")
 
 
 def main():
@@ -206,39 +201,47 @@ def main():
     with open(results_path, 'r', encoding='utf-8') as f:
         results = json.load(f)
         
-    unique_links_count = sum(len(cat) for cat in results.values())
+    total_apis_count = sum(len(cat) for cat in results.values())
     
-    # We will verify all non-working URLs.
+    # We will verify all non-working APIs.
     to_verify = []
-    # Optionally exclude 'protected' since check_links.py already knows it's bot protection,
-    # but Playwright can give a definitive answer on whether it's truly working.
     for state in ['broken', 'error', 'warning', 'protected', 'unknown']:
         to_verify.extend(results[state])
         
     if not to_verify:
-        print("No URLs need Playwright verification.")
+        print("No APIs need Playwright verification.")
         return 0
         
-    print(f"Playwright Verification: checking {len(to_verify)} URLs...")
+    print(f"Playwright Verification: checking {len(to_verify)} APIs...")
     
-    # Process the queue reusing browser instance
+    # Process the queue reusing browser instance and caching checks per URL
+    url_cache = {}
     with sync_playwright() as p:
         browser = p.chromium.launch(headless=True)
         for item in to_verify:
             url = item['url']
             old_state = item['state']
+            name = item.get('name', '')
+            category = item.get('category', '')
             
-            print(f"Verifying [{old_state}]: {url}")
+            print(f"Verifying [{old_state}] API {name} ({category}): {url}")
             
-            is_working, new_status, note = verify_with_playwright(browser, url)
+            if url in url_cache:
+                is_working, new_status, note = url_cache[url]
+                print(f"  -> [Cached] is_working={is_working}, status={new_status}, note={note}")
+            else:
+                is_working, new_status, note = verify_with_playwright(browser, url)
+                url_cache[url] = (is_working, new_status, note)
             
             if is_working:
                 print(f"  -> Success! Was {old_state}, now working.")
-                # Remove from old category
-                results[old_state] = [i for i in results[old_state] if i['url'] != url]
+                # Remove from old category matching name and url
+                results[old_state] = [i for i in results[old_state] if not (i['url'] == url and i.get('name') == name)]
                 # Add to working (or protected if it's a Cloudflare challenge but verified)
                 target_state = 'working' if 'Cloudflare Challenge' not in note else 'protected'
                 results[target_state].append({
+                    'name': name,
+                    'category': category,
                     'url': url,
                     'status': new_status,
                     'state': target_state,
@@ -246,9 +249,8 @@ def main():
                 })
             else:
                 print(f"  -> Still failing: {note}")
-                # Downgrade link state since it actually failed verification
-                # Remove from old category
-                results[old_state] = [i for i in results[old_state] if i['url'] != url]
+                # Remove from old category matching name and url
+                results[old_state] = [i for i in results[old_state] if not (i['url'] == url and i.get('name') == name)]
                 
                 # Decide target category based on error
                 target_state = 'broken'
@@ -258,16 +260,17 @@ def main():
                     target_state = 'warning'
                     
                 results[target_state].append({
+                    'name': name,
+                    'category': category,
                     'url': url,
                     'status': new_status,
                     'state': target_state,
                     'note': f"Stage 1: {item['note']} | Stage 2: {note}"
                 })
         browser.close()
-
-                    
+ 
     print("\nVerification complete. Regenerating reports...")
-    save_reports(results, unique_links_count)
+    save_reports(results, total_apis_count)
     print("Hybrid reports successfully generated.")
     return 0
     

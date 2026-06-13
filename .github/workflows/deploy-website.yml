@@ -4,6 +4,8 @@ on:
   push:
     paths:
       - 'README.md'
+      - 'APIS.md'
+      - 'apis/**'
       - 'site/**'
       - 'scripts/parse_readme.py'
     branches: [main]
@@ -24,8 +26,8 @@ jobs:
         with:
           python-version: '3.12'
 
-      - name: Parse README → apis.json
-        run: python scripts/parse_readme.py --output site/src/data/apis.json
+      - name: Parse APIs → apis.json
+        run: python scripts/parse_readme.py --readme apis --output site/src/data/apis.json
 
       - name: Setup Node
         uses: actions/setup-node@v4

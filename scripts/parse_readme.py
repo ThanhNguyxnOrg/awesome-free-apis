@@ -81,8 +81,17 @@ def parse_api_row(line: str):
 
 
 def parse_readme(readme_path: str):
-    """Parse the entire README.md and return structured data."""
-    content = Path(readme_path).read_text(encoding='utf-8')
+    """Parse the entire README.md or a directory of markdown files and return structured data."""
+    path = Path(readme_path)
+    if path.is_dir():
+        md_files = sorted(list(path.glob('*.md')))
+        content_parts = []
+        for f in md_files:
+            content_parts.append(f.read_text(encoding='utf-8'))
+        content = '\n\n'.join(content_parts)
+    else:
+        content = path.read_text(encoding='utf-8')
+        
     lines = content.split('\n')
 
     categories = []
@@ -158,8 +167,8 @@ def parse_readme(readme_path: str):
 
 
 def main():
-    parser = argparse.ArgumentParser(description='Parse README.md → apis.json')
-    parser.add_argument('--readme', default='README.md', help='Path to README.md')
+    parser = argparse.ArgumentParser(description='Parse README.md or apis directory → apis.json')
+    parser.add_argument('--readme', default='apis', help='Path to README.md or apis directory')
     parser.add_argument('--output', default='website/data/apis.json', help='Output JSON path')
     args = parser.parse_args()
 

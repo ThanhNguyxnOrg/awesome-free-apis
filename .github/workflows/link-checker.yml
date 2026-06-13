@@ -6,14 +6,16 @@ on:
     branches:
       - main
     paths:
-      - "README.md"
+      - "APIS.md"
+      - "apis/**"
       - "scripts/check_links.py"
       - ".github/workflows/link-checker.yml"
 
   # Run on pull requests
   pull_request:
     paths:
-      - "README.md"
+      - "APIS.md"
+      - "apis/**"
 
   # Run daily at 00:00 UTC to catch broken links
   schedule:
