@@ -1,4 +1,4 @@
-import { Github, Heart, Search, Shuffle, Sparkles } from "lucide-react";
+import { Github, Heart, Search, Shuffle, Sparkles, Plus } from "lucide-react";
 import { stats } from "./data";
 import { useFavorites } from "./favorites";
 
@@ -124,6 +124,20 @@ export function Navbar({
               </span>
             )}
           </button>
+          <a
+            href="https://github.com/ThanhNguyxnOrg/awesome-free-apis/issues/new?template=add_api.yml"
+            target="_blank"
+            rel="noopener noreferrer"
+            title="Submit a New API"
+            className="flex h-9 items-center gap-1.5 rounded-lg px-3 text-cyan-400 bg-cyan-500/5 border border-cyan-500/20 hover:bg-cyan-500 hover:text-black hover:border-cyan-500 transition-all duration-200"
+            style={{
+              fontSize: 13,
+              fontWeight: 500,
+            }}
+          >
+            <Plus size={14} />
+            <span className="hidden sm:inline">Submit API</span>
+          </a>
           <a
             href="https://github.com/ThanhNguyxnOrg/awesome-free-apis"
             target="_blank"

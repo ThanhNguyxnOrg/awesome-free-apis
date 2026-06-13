@@ -163,16 +163,15 @@ def main():
     parser.add_argument('--output', default='website/data/apis.json', help='Output JSON path')
     args = parser.parse_args()
 
+    repo_root = Path(__file__).resolve().parent.parent
+
     # Resolve paths
     readme_path = Path(args.readme)
     if not readme_path.is_absolute():
-        # Try relative to script's parent's parent (repo root)
-        repo_root = Path(__file__).resolve().parent.parent
         readme_path = repo_root / args.readme
 
     output_path = Path(args.output)
     if not output_path.is_absolute():
-        repo_root = Path(__file__).resolve().parent.parent
         output_path = repo_root / args.output
 
     if not readme_path.exists():
@@ -188,6 +187,26 @@ def main():
     # Write JSON
     with open(output_path, 'w', encoding='utf-8') as f:
         json.dump(data, f, ensure_ascii=False, indent=2)
+
+    total_apis = data['meta']['total_apis']
+    
+    # Update index.html dynamically with the parsed count
+    index_path = repo_root / 'site/index.html'
+    if index_path.exists():
+        print(f"Updating count in {index_path}...")
+        try:
+            content = index_path.read_text(encoding='utf-8')
+            updated_content = re.sub(
+                r'\b\d+\+(?=\s+[fF]ree\s+[pP]ublic)',
+                f"{total_apis}+",
+                content
+            )
+            index_path.write_text(updated_content, encoding='utf-8')
+            print(f"  Successfully updated index.html with {total_apis}+ APIs")
+        except Exception as e:
+            print(f"  WARNING: Failed to update index.html: {e}")
+    else:
+        print(f"  WARNING: index.html not found at {index_path}")
 
     meta = data['meta']
     print(f"Done! Generated {output_path}")
