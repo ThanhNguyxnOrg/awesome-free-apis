@@ -16,6 +16,7 @@ export default function App() {
   const [view, setView] = useState<View>("home");
   const [active, setActive] = useState<Category | null>(null);
   const [searchOpen, setSearchOpen] = useState(false);
+  const [searchFilter, setSearchFilter] = useState<"all" | "no-auth" | "https">("all");
   const [theme, setTheme] = useState<"light" | "dark">(() => {
     const saved = localStorage.getItem("theme");
     if (saved === "light" || saved === "dark") return saved;
@@ -49,11 +50,16 @@ export default function App() {
     return () => mediaQuery.removeEventListener("change", handler);
   }, []);
 
+  const openSearch = (filter: "all" | "no-auth" | "https" = "all") => {
+    setSearchFilter(filter);
+    setSearchOpen(true);
+  };
+
   useEffect(() => {
     const onKey = (e: KeyboardEvent) => {
       if ((e.metaKey || e.ctrlKey) && e.key.toLowerCase() === "k") {
         e.preventDefault();
-        setSearchOpen(true);
+        openSearch("all");
       }
     };
     window.addEventListener("keydown", onKey);
@@ -125,7 +131,7 @@ export default function App() {
       <Navbar
         theme={theme}
         toggleTheme={toggleTheme}
-        onSearchClick={() => setSearchOpen(true)}
+        onSearchClick={() => openSearch("all")}
         onFavoritesClick={goFavorites}
         onRandomClick={openRandom}
         onHomeClick={goHome}
@@ -143,7 +149,7 @@ export default function App() {
 
       {view === "home" && (
         <>
-          <Hero theme={theme} onSearchClick={() => setSearchOpen(true)} />
+          <Hero theme={theme} onSearchClick={openSearch} />
           <TagCloud onSelect={goCategory} />
           <CategoryGrid onSelect={goCategory} />
           <FeaturedAPIs />
@@ -154,6 +160,7 @@ export default function App() {
 
       <SearchModal
         open={searchOpen}
+        initialFilter={searchFilter}
         onClose={() => setSearchOpen(false)}
         onSelectCategory={selectBySlug}
       />

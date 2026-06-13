@@ -31,28 +31,32 @@ function StatCard({
   item,
   active,
   index,
+  onClick,
 }: {
   item: (typeof statItems)[number];
   active: boolean;
   index: number;
+  onClick?: () => void;
 }) {
   const v = useCountUp(item.value, active);
   return (
-    <div
-      className="relative overflow-hidden rounded-2xl p-6 transition-all duration-300 border border-border bg-card/40 backdrop-blur-md shadow-sm hover:shadow-md hover:border-primary/20"
+    <button
+      onClick={onClick}
+      className="group/stat relative overflow-hidden rounded-2xl p-6 text-left transition-all duration-300 border border-border bg-card/40 backdrop-blur-md shadow-sm hover:shadow-md hover:border-primary/30 hover:-translate-y-0.5 cursor-pointer w-full"
       style={{
         animation: `fadeInUp 0.6s ${index * 0.1}s both`,
       }}
     >
-      <div className="absolute top-0 left-0 right-0 h-[2px] bg-gradient-to-r from-primary/60 to-transparent" />
-      <div className="text-3xl font-extrabold tracking-tight text-foreground">
+      <div className="absolute top-0 left-0 right-0 h-[2px] bg-gradient-to-r from-primary/40 to-transparent group-hover/stat:from-primary transition-all duration-300" />
+      <div className="text-3xl font-extrabold tracking-tight text-foreground transition-colors group-hover/stat:text-primary">
         {v.toLocaleString()}
         {item.suffix}
       </div>
-      <div className="text-xs text-muted-foreground font-mono tracking-wider uppercase mt-2">
+      <div className="text-xs text-muted-foreground font-mono tracking-wider uppercase mt-2 flex items-center gap-1 group-hover/stat:text-foreground transition-colors">
         {item.label}
+        <span className="opacity-0 -translate-x-1 group-hover/stat:opacity-100 group-hover/stat:translate-x-0 transition-all duration-200 text-primary">➔</span>
       </div>
-    </div>
+    </button>
   );
 }
 
@@ -394,7 +398,7 @@ export function Hero({
   onSearchClick,
 }: {
   theme: "light" | "dark";
-  onSearchClick: () => void;
+  onSearchClick: (filter: "all" | "no-auth" | "https") => void;
 }) {
   const ref = useRef<HTMLDivElement>(null);
   const [visible, setVisible] = useState(false);
@@ -473,7 +477,7 @@ export function Hero({
             {/* Interactive Search Bar Trigger */}
             <div className="max-w-[480px]">
               <button
-                onClick={onSearchClick}
+                onClick={() => onSearchClick("all")}
                 className="group flex w-full items-center gap-3.5 rounded-2xl px-5 border border-border bg-card hover:border-primary/40 hover:shadow-lg transition-all duration-300"
                 style={{ height: 56 }}
               >
@@ -499,9 +503,28 @@ export function Hero({
 
         {/* Stats Grid */}
         <div className="mt-20 grid grid-cols-2 gap-4 md:grid-cols-4 border-t border-border pt-12">
-          {statItems.map((s, i) => (
-            <StatCard key={s.label} item={s} active={visible} index={i} />
-          ))}
+          {statItems.map((s, i) => {
+            let handler: (() => void) | undefined;
+            if (i === 0) handler = () => onSearchClick("all");
+            else if (i === 1) {
+              handler = () => {
+                const el = document.getElementById("categories-section");
+                el?.scrollIntoView({ behavior: "smooth" });
+              };
+            }
+            else if (i === 2) handler = () => onSearchClick("no-auth");
+            else if (i === 3) handler = () => onSearchClick("https");
+
+            return (
+              <StatCard
+                key={s.label}
+                item={s}
+                active={visible}
+                index={i}
+                onClick={handler}
+              />
+            );
+          })}
         </div>
       </div>
     </section>

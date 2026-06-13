@@ -84,7 +84,7 @@ export function CategoryGrid({
   activeSlug?: string;
 }) {
   return (
-    <section className="relative mx-auto max-w-7xl px-6 py-16">
+    <section id="categories-section" className="relative mx-auto max-w-7xl px-6 py-16">
       <div className="relative mb-8 flex items-end justify-between gap-6">
         <div className="text-left">
           <h2 className="text-3xl font-extrabold tracking-tight text-foreground">

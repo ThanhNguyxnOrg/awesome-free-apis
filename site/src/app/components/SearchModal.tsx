@@ -1,22 +1,31 @@
 import { useEffect, useMemo, useState } from "react";
-import { Search, X } from "lucide-react";
+import { Search, X, Shield, Lock, Globe } from "lucide-react";
 import { apis, categories } from "./data";
 import { AuthBadge } from "./AuthBadge";
+
+export type FilterType = "all" | "no-auth" | "https";
 
 export function SearchModal({
   open,
   onClose,
   onSelectCategory,
+  initialFilter = "all",
 }: {
   open: boolean;
   onClose: () => void;
   onSelectCategory: (slug: string) => void;
+  initialFilter?: FilterType;
 }) {
   const [query, setQuery] = useState("");
+  const [filter, setFilter] = useState<FilterType>(initialFilter);
 
   useEffect(() => {
-    if (!open) setQuery("");
-  }, [open]);
+    if (!open) {
+      setQuery("");
+    } else {
+      setFilter(initialFilter);
+    }
+  }, [open, initialFilter]);
 
   useEffect(() => {
     const handler = (e: KeyboardEvent) => {
@@ -28,14 +37,21 @@ export function SearchModal({
 
   const grouped = useMemo(() => {
     const q = query.trim().toLowerCase();
+    let baseApis = apis;
+    if (filter === "no-auth") {
+      baseApis = apis.filter((a) => a.auth === "none");
+    } else if (filter === "https") {
+      baseApis = apis.filter((a) => a.https);
+    }
+
     const filtered = q
-      ? apis.filter(
+      ? baseApis.filter(
           (a) =>
             a.name.toLowerCase().includes(q) ||
             a.description.toLowerCase().includes(q) ||
             a.category.toLowerCase().includes(q)
         )
-      : apis.filter((a) => a.featured);
+      : baseApis.filter((a) => a.featured);
     const map = new Map<string, typeof apis>();
     for (const api of filtered) {
       const arr = map.get(api.category) ?? [];
@@ -46,7 +62,7 @@ export function SearchModal({
       category: categories.find((c) => c.slug === slug),
       list,
     }));
-  }, [query]);
+  }, [query, filter]);
 
   if (!open) return null;
 
@@ -79,6 +95,41 @@ export function SearchModal({
             className="flex h-7 items-center gap-1 rounded-lg px-2 bg-muted border border-border text-muted-foreground hover:text-foreground font-mono text-[10px] transition-colors"
           >
             ESC <X size={12} />
+          </button>
+        </div>
+
+        {/* Filter Chips */}
+        <div className="flex items-center gap-2 px-5 py-2.5 bg-muted/30 border-b border-border text-xs select-none">
+          <span className="text-muted-foreground mr-1.5 font-medium">Filter:</span>
+          <button
+            onClick={() => setFilter("all")}
+            className={`flex items-center gap-1.5 px-3 py-1 rounded-full border transition-all duration-200 cursor-pointer ${
+              filter === "all"
+                ? "bg-primary/10 border-primary/30 text-primary font-semibold"
+                : "border-border hover:bg-secondary text-muted-foreground hover:text-foreground"
+            }`}
+          >
+            <Globe size={11} /> All APIs
+          </button>
+          <button
+            onClick={() => setFilter("no-auth")}
+            className={`flex items-center gap-1.5 px-3 py-1 rounded-full border transition-all duration-200 cursor-pointer ${
+              filter === "no-auth"
+                ? "bg-primary/10 border-primary/30 text-primary font-semibold"
+                : "border-border hover:bg-secondary text-muted-foreground hover:text-foreground"
+            }`}
+          >
+            <Shield size={11} /> No Auth
+          </button>
+          <button
+            onClick={() => setFilter("https")}
+            className={`flex items-center gap-1.5 px-3 py-1 rounded-full border transition-all duration-200 cursor-pointer ${
+              filter === "https"
+                ? "bg-primary/10 border-primary/30 text-primary font-semibold"
+                : "border-border hover:bg-secondary text-muted-foreground hover:text-foreground"
+            }`}
+          >
+            <Lock size={11} /> HTTPS
           </button>
         </div>
 
