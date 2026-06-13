@@ -210,11 +210,20 @@ export function Hero({ onSearchClick }: { onSearchClick: () => void }) {
               }}
             >
               <svg viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg" className="h-full w-full">
-                <defs><linearGradient id="heroLogo" x1="0" y1="0" x2="64" y2="64" gradientUnits="userSpaceOnUse"><stop offset="0%" stopColor="#3b82f6"/><stop offset="100%" stopColor="#06b6d4"/></linearGradient></defs>
+                <defs>
+                  <linearGradient id="heroLogo" x1="0" y1="0" x2="64" y2="64" gradientUnits="userSpaceOnUse">
+                    <stop offset="0%" stopColor="#06b6d4"/>
+                    <stop offset="50%" stopColor="#3b82f6"/>
+                    <stop offset="100%" stopColor="#a855f7"/>
+                  </linearGradient>
+                </defs>
                 <rect width="64" height="64" rx="14" fill="#0d1117"/>
-                <path d="M24 18L10 32L24 46" stroke="url(#heroLogo)" strokeWidth="5" strokeLinecap="round" strokeLinejoin="round"/>
-                <path d="M40 18L54 32L40 46" stroke="url(#heroLogo)" strokeWidth="5" strokeLinecap="round" strokeLinejoin="round"/>
-                <circle cx="32" cy="32" r="4" fill="url(#heroLogo)"/>
+                <polygon points="32,10 51,21 51,43 32,54 13,43 13,21" stroke="url(#heroLogo)" strokeWidth="3" strokeLinejoin="round" strokeLinecap="round"/>
+                <path d="M32,10 V32 L13,43 M32,32 L51,43" stroke="url(#heroLogo)" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"/>
+                <circle cx="32" cy="10" r="4" fill="#0d1117" stroke="url(#heroLogo)" strokeWidth="2"/>
+                <circle cx="13" cy="43" r="4" fill="#0d1117" stroke="url(#heroLogo)" strokeWidth="2"/>
+                <circle cx="51" cy="43" r="4" fill="#0d1117" stroke="url(#heroLogo)" strokeWidth="2"/>
+                <circle cx="32" cy="32" r="5" fill="url(#heroLogo)"/>
               </svg>
             </div>
           </div>
