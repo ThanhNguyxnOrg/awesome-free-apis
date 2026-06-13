@@ -3,10 +3,31 @@ import { Search, Play, Code, Check } from "lucide-react";
 import { stats } from "./data";
 
 const statItems = [
-  { value: stats.total, suffix: "+", label: "Free APIs" },
-  { value: stats.categories, suffix: "", label: "Categories" },
-  { value: stats.noAuth, suffix: "", label: "No Auth Required" },
-  { value: stats.httpsPercent, suffix: "%", label: "HTTPS Enabled" },
+  { 
+    value: stats.total, 
+    suffix: "", 
+    label: "Free APIs", 
+    sub: "✓ Verified Daily", 
+    subColor: "text-emerald-500/85 font-semibold dark:text-emerald-400/90" 
+  },
+  { 
+    value: stats.categories, 
+    suffix: "", 
+    label: "Categories", 
+    sub: "Tech, sports, AI & more" 
+  },
+  { 
+    value: stats.noAuth, 
+    suffix: "", 
+    label: "No Auth Required", 
+    sub: `${stats.apiKey} API Key • ${stats.oauth} OAuth` 
+  },
+  { 
+    value: stats.httpsPercent, 
+    suffix: "%", 
+    label: "HTTPS Enabled", 
+    sub: `${stats.httpsCount.toLocaleString()} Secure Links` 
+  },
 ];
 
 function useCountUp(target: number, active: boolean, duration = 1400) {
@@ -56,6 +77,11 @@ function StatCard({
         {item.label}
         <span className="opacity-0 -translate-x-1 group-hover/stat:opacity-100 group-hover/stat:translate-x-0 transition-all duration-200 text-primary">➔</span>
       </div>
+      {item.sub && (
+        <div className={`text-[10px] mt-1.5 font-sans tracking-normal normal-case transition-colors ${item.subColor || "text-muted-foreground/60 group-hover/stat:text-muted-foreground/80"}`}>
+          {item.sub}
+        </div>
+      )}
     </button>
   );
 }
@@ -470,7 +496,7 @@ export function Hero({
             </h1>
 
             <p className="mb-8 font-sans text-muted-foreground text-lg leading-relaxed max-w-[560px]">
-              A clean, structured developer hub featuring over <span className="text-foreground font-semibold">{stats.total}+ free public APIs</span>. 
+              A clean, structured developer hub featuring <span className="text-foreground font-semibold">{stats.total.toLocaleString()} free public APIs</span>. 
               Totally free, HTTPS-enabled, CORS-vetted, and continuously tested.
             </p>
 
@@ -485,7 +511,7 @@ export function Hero({
                   <Search size={15} />
                 </div>
                 <span className="text-[14px] flex-1 text-left text-muted-foreground">
-                  Search {stats.total}+ free APIs...
+                  Search {stats.total.toLocaleString()} free APIs...
                 </span>
                 <div className="flex items-center gap-1 text-[10px] font-mono text-muted-foreground opacity-60">
                   <kbd className="rounded bg-muted border border-border px-1.5 py-0.5">⌘</kbd>

@@ -86,5 +86,8 @@ export const stats = {
   total: apiData.meta.total_apis,
   categories: categories.length,
   noAuth: apiData.meta.no_auth_count,
+  apiKey: apiData.meta.api_key_count || 0,
+  oauth: apiData.meta.oauth_count || 0,
+  httpsCount: apiData.meta.https_count || 0,
   httpsPercent: apiData.meta.https_percentage,
 };

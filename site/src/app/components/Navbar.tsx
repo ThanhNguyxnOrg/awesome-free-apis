@@ -52,7 +52,7 @@ export function Navbar({
           style={{ minWidth: 320, fontSize: 13.5 }}
         >
           <Search size={15} />
-          <span className="flex-1 text-left">Search {stats.total}+ APIs...</span>
+          <span className="flex-1 text-left">Search {stats.total.toLocaleString()} APIs...</span>
           <kbd className="rounded px-1.5 py-0.5 bg-muted border border-border font-mono text-[10.5px] text-muted-foreground">
             ⌘K
           </kbd>

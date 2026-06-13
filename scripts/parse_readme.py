@@ -136,6 +136,12 @@ def parse_readme(readme_path: str):
     no_auth_count = sum(
         1 for cat in categories for api in cat['apis'] if api['auth'] == 'No'
     )
+    api_key_count = sum(
+        1 for cat in categories for api in cat['apis'] if api['auth'] == 'apiKey'
+    )
+    oauth_count = sum(
+        1 for cat in categories for api in cat['apis'] if api['auth'] == 'OAuth'
+    )
     https_count = sum(
         1 for cat in categories for api in cat['apis'] if api['https']
     )
@@ -149,6 +155,8 @@ def parse_readme(readme_path: str):
             "total_apis": total_apis,
             "total_categories": total_categories,
             "no_auth_count": no_auth_count,
+            "api_key_count": api_key_count,
+            "oauth_count": oauth_count,
             "https_count": https_count,
             "https_percentage": https_pct,
         },
@@ -207,12 +215,12 @@ def main():
         try:
             content = index_path.read_text(encoding='utf-8')
             updated_content = re.sub(
-                r'\b\d+\+(?=\s+[fF]ree\s+[pP]ublic)',
-                f"{total_apis}+",
+                r'\b[\d,]+(?:\+)?(?=\s+[fF]ree\s+[pP]ublic)',
+                f"{total_apis:,}",
                 content
             )
             index_path.write_text(updated_content, encoding='utf-8')
-            print(f"  Successfully updated index.html with {total_apis}+ APIs")
+            print(f"  Successfully updated index.html with {total_apis:,} APIs")
         except Exception as e:
             print(f"  WARNING: Failed to update index.html: {e}")
     else:
@@ -226,8 +234,8 @@ def main():
             content = readme_file_path.read_text(encoding='utf-8')
             total_categories = data['meta']['total_categories']
             updated_content = re.sub(
-                r'(\bdatabase of \*\*)[\d,]+\+(?=\*\* free public APIs across \*\*)',
-                f"\\g<1>{total_apis:,}+",
+                r'(\bdatabase of \*\*)[\d,]+(?:\+)?(?=\*\* free public APIs across \*\*)',
+                f"\\g<1>{total_apis:,}",
                 content
             )
             updated_content = re.sub(
@@ -236,7 +244,7 @@ def main():
                 updated_content
             )
             readme_file_path.write_text(updated_content, encoding='utf-8')
-            print(f"  Successfully updated README.md with {total_apis}+ APIs and {total_categories} categories")
+            print(f"  Successfully updated README.md with {total_apis:,} APIs and {total_categories} categories")
         except Exception as e:
             print(f"  WARNING: Failed to update README.md: {e}")
     else:
