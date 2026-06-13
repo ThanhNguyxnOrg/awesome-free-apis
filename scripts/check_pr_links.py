@@ -86,47 +86,71 @@ def get_existing_urls_at_base():
                 existing_urls.add(m.strip().lower())
     return existing_urls
 
-def verify_with_playwright(url):
+
+def verify_with_playwright(browser, url):
     """
     Returns (is_working, status_code, note) using Playwright Chromium headless browser.
     """
+    context = None
+    page = None
     try:
-        with sync_playwright() as p:
-            browser = p.chromium.launch(headless=True)
-            context = browser.new_context(
-                viewport={'width': 1280, 'height': 720},
-                user_agent='Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36'
-            )
-            page = context.new_page()
+        context = browser.new_context(
+            viewport={'width': 1280, 'height': 720},
+            user_agent='Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36'
+        )
+        page = context.new_page()
+        
+        # Fast check: wait for response headers first (wait_until='commit')
+        response = page.goto(url, wait_until='commit', timeout=8000)
+        
+        if response and response.status < 400:
+            page.close()
+            context.close()
+            return True, response.status, "Playwright: Verified working (Headers check)"
             
-            response = page.goto(url, wait_until='domcontentloaded', timeout=15000)
+        # If response is >= 400, wait for DOM content to check for WAF challenges
+        try:
+            page.wait_for_load_state('domcontentloaded', timeout=4000)
+        except:
+            pass
             
-            # Check response status
-            if response and response.status < 400:
-                browser.close()
-                return True, response.status, "Playwright: Verified working"
-                
-            # If it's a Cloudflare challenge page, the status might be 403 or 503,
-            # but it is considered working since it's just bot protection
-            title = page.title().lower()
-            try:
-                content = page.content().lower()
-            except:
-                content = ""
+        # Check response status again in case it updated during DOM load
+        if response and response.status < 400:
+            page.close()
+            context.close()
+            return True, response.status, "Playwright: Verified working"
             
+        title = page.title().lower()
+        try:
+            content = page.content().lower()
+        except:
+            content = ""
+        
+        status = response.status if response else None
+        # Only check for WAF indicators if status is typical (403, 429, 503, 52x)
+        is_waf_code = status in [403, 429, 503] or (status and 520 <= status <= 527)
+        if is_waf_code:
             cloudflare_indicators = ['just a moment', 'cloudflare', 'attention required', 'security check', 'ddos protection']
             if any(indicator in title or indicator in content for indicator in cloudflare_indicators):
-                browser.close()
-                return True, response.status if response else 403, "Playwright: Verified working (Cloudflare Challenge)"
+                page.close()
+                context.close()
+                return True, status if status else 403, "Playwright: Verified working (Cloudflare Challenge)"
 
-            browser.close()
-            return False, response.status if response else None, f"Playwright: Failed with HTTP {response.status if response else 'Unknown'}"
+        page.close()
+        context.close()
+        return False, status, f"Playwright: Failed with HTTP {status if status else 'Unknown'}"
             
     except Exception as e:
+        if page:
+            try: page.close()
+            except: pass
+        if context:
+            try: context.close()
+            except: pass
         clean_err = str(e).replace('\n', ' ; ')
         return False, None, f"Playwright Exception: {clean_err}"
 
-def check_url(url):
+def check_url(browser, url):
     headers = {
         'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36',
         'Accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8',
@@ -139,22 +163,19 @@ def check_url(url):
         if res.status_code < 400:
             print(f"  🟢 [GET] {url} - Status {res.status_code} (Working)")
             return True, res.status_code, "GET request successful"
-        elif res.status_code in [403, 429]:
-            # Bot protection is considered working
-            print(f"  🛡️ [GET] {url} - Status {res.status_code} (Protected / Working)")
-            return True, res.status_code, "Protected (403/429) but working"
         else:
             print(f"  ⚠️ [GET] {url} returned HTTP {res.status_code}. Retrying with Playwright...")
     except Exception as e:
         print(f"  ⚠️ [GET] {url} failed: {e}. Retrying with Playwright...")
         
     # Stage 2: Playwright fallback
-    is_ok, status, note = verify_with_playwright(url)
+    is_ok, status, note = verify_with_playwright(browser, url)
     if is_ok:
         print(f"  🟢 [Playwright] {url} - Status {status} ({note})")
     else:
         print(f"  🔴 [FAILED] {url} - Status {status} ({note})")
     return is_ok, status, note
+
 
 def save_pr_report(added_urls, failed_links, duplicate_links):
     script_dir = Path(__file__).resolve().parent
@@ -213,10 +234,13 @@ def main():
     print("\n=== Verifying New Links ===")
     failed_links = []
     
-    for url in unique_added_urls:
-        is_ok, status, note = check_url(url)
-        if not is_ok:
-            failed_links.append((url, status, note))
+    with sync_playwright() as p:
+        browser = p.chromium.launch(headless=True)
+        for url in unique_added_urls:
+            is_ok, status, note = check_url(browser, url)
+            if not is_ok:
+                failed_links.append((url, status, note))
+        browser.close()
             
     print("\n=== Result Summary ===")
     save_pr_report(added_urls, failed_links, duplicate_links)

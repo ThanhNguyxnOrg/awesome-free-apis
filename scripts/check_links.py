@@ -50,13 +50,11 @@ def fake_user_agent():
 def has_cloudflare_protection(resp):
     """
     Detect Cloudflare or similar bot protection
-    Based on public-apis/public-apis implementation
     """
     code = resp.status_code
     server = resp.headers.get('Server', '').lower()
 
     cloudflare_flags = [
-        '403 forbidden',
         'cloudflare',
         'security check',
         'please wait...',
@@ -65,15 +63,25 @@ def has_cloudflare_protection(resp):
         'ray id:',
         '_cf_chl',
         'cf-spinner',
+        'just a moment'
     ]
 
-    if code in [403, 503] and 'cloudflare' in server:
-        html = resp.text.lower()
-        if any(flag in html for flag in cloudflare_flags):
-            return True
+    # Only check if status code is typical for WAF (403, 429, 503, or CF 52x errors)
+    is_waf_code = code in [403, 429, 503] or (520 <= code <= 527)
+    if not is_waf_code:
+        return False
 
-    # Also consider 403 as potential bot protection
-    if code == 403:
+    # Check Server header
+    if 'cloudflare' in server:
+        return True
+
+    # Check Cloudflare specific headers
+    if 'cf-ray' in resp.headers or 'cf-cache-status' in resp.headers:
+        return True
+
+    # Check HTML content
+    html = resp.text.lower()
+    if any(flag in html for flag in cloudflare_flags):
         return True
 
     return False
@@ -114,9 +122,12 @@ def check_link(url, timeout=15, max_retries=3):
             if code in [200, 201, 202, 204]:
                 return {'url': url, 'status': code, 'state': 'working', 'note': 'OK'}
             elif code == 429:
-                return {'url': url, 'status': code, 'state': 'protected', 'note': 'Rate limited (API works)'}
-            elif code in [401, 403]:
-                return {'url': url, 'status': code, 'state': 'protected', 'note': 'Auth required/Forbidden (API works)'}
+                return {'url': url, 'status': code, 'state': 'warning', 'note': 'Rate limited (HTTP 429)'}
+            elif code == 401:
+                return {'url': url, 'status': code, 'state': 'broken', 'note': 'Unauthorized (HTTP 401) - access restricted'}
+            elif code == 403:
+                return {'url': url, 'status': code, 'state': 'broken', 'note': 'Forbidden (HTTP 403) - restricted access'}
+
             elif code in [400, 405, 406]:
                 return {'url': url, 'status': code, 'state': 'working', 'note': 'API up (Invalid request/Method)'}
             elif code == 404:

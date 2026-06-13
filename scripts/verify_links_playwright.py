@@ -10,45 +10,66 @@ import json
 from datetime import datetime, timezone
 from playwright.sync_api import sync_playwright
 
-def verify_with_playwright(url):
+def verify_with_playwright(browser, url):
     """
     Returns True if the URL successfully loads in a headless browser, False otherwise.
     """
+    context = None
+    page = None
     try:
-        with sync_playwright() as p:
-            browser = p.chromium.launch(headless=True)
-            context = browser.new_context(
-                viewport={'width': 1280, 'height': 720},
-                user_agent='Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36'
-            )
-            page = context.new_page()
+        context = browser.new_context(
+            viewport={'width': 1280, 'height': 720},
+            user_agent='Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36'
+        )
+        page = context.new_page()
+        
+        # Fast check: wait for response headers first (wait_until='commit')
+        response = page.goto(url, wait_until='commit', timeout=8000)
+        
+        if response and response.status < 400:
+            page.close()
+            context.close()
+            return True, response.status, "Playwright: Verified working (Headers check)"
             
-            # Wait until DOM is loaded or network is mostly idle
-            response = page.goto(url, wait_until='domcontentloaded', timeout=15000)
+        # If response is >= 400, wait for DOM content to check for WAF challenges
+        try:
+            page.wait_for_load_state('domcontentloaded', timeout=4000)
+        except:
+            pass
             
-            # Check response status
-            if response and response.status < 400:
-                # Basic success
-                browser.close()
-                return True, response.status, "Playwright: Verified working"
-                
-            # If it's a Cloudflare challenge page, the status might be 403 or 503, 
-            # but we can check if the title or content indicates a challenge
-            title = page.title().lower()
-            try:
-                content = page.content().lower()
-            except:
-                content = ""
+        # Check response status again in case it updated during DOM load
+        if response and response.status < 400:
+            page.close()
+            context.close()
+            return True, response.status, "Playwright: Verified working"
             
+        title = page.title().lower()
+        try:
+            content = page.content().lower()
+        except:
+            content = ""
+        
+        status = response.status if response else None
+        # Only check for WAF indicators if status is typical (403, 429, 503, 52x)
+        is_waf_code = status in [403, 429, 503] or (status and 520 <= status <= 527)
+        if is_waf_code:
             cloudflare_indicators = ['just a moment', 'cloudflare', 'attention required', 'security check', 'ddos protection']
             if any(indicator in title or indicator in content for indicator in cloudflare_indicators):
-                browser.close()
-                return True, response.status if response else 403, "Playwright: Verified working (Cloudflare Challenge)"
+                page.close()
+                context.close()
+                return True, status if status else 403, "Playwright: Verified working (Cloudflare Challenge)"
 
-            browser.close()
-            return False, response.status if response else None, f"Playwright: Failed with HTTP {response.status if response else 'Unknown'}"
-            
+        page.close()
+        context.close()
+        return False, status, f"Playwright: Failed with HTTP {status if status else 'Unknown'}"
+
     except Exception as e:
+        if page:
+            try: page.close()
+            except: pass
+        if context:
+            try: context.close()
+            except: pass
         # Replace newlines with semicolon to prevent breaking the one-line-per-URL output format
         clean_err = str(e).replace('\n', ' ; ')
         return False, None, f"Playwright Exception: {clean_err}"
@@ -161,35 +182,50 @@ def main():
         
     print(f"Playwright Verification: checking {len(to_verify)} URLs...")
     
-    # Process the queue
-    for item in to_verify:
-        url = item['url']
-        old_state = item['state']
-        
-        print(f"Verifying [{old_state}]: {url}")
-        
-        is_working, new_status, note = verify_with_playwright(url)
-        
-        if is_working:
-            print(f"  -> Success! Was {old_state}, now working.")
-            # Remove from old category
-            results[old_state] = [i for i in results[old_state] if i['url'] != url]
-            # Add to working (or protected if it's a Cloudflare challenge but verified)
-            target_state = 'working' if 'Cloudflare Challenge' not in note else 'protected'
-            results[target_state].append({
-                'url': url,
-                'status': new_status,
-                'state': target_state,
-                'note': note
-            })
-        else:
-            print(f"  -> Still failing: {note}")
-            # Update note
-            for i in results[old_state]:
-                if i['url'] == url:
-                    clean_note = note.replace('\n', ' ; ')
-                    i['note'] = f"{i['note']} | {clean_note}"
-                    break
+    # Process the queue reusing browser instance
+    with sync_playwright() as p:
+        browser = p.chromium.launch(headless=True)
+        for item in to_verify:
+            url = item['url']
+            old_state = item['state']
+            
+            print(f"Verifying [{old_state}]: {url}")
+            
+            is_working, new_status, note = verify_with_playwright(browser, url)
+            
+            if is_working:
+                print(f"  -> Success! Was {old_state}, now working.")
+                # Remove from old category
+                results[old_state] = [i for i in results[old_state] if i['url'] != url]
+                # Add to working (or protected if it's a Cloudflare challenge but verified)
+                target_state = 'working' if 'Cloudflare Challenge' not in note else 'protected'
+                results[target_state].append({
+                    'url': url,
+                    'status': new_status,
+                    'state': target_state,
+                    'note': note
+                })
+            else:
+                print(f"  -> Still failing: {note}")
+                # Downgrade link state since it actually failed verification
+                # Remove from old category
+                results[old_state] = [i for i in results[old_state] if i['url'] != url]
+                
+                # Decide target category based on error
+                target_state = 'broken'
+                if new_status and new_status >= 500:
+                    target_state = 'error'
+                elif 'timeout' in note.lower():
+                    target_state = 'warning'
+                    
+                results[target_state].append({
+                    'url': url,
+                    'status': new_status,
+                    'state': target_state,
+                    'note': f"Stage 1: {item['note']} | Stage 2: {note}"
+                })
+        browser.close()
+
                     
     print("\nVerification complete. Regenerating reports...")
     save_reports(results, unique_links_count)
