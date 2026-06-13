@@ -100,42 +100,43 @@ def verify_with_playwright(browser, url):
         )
         page = context.new_page()
         
+        last_response = [None]
+        
+        def handle_response(r):
+            if r.frame == page.main_frame:
+                last_response[0] = r
+                
+        page.on("response", handle_response)
+        
         # Fast check: wait for response headers first (wait_until='commit')
         response = page.goto(url, wait_until='commit', timeout=8000)
         
-        if response and response.status < 400:
+        # Wait a bit for potential JS redirects or challenge solving
+        page.wait_for_timeout(5000)
+        
+        final_resp = last_response[0] if last_response[0] else response
+        status = final_resp.status if final_resp else None
+        
+        if status and status < 400:
             page.close()
             context.close()
-            return True, response.status, "Playwright: Verified working (Headers check)"
+            return True, status, "Playwright: Verified working"
             
-        # If response is >= 400, wait for DOM content to check for WAF challenges
-        try:
-            page.wait_for_load_state('domcontentloaded', timeout=4000)
-        except:
-            pass
-            
-        # Check response status again in case it updated during DOM load
-        if response and response.status < 400:
-            page.close()
-            context.close()
-            return True, response.status, "Playwright: Verified working"
-            
+        # If status is >= 400, check if it is a WAF challenge
         title = page.title().lower()
         try:
             content = page.content().lower()
         except:
             content = ""
-        
-        status = response.status if response else None
-        # Only check for WAF indicators if status is typical (403, 429, 503, 52x)
-        is_waf_code = status in [403, 429, 503] or (status and 520 <= status <= 527)
+            
+        is_waf_code = status in [403, 429, 503]
         if is_waf_code:
             cloudflare_indicators = ['just a moment', 'cloudflare', 'attention required', 'security check', 'ddos protection']
             if any(indicator in title or indicator in content for indicator in cloudflare_indicators):
                 page.close()
                 context.close()
-                return True, status if status else 403, "Playwright: Verified working (Cloudflare Challenge)"
-
+                return False, status, "Playwright: Blocked by Cloudflare Challenge (unsolved)"
+                
         page.close()
         context.close()
         return False, status, f"Playwright: Failed with HTTP {status if status else 'Unknown'}"

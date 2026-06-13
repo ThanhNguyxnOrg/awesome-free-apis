@@ -1165,7 +1165,7 @@ print(response.json()['fact'])
 | **ipapi.co** | Find IP address location information. | No | ✅ | [Link](https://ipapi.co/api/#introduction) |
 | **ipapi.com** | Real-time Geolocation & Reverse IP Lookup REST API. | 🔑 ApiKey | ✅ | [Link](https://ipapi.com/) |
 | **IPGEO** | Unlimited free IP Address API with useful information. | No | ✅ | [Link](https://api.techniknews.net/ipgeo/) |
-| **IPInfoDB** | Free Geolocation tools and APIs for country, region, city and time zone looku... | 🔑 ApiKey | ✅ | [Link](https://www.ipinfodb.com/api) |
+| **IP2Location.io** | IP geolocation API with country, region, city, ISP, and proxy data. | 🔑 ApiKey | ✅ | [Link](https://www.ip2location.io) |
 | **Kakao Maps** | Kakao Maps provide multiple APIs for Korean maps. | 🔑 ApiKey | ✅ | [Link](https://apis.map.kakao.com) |
 | **keycdn IP Location Finder** | Get the IP geolocation data through the simple REST API. All the responses ar... | 🔑 ApiKey | ✅ | [Link](https://tools.keycdn.com/geo) |
 | **LocationIQ** | Geocoding and maps (free tier: 5000 req/day). | 🔑 ApiKey | ✅ | [Link](https://locationiq.com/docs) |
